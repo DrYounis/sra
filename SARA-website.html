@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SARA — منصة الصحة المؤسسية | Corporate Wellness Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy: #153158;
+  --navy-deep: #0d1f38;
+  --navy-light: #1e4070;
+  --teal: #00C2A8;
+  --teal-light: #00d4b8;
+  --teal-glow: rgba(0, 194, 168, 0.15);
+  --gold: #E8B84B;
+  --gold-light: #f0cc70;
+  --offwhite: #F5F8FC;
+  --white: #ffffff;
+  --text-muted: rgba(255,255,255,0.6);
+  --text-dim: rgba(255,255,255,0.35);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Naskh Arabic', 'DM Sans', sans-serif;
+  background: var(--navy-deep);
+  color: var(--white);
+  direction: rtl;
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.2rem 4rem;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(13, 31, 56, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0,194,168,0.1);
+}
+
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--white);
+}
+.nav-logo span { color: var(--teal); }
+
+.nav-links {
+  display: flex; gap: 2.5rem; list-style: none;
+  font-size: 0.9rem; font-weight: 500;
+}
+.nav-links a {
+  color: var(--text-muted); text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--teal); }
+
+.nav-cta {
+  background: var(--teal);
+  color: var(--navy-deep);
+  padding: 0.7rem 1.8rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.nav-cta:hover { background: var(--teal-light); transform: translateY(-1px); }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 8rem 4rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 80% 50%, rgba(0,194,168,0.08) 0%, transparent 70%),
+              radial-gradient(ellipse 50% 80% at 20% 80%, rgba(21,49,88,0.6) 0%, transparent 60%);
+}
+
+.hero-grid-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(0,194,168,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,194,168,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.hero-content { position: relative; z-index: 2; padding-left: 2rem; }
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: rgba(0,194,168,0.1);
+  border: 1px solid rgba(0,194,168,0.3);
+  border-radius: 50px;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.82rem;
+  color: var(--teal);
+  margin-bottom: 2rem;
+  letter-spacing: 0.05em;
+  font-family: 'DM Mono', monospace;
+}
+.hero-badge::before { content: '◉'; font-size: 0.7rem; }
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 5vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+.hero-title .teal { color: var(--teal); }
+.hero-title .gold { color: var(--gold); }
+
+.hero-arabic {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.hero-desc {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  max-width: 500px;
+  margin-bottom: 3rem;
+  direction: rtl;
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1.15rem;
+}
+
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+.btn-primary {
+  background: var(--teal);
+  color: var(--navy-deep);
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.25s;
+  font-family: 'Noto Naskh Arabic', serif;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+}
+.btn-primary:hover { background: var(--teal-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,194,168,0.3); }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--white);
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 500;
+  font-size: 1rem;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.25s;
+  font-family: 'Noto Naskh Arabic', serif;
+}
+.btn-secondary:hover { border-color: var(--teal); color: var(--teal); }
+
+/* Hero Stats */
+.hero-stats {
+  display: flex; gap: 3rem; margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.stat-item { display: flex; flex-direction: column; gap: 0.3rem; }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+.stat-num span { color: var(--teal); font-size: 1.5rem; }
+.stat-label { font-size: 0.8rem; color: var(--text-muted); font-family: 'Noto Naskh Arabic', serif; }
+
+/* Hero Visual */
+.hero-visual { position: relative; z-index: 2; display: flex; justify-content: center; align-items: center; }
+
+.sara-score-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(0,194,168,0.2);
+  border-radius: 24px;
+  padding: 2.5rem;
+  width: 380px;
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.sara-score-card::before {
+  content: '';
+  position: absolute; inset: -1px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(0,194,168,0.3), transparent 50%, rgba(232,184,75,0.1));
+  z-index: -1;
+}
+
+.card-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+.card-title-en {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--teal);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.card-title-ar {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.score-display {
+  display: flex; flex-direction: column; align-items: center;
+  margin: 1.5rem 0;
+}
+.score-ring {
+  position: relative; width: 140px; height: 140px; margin-bottom: 1rem;
+}
+.score-ring svg { transform: rotate(-90deg); }
+.score-ring-track { fill: none; stroke: rgba(255,255,255,0.05); stroke-width: 8; }
+.score-ring-fill {
+  fill: none; stroke: var(--teal); stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 377;
+  stroke-dashoffset: 113;
+  filter: drop-shadow(0 0 8px rgba(0,194,168,0.5));
+  animation: ringFill 2s ease forwards;
+}
+@keyframes ringFill {
+  from { stroke-dashoffset: 377; }
+  to { stroke-dashoffset: 113; }
+}
+.score-number {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem; font-weight: 700;
+  color: var(--teal);
+  line-height: 1;
+}
+.score-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+
+.risk-bars { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem; }
+.risk-bar { display: flex; flex-direction: column; gap: 0.3rem; }
+.risk-bar-header { display: flex; justify-content: space-between; align-items: center; }
+.risk-bar-label { font-size: 0.75rem; color: var(--text-muted); font-family: 'Noto Naskh Arabic', serif; }
+.risk-bar-pct { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--text-muted); }
+.risk-bar-track { height: 4px; background: rgba(255,255,255,0.05); border-radius: 2px; overflow: hidden; }
+.risk-bar-fill { height: 100%; border-radius: 2px; animation: barFill 1.5s ease forwards; }
+@keyframes barFill { from { width: 0 !important; } }
+.bar-metabolic { background: var(--teal); }
+.bar-cardio { background: var(--gold); }
+.bar-mental { background: #7C83FD; }
+
+.card-footer {
+  margin-top: 1.8rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.card-cta-text {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.82rem;
+  color: var(--teal);
+  cursor: pointer;
+}
+.card-dr {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  text-align: left;
+}
+
+/* Floating elements */
+.float-badge {
+  position: absolute;
+  background: var(--navy);
+  border: 1px solid rgba(0,194,168,0.25);
+  border-radius: 12px;
+  padding: 0.7rem 1rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--teal);
+  white-space: nowrap;
+  animation: float 3s ease-in-out infinite;
+}
+.float-badge-1 { top: -20px; right: -30px; animation-delay: 0s; }
+.float-badge-2 { bottom: 20px; left: -40px; animation-delay: 1.5s; }
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* ─── SECTION COMMON ─── */
+section { padding: 6rem 4rem; position: relative; }
+
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  color: var(--teal);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  direction: ltr;
+  display: inline-block;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.8rem;
+}
+.section-title .teal { color: var(--teal); }
+.section-title .gold { color: var(--gold); }
+.section-subtitle {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  line-height: 1.8;
+}
+
+/* ─── PROBLEM SECTION ─── */
+.problem-section {
+  background: linear-gradient(180deg, var(--navy-deep) 0%, rgba(21,49,88,0.3) 100%);
+}
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 4rem;
+  align-items: center;
+}
+
+.problem-numbers { display: flex; flex-direction: column; gap: 2rem; }
+
+.problem-stat {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-right: 3px solid var(--teal);
+  border-radius: 12px;
+  padding: 1.8rem 2rem;
+  position: relative;
+  transition: all 0.3s;
+}
+.problem-stat:hover { border-right-color: var(--gold); transform: translateX(-4px); }
+.problem-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--teal);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+.problem-stat-label {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.problem-stat-en {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  direction: ltr;
+  margin-top: 0.3rem;
+}
+
+.problem-visual {
+  display: flex; flex-direction: column; gap: 1.5rem;
+}
+.problem-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--white);
+}
+.problem-body {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.9;
+}
+.problem-callout {
+  background: rgba(232,184,75,0.08);
+  border: 1px solid rgba(232,184,75,0.2);
+  border-radius: 12px;
+  padding: 1.5rem 1.8rem;
+}
+.problem-callout-text {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1rem;
+  color: var(--gold-light);
+  line-height: 1.8;
+}
+
+/* ─── HOW IT WORKS ─── */
+.how-section {
+  background: rgba(21,49,88,0.2);
+}
+.how-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(0,194,168,0.05), transparent);
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 4rem;
+  position: relative; z-index: 1;
+}
+
+.product-card {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  transition: all 0.35s;
+  position: relative;
+  overflow: hidden;
+}
+.product-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--card-accent, var(--teal));
+  transform: scaleX(0);
+  transition: transform 0.35s;
+}
+.product-card:hover { transform: translateY(-6px); border-color: rgba(0,194,168,0.2); }
+.product-card:hover::before { transform: scaleX(1); }
+
+.product-card.assess { --card-accent: var(--teal); }
+.product-card.coach { --card-accent: var(--gold); }
+.product-card.insights { --card-accent: #7C83FD; }
+
+.product-icon {
+  width: 56px; height: 56px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+}
+.icon-assess { background: rgba(0,194,168,0.1); }
+.icon-coach { background: rgba(232,184,75,0.1); }
+.icon-insights { background: rgba(124,131,253,0.1); }
+
+.product-name-en {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+.product-name-ar {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 1.2rem;
+}
+.product-desc {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+.product-features { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.product-features li {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  display: flex; align-items: flex-start; gap: 0.6rem;
+  direction: ltr;
+}
+.product-features li::before {
+  content: '→';
+  color: var(--card-accent);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ─── SCORE LEVELS ─── */
+.score-section { padding: 4rem; }
+.score-levels {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.score-level {
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  border: 1px solid transparent;
+  transition: all 0.3s;
+}
+.score-level:hover { transform: scale(1.03); }
+.level-green { background: rgba(52,211,153,0.06); border-color: rgba(52,211,153,0.2); }
+.level-yellow { background: rgba(251,191,36,0.06); border-color: rgba(251,191,36,0.2); }
+.level-orange { background: rgba(249,115,22,0.06); border-color: rgba(249,115,22,0.2); }
+.level-red { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.2); }
+
+.level-emoji { font-size: 2rem; margin-bottom: 0.8rem; }
+.level-range {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem; font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+.level-green .level-range { color: #34D399; }
+.level-yellow .level-range { color: #FBBF24; }
+.level-orange .level-range { color: #F97316; }
+.level-red .level-range { color: #EF4444; }
+.level-name-ar {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1rem; font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+.level-name-en {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  direction: ltr;
+}
+
+/* ─── DR SECTION ─── */
+.dr-section {
+  background: linear-gradient(135deg, rgba(21,49,88,0.8) 0%, var(--navy-deep) 100%);
+  border-top: 1px solid rgba(0,194,168,0.1);
+  border-bottom: 1px solid rgba(0,194,168,0.1);
+}
+
+.dr-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; align-items: center; margin-top: 3rem; }
+
+.dr-avatar {
+  position: relative;
+  display: flex; flex-direction: column; align-items: center;
+}
+.dr-photo-placeholder {
+  width: 260px; height: 320px;
+  background: linear-gradient(135deg, rgba(0,194,168,0.1), rgba(21,49,88,0.5));
+  border: 2px solid rgba(0,194,168,0.2);
+  border-radius: 20px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+.dr-photo-placeholder::after {
+  content: 'د. صالح الأنصاري';
+  position: absolute; bottom: -40px; left: 50%; transform: translateX(-50%);
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.85rem;
+  color: var(--teal);
+  white-space: nowrap;
+}
+.dr-credential-strip {
+  display: flex; gap: 0.7rem; flex-wrap: wrap; justify-content: center;
+  margin-top: 3rem;
+}
+.dr-chip {
+  background: rgba(0,194,168,0.08);
+  border: 1px solid rgba(0,194,168,0.2);
+  border-radius: 50px;
+  padding: 0.35rem 0.9rem;
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.72rem;
+  color: var(--teal);
+  text-align: center;
+}
+
+.dr-content { display: flex; flex-direction: column; gap: 1.5rem; }
+.dr-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: var(--teal);
+  font-style: italic;
+}
+.dr-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+.dr-role {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1rem;
+  color: var(--gold);
+}
+.dr-bio {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.9;
+}
+.dr-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.dr-stat {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 1.2rem;
+  text-align: center;
+}
+.dr-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--teal);
+  line-height: 1;
+}
+.dr-stat-label {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+}
+.dr-quote {
+  background: rgba(0,194,168,0.05);
+  border-right: 3px solid var(--teal);
+  padding: 1.5rem 1.8rem;
+  border-radius: 0 12px 12px 0;
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1.05rem;
+  color: var(--white);
+  line-height: 1.8;
+  font-style: italic;
+}
+
+/* ─── ROI CALCULATOR ─── */
+.roi-section {
+  background: var(--navy-deep);
+}
+.roi-container {
+  max-width: 900px; margin: 4rem auto 0;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(0,194,168,0.15);
+  border-radius: 24px;
+  padding: 3rem;
+}
+.roi-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem; font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+.roi-subtitle {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.roi-input-group { margin-bottom: 2rem; }
+.roi-input-label {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 0.8rem;
+  display: block;
+}
+.roi-slider {
+  width: 100%;
+  -webkit-appearance: none;
+  height: 4px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 2px;
+  outline: none;
+  margin-bottom: 0.5rem;
+}
+.roi-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px; height: 20px;
+  background: var(--teal);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0,194,168,0.5);
+}
+.roi-value-display {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; font-weight: 700;
+  color: var(--teal);
+  text-align: center;
+}
+
+.roi-results {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+  margin-top: 2rem; padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.roi-result-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 14px;
+  padding: 1.5rem;
+  text-align: center;
+}
+.roi-result-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem; font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+.roi-result-label {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.roi-main {
+  text-align: center;
+  padding: 2rem 1rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  margin-top: 1.5rem;
+}
+.roi-main-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem; font-weight: 700;
+  color: var(--teal);
+}
+.roi-main-label {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1rem; color: var(--text-muted);
+}
+
+/* ─── PRICING ─── */
+.pricing-section { background: rgba(21,49,88,0.15); }
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 4rem;
+}
+.pricing-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  transition: all 0.3s;
+  position: relative;
+}
+.pricing-card:hover { transform: translateY(-4px); }
+.pricing-card.featured {
+  background: rgba(0,194,168,0.06);
+  border-color: var(--teal);
+}
+.featured-badge {
+  position: absolute; top: -12px; right: 50%; transform: translateX(50%);
+  background: var(--teal);
+  color: var(--navy-deep);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 1rem;
+  border-radius: 50px;
+  font-weight: 600;
+}
+.pricing-tier {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+.pricing-tier-ar {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.85rem; color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+.pricing-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem; font-weight: 700;
+  color: var(--teal); line-height: 1;
+}
+.pricing-price-unit {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem; color: var(--text-muted);
+  margin-bottom: 2rem;
+  display: block;
+}
+.pricing-features { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+.pricing-features li {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.9rem; color: var(--text-muted);
+  display: flex; align-items: flex-start; gap: 0.6rem;
+}
+.pricing-features li span { color: var(--teal); flex-shrink: 0; }
+.pricing-cta {
+  display: block; width: 100%;
+  margin-top: 2rem;
+  padding: 0.9rem 1rem;
+  border-radius: 50px;
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.95rem; font-weight: 600;
+  text-align: center; text-decoration: none;
+  cursor: pointer; border: none;
+  transition: all 0.25s;
+}
+.pricing-cta-outline {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.pricing-cta-outline:hover { border-color: var(--teal); color: var(--teal); }
+.pricing-cta-solid {
+  background: var(--teal);
+  color: var(--navy-deep);
+}
+.pricing-cta-solid:hover { background: var(--teal-light); }
+
+/* ─── VISION 2030 ─── */
+.vision-section {
+  background: linear-gradient(135deg, rgba(21,49,88,0.6), var(--navy-deep));
+  text-align: center;
+  padding: 6rem 4rem;
+}
+.vision-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 3rem;
+}
+.vision-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 14px;
+  padding: 1.8rem 1.2rem;
+  transition: all 0.3s;
+}
+.vision-card:hover { border-color: rgba(0,194,168,0.3); transform: translateY(-3px); }
+.vision-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+.vision-goal {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem; font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+.vision-sara {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.8rem; color: var(--teal);
+}
+
+/* ─── CTA SECTION ─── */
+.cta-section {
+  padding: 6rem 4rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0,194,168,0.08), transparent);
+}
+.cta-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+.cta-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+.cta-subtitle {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+  line-height: 1.8;
+}
+.cta-actions {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 3rem 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem; font-weight: 900;
+  color: var(--white);
+}
+.footer-logo span { color: var(--teal); }
+.footer-tagline {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.8rem; color: var(--text-muted);
+  margin-top: 0.3rem;
+}
+.footer-links {
+  display: flex; gap: 2rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  direction: ltr;
+}
+.footer-links a { color: var(--text-muted); text-decoration: none; }
+.footer-links a:hover { color: var(--teal); }
+.footer-copy {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  direction: ltr;
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up {
+  animation: fadeUp 0.7s ease forwards;
+  opacity: 0;
+}
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.5s; }
+
+/* ─── WAVEFORM LOGO ─── */
+.waveform {
+  display: inline-flex; align-items: center; gap: 3px;
+  margin-left: 0.5rem;
+}
+.waveform-bar {
+  width: 3px; border-radius: 2px;
+  background: var(--teal);
+  animation: wave 1.5s ease-in-out infinite;
+}
+.w1 { height: 8px; animation-delay: 0s; }
+.w2 { height: 18px; animation-delay: 0.1s; }
+.w3 { height: 24px; animation-delay: 0.2s; }
+.w4 { height: 14px; animation-delay: 0.3s; }
+.w5 { height: 8px; animation-delay: 0.4s; }
+@keyframes wave {
+  0%,100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.3); }
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  .hero { grid-template-columns: 1fr; padding: 7rem 2rem 4rem; }
+  .hero-visual { display: none; }
+  .problem-grid, .dr-grid { grid-template-columns: 1fr; }
+  .products-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .vision-grid { grid-template-columns: repeat(2, 1fr); }
+  .score-levels { grid-template-columns: repeat(2, 1fr); }
+  nav { padding: 1rem 2rem; }
+  .nav-links { display: none; }
+  section { padding: 4rem 2rem; }
+  .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">SAR<span>A</span></div>
+  <ul class="nav-links">
+    <li><a href="#how">كيف تعمل</a></li>
+    <li><a href="#doctor">المؤسس الطبي</a></li>
+    <li><a href="#roi">العائد على الاستثمار</a></li>
+    <li><a href="#pricing">الأسعار</a></li>
+  </ul>
+  <a href="#cta" class="nav-cta">احجز عرضًا تجريبيًا</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  
+  <div class="hero-content fade-up">
+    <div class="hero-badge">المنصة الصحية المؤسسية الأولى في المملكة</div>
+    
+    <h1 class="hero-title">
+      منصة الصحة<br>
+      التي تحمي<br>
+      <span class="teal">مستقبل</span> <span class="gold">موظفيك</span>
+    </h1>
+    
+    <p class="hero-arabic">تقييم. تحليل. تحويل.</p>
+    
+    <p class="hero-desc">
+      ٤٣٪ من موظفيك في طريقهم نحو السكري وأمراض القلب والسمنة.
+      SARA تكتشف المخاطر قبل أن تصبح مطالبات تأمين مكلفة —
+      وتحوّل كل موظف إلى إنسان أكثر صحة وإنتاجية.
+    </p>
+    
+    <div class="hero-actions">
+      <a href="#cta" class="btn-primary">احجز عرضًا تجريبيًا ←</a>
+      <a href="#how" class="btn-secondary">كيف تعمل SARA؟</a>
+    </div>
+    
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">43<span>٪</span></div>
+        <div class="stat-label">من موظفي المملكة في خطر</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">17<span>B</span></div>
+        <div class="stat-label">ريال تكلفة سنوية قابلة للوقاية</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">4<span>x</span></div>
+        <div class="stat-label">عائد استثمار بحلول السنة الثالثة</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual fade-up delay-2">
+    <div class="sara-score-card">
+      <div class="float-badge float-badge-1">⬆ +4,200 خطوة / اليوم</div>
+      <div class="float-badge float-badge-2">↓ 23% انخفاض المطالبات</div>
+      
+      <div class="card-header">
+        <div>
+          <div class="card-title-en">SARA SCORE™</div>
+          <div class="card-title-ar">درجة SARA الصحية</div>
+        </div>
+        <div style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--text-dim)">Q4 2024</div>
+      </div>
+
+      <div class="score-display">
+        <div class="score-ring">
+          <svg viewBox="0 0 140 140" width="140" height="140">
+            <circle class="score-ring-track" cx="70" cy="70" r="60"/>
+            <circle class="score-ring-fill" cx="70" cy="70" r="60"/>
+          </svg>
+          <div class="score-number">70</div>
+        </div>
+        <div class="score-label">MODERATE RISK → IMPROVING</div>
+      </div>
+
+      <div class="risk-bars">
+        <div class="risk-bar">
+          <div class="risk-bar-header">
+            <span class="risk-bar-label">الخطر الأيضي</span>
+            <span class="risk-bar-pct">68%</span>
+          </div>
+          <div class="risk-bar-track">
+            <div class="risk-bar-fill bar-metabolic" style="width:68%"></div>
+          </div>
+        </div>
+        <div class="risk-bar">
+          <div class="risk-bar-header">
+            <span class="risk-bar-label">القلب والأوعية</span>
+            <span class="risk-bar-pct">45%</span>
+          </div>
+          <div class="risk-bar-track">
+            <div class="risk-bar-fill bar-cardio" style="width:45%"></div>
+          </div>
+        </div>
+        <div class="risk-bar">
+          <div class="risk-bar-header">
+            <span class="risk-bar-label">الصحة النفسية</span>
+            <span class="risk-bar-pct">31%</span>
+          </div>
+          <div class="risk-bar-track">
+            <div class="risk-bar-fill bar-mental" style="width:31%"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <div class="card-cta-text">ابدأ برنامج ٩٠ يومًا ←</div>
+        <div class="card-dr">د. الأنصاري<br>44 حالة صحية</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem-section" id="problem">
+  <span class="section-label">THE CRISIS / الأزمة</span>
+  <h2 class="section-title">المشكلة أكبر مما تظن</h2>
+  <p class="section-subtitle">أرقام تكشف الواقع الصحي لمنظومة العمل في المملكة — وتفسر لماذا ترتفع أقساط التأمين كل عام.</p>
+
+  <div class="problem-grid">
+    <div class="problem-numbers">
+      <div class="problem-stat fade-up">
+        <div class="problem-stat-num">43٪</div>
+        <div class="problem-stat-label">من موظفي القطاع الخاص في مسار نحو السكري وأمراض القلب والسمنة — قبل ظهور الأعراض</div>
+        <div class="problem-stat-en">43% of Saudi workforce on chronic disease trajectory</div>
+      </div>
+      <div class="problem-stat fade-up delay-1">
+        <div class="problem-stat-num">٨٫٥K</div>
+        <div class="problem-stat-label">ريال التكلفة السنوية لكل موظف عالي الخطورة — تأمين + غياب + انخفاض إنتاجية</div>
+        <div class="problem-stat-en">SAR 8,500 annual cost per high-risk employee</div>
+      </div>
+      <div class="problem-stat fade-up delay-2">
+        <div class="problem-stat-num">3x</div>
+        <div class="problem-stat-label">ارتفاع أقساط التأمين الصحي منذ ٢٠٠٩ — من ١٬٤٩١ إلى ٩٬٥٠٠ ريال متوقعة بحلول ٢٠٣٠</div>
+        <div class="problem-stat-en">Insurance premiums tripled since 2009 → SAR 9,500 by 2030</div>
+      </div>
+    </div>
+
+    <div class="problem-visual fade-up delay-1">
+      <h3 class="problem-headline">٧٠٪ من هذه التكاليف<br>يمكن الوقاية منها.</h3>
+      <p class="problem-body">
+        الأمراض المزمنة لا تظهر فجأة. تتراكم على مدى سنوات من قلة الحركة، والتغذية غير السليمة، والضغط النفسي المتراكم. 
+        معظم الشركات تدفع فاتورة المرض بعد وقوعه. 
+        SARA تتدخل قبل ذلك — في مكان العمل، يوميًا، بشكل مقاس وموثق.
+      </p>
+      <div class="problem-callout">
+        <p class="problem-callout-text">
+          🎯 <strong>رؤية ٢٠٣٠</strong> تهدف إلى خفض عبء الأمراض المزمنة على المنظومة الصحية السعودية.
+          SARA هي الأداة التنفيذية لهذا الهدف — داخل كل شركة، مع كل موظف.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="how-section">
+  <span class="section-label">HOW SARA WORKS / كيف تعمل</span>
+  <h2 class="section-title">ثلاثة مكونات. <span class="teal">نظام واحد.</span></h2>
+  <p class="section-subtitle">من التقييم إلى التحويل السلوكي إلى قياس العائد — كل شيء في منصة واحدة.</p>
+
+  <div class="products-grid">
+    <div class="product-card assess fade-up">
+      <div class="product-icon icon-assess">🔍</div>
+      <div class="product-name-en">SARA ASSESS</div>
+      <div class="product-name-ar">تقييم SARA الصحي</div>
+      <p class="product-desc">
+        تقييم شامل يغطي ٤٤ حالة صحية في ٧ أجهزة جسدية — في ١٥-٢٠ دقيقة فقط.
+        يولّد درجة SARA الشخصية لكل موظف وخريطة مخاطر المجتمعة لكل صاحب عمل.
+      </p>
+      <ul class="product-features">
+        <li>44 health conditions across 7 body systems</li>
+        <li>Arabic + English, mobile-optimized</li>
+        <li>Personal SARA Score (0-100)</li>
+        <li>Workforce population risk map</li>
+        <li>Dr. Alansari's validated methodology</li>
+      </ul>
+    </div>
+
+    <div class="product-card coach fade-up delay-1">
+      <div class="product-icon icon-coach">🚶</div>
+      <div class="product-name-en">SARA COACH</div>
+      <div class="product-name-ar">مدرب SARA الصحي</div>
+      <p class="product-desc">
+        برنامج تعديل نمط حياة لمدة ٩٠ يومًا — يمشي معك خطوة بخطوة.
+        ٥ محاور يومية بـ ١٠ دقائق فقط، متجذر في القيم الإسلامية والثقافة السعودية.
+      </p>
+      <ul class="product-features">
+        <li>Walking-based — النبي ﷺ walking methodology</li>
+        <li>Saudi-adapted nutrition (kabsa, harees, mandi)</li>
+        <li>القيلولة + 7hr sleep optimization</li>
+        <li>Mental health & stress management</li>
+        <li>Team challenges & leaderboards</li>
+        <li>Special Ramadan 30-day module</li>
+      </ul>
+    </div>
+
+    <div class="product-card insights fade-up delay-2">
+      <div class="product-icon icon-insights">📊</div>
+      <div class="product-name-en">SARA INSIGHTS</div>
+      <div class="product-name-ar">تحليلات SARA</div>
+      <p class="product-desc">
+        لوحة قيادة مباشرة تُظهر تطور صحة القوى العاملة، العائد على الاستثمار بالريال،
+        وبيانات إعادة تصنيف المخاطر لشركات التأمين.
+      </p>
+      <ul class="product-features">
+        <li>Real-time population health trends</li>
+        <li>ROI tracking in SAR</li>
+        <li>Insurance premium negotiation data</li>
+        <li>Risk stratification for insurers</li>
+        <li>Absenteeism & productivity metrics</li>
+        <li>Executive board reports</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Score Levels -->
+  <div style="margin-top:4rem">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;margin-bottom:0.5rem;text-align:center">مستويات درجة <span style="color:var(--teal)">SARA</span></h3>
+    <p style="font-family:'Noto Naskh Arabic',serif;font-size:0.95rem;color:var(--text-muted);text-align:center;margin-bottom:2rem">كل موظف يحصل على درجة من ٠ إلى ١٠٠ — وبرنامج مخصص لمستواه.</p>
+    <div class="score-levels">
+      <div class="score-level level-green fade-up">
+        <div class="level-emoji">🟢</div>
+        <div class="level-range">80–100</div>
+        <div class="level-name-ar">خطر منخفض</div>
+        <div class="level-name-en">LOW RISK — MAINTAIN</div>
+      </div>
+      <div class="score-level level-yellow fade-up delay-1">
+        <div class="level-emoji">🟡</div>
+        <div class="level-range">60–79</div>
+        <div class="level-name-ar">خطر معتدل</div>
+        <div class="level-name-en">MODERATE — WEEKLY PROGRAM</div>
+      </div>
+      <div class="score-level level-orange fade-up delay-2">
+        <div class="level-emoji">🟠</div>
+        <div class="level-range">40–59</div>
+        <div class="level-name-ar">خطر مرتفع</div>
+        <div class="level-name-en">HIGH — 90-DAY INTENSIVE</div>
+      </div>
+      <div class="score-level level-red fade-up delay-3">
+        <div class="level-emoji">🔴</div>
+        <div class="level-range">0–39</div>
+        <div class="level-name-ar">خطر حرج</div>
+        <div class="level-name-en">CRITICAL — CLINICAL REFERRAL</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DR SECTION -->
+<section id="doctor" class="dr-section">
+  <span class="section-label">CLINICAL FOUNDATION / الأساس الطبي</span>
+  <h2 class="section-title">ليس مستشارًا. <span class="teal">مؤسس مشارك.</span></h2>
+  <p class="section-subtitle">SARA مبنية على ٣٠ عامًا من البحث الميداني والخبرة السريرية — وليس على نظريات عامة.</p>
+
+  <div class="dr-grid">
+    <div class="dr-avatar fade-up">
+      <div class="dr-photo-placeholder">🏃</div>
+      <div class="dr-credential-strip" style="margin-top:4rem">
+        <div class="dr-chip">منظمة الصحة العالمية</div>
+        <div class="dr-chip">٣٠ عامًا خبرة</div>
+        <div class="dr-chip">٥ كتب منشورة</div>
+        <div class="dr-chip">مشاة الرياض</div>
+        <div class="dr-chip">٤٤ حالة صحية</div>
+        <div class="dr-chip">أستاذ مساعد</div>
+      </div>
+    </div>
+
+    <div class="dr-content fade-up delay-1">
+      <div class="dr-title">Clinical Co-Founder / المؤسس الطبي</div>
+      <div class="dr-name">د. صالح بن سعد<br>الأنصاري</div>
+      <div class="dr-role">عضو مجموعة تطوير إرشادات منظمة الصحة العالمية للنشاط البدني</div>
+      
+      <p class="dr-bio">
+        أستاذ مساعد في طب الأسرة والمجتمع بجامعة الملك فيصل. مدير عام سابق للصحة المدرسية بوزارة التعليم لأكثر من ١٠ سنوات. 
+        مؤلف إطار الـ٤٤ حالة صحية التي تتحسن بالمشي — المنهجية العلمية التي تقوم عليها SARA بالكامل.
+        صاحب نظرية "متلازمة نقص المشي" كمفتاح لحل وباء الأمراض المزمنة في المنطقة.
+      </p>
+
+      <div class="dr-stats">
+        <div class="dr-stat">
+          <div class="dr-stat-num">138K</div>
+          <div class="dr-stat-label">متابع على تويتر</div>
+        </div>
+        <div class="dr-stat">
+          <div class="dr-stat-num">2000+</div>
+          <div class="dr-stat-label">عضو في مشاة الرياض</div>
+        </div>
+        <div class="dr-stat">
+          <div class="dr-stat-num">44</div>
+          <div class="dr-stat-label">حالة صحية موثقة</div>
+        </div>
+      </div>
+
+      <div class="dr-quote">
+        "المشي علاج. وباء الأمراض المزمنة في مجتمعنا ليس قدرًا محتومًا — هو نتيجة قرارات يومية يمكن تغييرها. 
+        SARA تجعل هذا التغيير ممكنًا لكل موظف، في كل شركة، في المملكة العربية السعودية."
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROI CALCULATOR -->
+<section id="roi" class="roi-section">
+  <span class="section-label">ROI CALCULATOR / حاسبة العائد</span>
+  <h2 class="section-title" style="text-align:center">كم ستوفر <span class="teal">مع SARA؟</span></h2>
+
+  <div class="roi-container">
+    <div class="roi-title">حاسبة العائد على الاستثمار</div>
+    <div class="roi-subtitle">أدخل عدد موظفيك وشاهد التوفير المتوقع بالريال السعودي</div>
+
+    <div class="roi-input-group">
+      <label class="roi-input-label">عدد الموظفين: <strong id="empCountDisplay" style="color:var(--teal);font-family:'Playfair Display',serif">1,000</strong></label>
+      <input type="range" class="roi-slider" id="empSlider" min="500" max="5000" step="100" value="1000"
+             oninput="updateROI(this.value)">
+    </div>
+
+    <div class="roi-results">
+      <div class="roi-result-card">
+        <div class="roi-result-num" id="investmentNum">SAR 1.2M</div>
+        <div class="roi-result-label">استثمار SARA السنوي<br><small style="color:var(--text-dim);font-family:'DM Mono',monospace;font-size:0.65rem">@ SAR 100/موظف/شهر</small></div>
+      </div>
+      <div class="roi-result-card">
+        <div class="roi-result-num" id="savingsNum">SAR 1.7M</div>
+        <div class="roi-result-label">إجمالي التوفير المتوقع<br><small style="color:var(--text-dim);font-family:'DM Mono',monospace;font-size:0.65rem">تأمين + غياب + إنتاجية</small></div>
+      </div>
+      <div class="roi-result-card">
+        <div class="roi-result-num" id="roiNum" style="color:var(--teal)">1.43x</div>
+        <div class="roi-result-label">العائد في السنة الأولى<br><small style="color:var(--text-dim);font-family:'DM Mono',monospace;font-size:0.65rem">يرتفع إلى 3-5x بحلول السنة 3</small></div>
+      </div>
+    </div>
+
+    <div class="roi-main">
+      <div class="roi-main-num" id="netGainNum">+ SAR 517K</div>
+      <div class="roi-main-label">صافي الربح في السنة الأولى — قبل احتساب عوائد السنة الثانية والثالثة</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="pricing-section">
+  <span class="section-label">PRICING / الأسعار</span>
+  <h2 class="section-title">الباقة المناسبة <span class="teal">لحجم مؤسستك</span></h2>
+  <p class="section-subtitle">أسعار شهرية لكل موظف. عقود سنوية. عائد واضح قابل للقياس.</p>
+
+  <div class="pricing-grid">
+    <div class="pricing-card fade-up">
+      <div class="pricing-tier">Essentials</div>
+      <div class="pricing-tier-ar">الأساسية</div>
+      <div class="pricing-price">50</div>
+      <span class="pricing-price-unit">ريال / موظف / شهر</span>
+      <ul class="pricing-features">
+        <li><span>✓</span> تقييم صحي شامل (٤٤ حالة)</li>
+        <li><span>✓</span> درجة SARA الشخصية</li>
+        <li><span>✓</span> برنامج موجّه ذاتيًا</li>
+        <li><span>✓</span> لوحة قيادة HR للقراءة فقط</li>
+        <li><span>✓</span> تقرير ربع سنوي</li>
+      </ul>
+      <a href="#cta" class="pricing-cta pricing-cta-outline">ابدأ الآن</a>
+    </div>
+
+    <div class="pricing-card featured fade-up delay-1">
+      <div class="featured-badge">⭐ الأكثر طلبًا</div>
+      <div class="pricing-tier">Pro</div>
+      <div class="pricing-tier-ar">الاحترافية</div>
+      <div class="pricing-price">100</div>
+      <span class="pricing-price-unit">ريال / موظف / شهر</span>
+      <ul class="pricing-features">
+        <li><span>✓</span> كل مميزات الأساسية</li>
+        <li><span>✓</span> برنامج ٩٠ يوم مع مدرب</li>
+        <li><span>✓</span> تحديات جماعية وقائمة شرف</li>
+        <li><span>✓</span> تحليلات HR متقدمة</li>
+        <li><span>✓</span> مقاطع الدكتور الأنصاري</li>
+        <li><span>✓</span> برنامج رمضان الخاص</li>
+        <li><span>✓</span> حزمة ROI للتأمين</li>
+      </ul>
+      <a href="#cta" class="pricing-cta pricing-cta-solid">احجز عرضًا</a>
+    </div>
+
+    <div class="pricing-card fade-up delay-2">
+      <div class="pricing-tier">Enterprise</div>
+      <div class="pricing-tier-ar">المؤسسية</div>
+      <div class="pricing-price">150</div>
+      <span class="pricing-price-unit">ريال / موظف / شهر</span>
+      <ul class="pricing-features">
+        <li><span>✓</span> كل مميزات Pro</li>
+        <li><span>✓</span> علامة تجارية مخصصة</li>
+        <li><span>✓</span> تكامل مع أنظمة HR</li>
+        <li><span>✓</span> جلسات مباشرة مع د. الأنصاري</li>
+        <li><span>✓</span> تقارير مجلس الإدارة</li>
+        <li><span>✓</span> مدير حساب مخصص</li>
+        <li><span>✓</span> تكامل مع بوابات التأمين</li>
+      </ul>
+      <a href="#cta" class="pricing-cta pricing-cta-outline">تواصل معنا</a>
+    </div>
+  </div>
+
+  <p style="text-align:center;font-family:'Noto Naskh Arabic',serif;font-size:0.9rem;color:var(--text-muted);margin-top:2rem">
+    لشركات التأمين: نماذج تسعير مخصصة PMPY أو تقاسم الأرباح. 
+    <a href="#cta" style="color:var(--teal);text-decoration:none">تواصل للتفاصيل ←</a>
+  </p>
+</section>
+
+<!-- VISION 2030 -->
+<section class="vision-section">
+  <span class="section-label">VISION 2030 ALIGNMENT</span>
+  <h2 class="section-title">SARA والرؤية <span class="gold">٢٠٣٠</span></h2>
+  <p class="section-subtitle" style="margin:0 auto 2rem">SARA ليست مجرد منتج — هي تنفيذ عملي لأهداف رؤية ٢٠٣٠ الصحية داخل مكان العمل.</p>
+
+  <div class="vision-grid">
+    <div class="vision-card">
+      <div class="vision-icon">🎯</div>
+      <div class="vision-goal">برنامج جودة الحياة</div>
+      <div class="vision-sara">SARA تقيس تحسن الرفاهية يوميًا</div>
+    </div>
+    <div class="vision-card">
+      <div class="vision-icon">🏥</div>
+      <div class="vision-goal">تحول القطاع الصحي</div>
+      <div class="vision-sara">خفض العبء على المستشفيات بالوقاية</div>
+    </div>
+    <div class="vision-card">
+      <div class="vision-icon">💼</div>
+      <div class="vision-goal">إنتاجية القوى العاملة</div>
+      <div class="vision-sara">تقليل الغياب وزيادة التركيز</div>
+    </div>
+    <div class="vision-card">
+      <div class="vision-icon">🤖</div>
+      <div class="vision-goal">التحول الرقمي الصحي</div>
+      <div class="vision-sara">منصة تقنية سعودية الصنع</div>
+    </div>
+    <div class="vision-card">
+      <div class="vision-icon">🇸🇦</div>
+      <div class="vision-goal">المحتوى السعودي</div>
+      <div class="vision-sara">عربي أولًا — ثقافيًا متجذر</div>
+    </div>
+    <div class="vision-card">
+      <div class="vision-icon">💰</div>
+      <div class="vision-goal">تخفيض تكاليف الرعاية</div>
+      <div class="vision-sara">SAR 3.56B وقاية خلال 5 سنوات</div>
+    </div>
+    <div class="vision-card">
+      <div class="vision-icon">📈</div>
+      <div class="vision-goal">نمو الناتج غير النفطي</div>
+      <div class="vision-sara">SaaS صحي — صفر اعتماد على النفط</div>
+    </div>
+    <div class="vision-card">
+      <div class="vision-icon">🌍</div>
+      <div class="vision-goal">الريادة الإقليمية</div>
+      <div class="vision-sara">أول منصة رعاية مؤسسية خليجية</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta" class="cta-section">
+  <div class="cta-content fade-up">
+    <h2 class="cta-title">هل موظفوك بأمان<br>أم في خطر لا ترى؟</h2>
+    <p class="cta-subtitle">
+      ابدأ بتقييم مجاني لمجموعة من موظفيك.
+      في أسبوعين ستعرف حجم المخاطر الصحية الحقيقية في مؤسستك — وتكلفتها بالريال.
+    </p>
+    <div class="cta-actions">
+      <a href="mailto:hello@sara-health.sa" class="btn-primary">احجز عرضًا تجريبيًا ←</a>
+      <a href="mailto:hello@sara-health.sa" class="btn-secondary">تواصل مع الفريق</a>
+    </div>
+    <p style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--text-dim);margin-top:2rem;letter-spacing:0.05em">
+      للشركات ذات ١٠٠٠+ موظف · شركات التأمين · صناديق رؤية ٢٠٣٠
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">
+      SAR<span>A</span>
+      <div class="waveform">
+        <div class="waveform-bar w1"></div>
+        <div class="waveform-bar w2"></div>
+        <div class="waveform-bar w3"></div>
+        <div class="waveform-bar w4"></div>
+        <div class="waveform-bar w5"></div>
+      </div>
+    </div>
+    <div class="footer-tagline">Smart · Adaptive · Restorative · Active | سارة لصحة موظفيك</div>
+  </div>
+  <div class="footer-links">
+    <a href="#how">How It Works</a>
+    <a href="#doctor">Our Science</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#cta">Contact</a>
+  </div>
+  <div class="footer-copy">
+    Built in Saudi Arabia · © 2025 SARA Health<br>
+    منصة صحية مؤسسية مبنية في المملكة العربية السعودية
+  </div>
+</footer>
+
+<script>
+// ROI Calculator
+function formatSAR(num) {
+  if (num >= 1000000) return 'SAR ' + (num/1000000).toFixed(1) + 'M';
+  if (num >= 1000) return 'SAR ' + Math.round(num/1000) + 'K';
+  return 'SAR ' + num;
+}
+
+function updateROI(employees) {
+  employees = parseInt(employees);
+  
+  // Display count
+  document.getElementById('empCountDisplay').textContent = employees.toLocaleString('ar-SA');
+  
+  // Investment: SAR 100/employee/month × 12
+  const investment = employees * 100 * 12;
+  
+  // Savings estimates (conservative)
+  // Insurance premium reduction: 20% of SAR 4,511 × 20% of employees × 20% improvement
+  const highRiskCount = Math.round(employees * 0.30);
+  const premiumSaving = highRiskCount * 4511 * 0.20;
+  const absentSaving = employees * 1260 * 0.20; // SAR 1260/yr absenteeism per employee × 20%
+  const productivitySaving = employees * 1687 * 0.20; // SAR 1687/yr productivity per employee × 20%
+  const totalSavings = premiumSaving + absentSaving + productivitySaving;
+  
+  const netGain = totalSavings - investment;
+  const roi = totalSavings / investment;
+  
+  document.getElementById('investmentNum').textContent = formatSAR(investment);
+  document.getElementById('savingsNum').textContent = formatSAR(totalSavings);
+  document.getElementById('roiNum').textContent = roi.toFixed(2) + 'x';
+  document.getElementById('netGainNum').textContent = (netGain > 0 ? '+ ' : '') + formatSAR(netGain);
+  document.getElementById('netGainNum').style.color = netGain > 0 ? 'var(--teal)' : 'var(--gold)';
+}
+
+// Init
+updateROI(1000);
+
+// Intersection Observer for fade-up animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.fade-up').forEach(el => {
+  el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+  observer.observe(el);
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+
+</body>
+</html>
