@@ -40,10 +40,9 @@ SARA helps large Saudi employers (1,000+ employees) and health insurers **reduce
 | File | What It Is | When You Need It |
 |---|---|---|
 | [`index.html`](index.html) | Full bilingual website (Arabic RTL + English). WhatsApp CTA to +966555056545 | Show to partners, clients, investors as live demo |
+| [`investor.html`](investor.html) | Unified investor pitch deck (14 slides). Covers Pre-Seed SAR 2M + Seed SAR 4M | Send to any investor — VCs, angels, V2030 funds, accelerators |
 | [`SARA-Antigravity-Brief.md`](SARA-Antigravity-Brief.md) | Complete handoff brief for Antigravity agency — brand, requirements, messaging | Give to any designer/developer/agency to build from |
 | [`SARA-Complete-Strategy.md`](SARA-Complete-Strategy.md) | Full business blueprint — skills, business model, MVP, assessment, 90-day program, pricing | Master reference for all business decisions |
-| [`SARA-Investor-Pitch-PreSeed.md`](SARA-Investor-Pitch-PreSeed.md) | 12-slide pitch for VCs/angels/accelerators — SAR 2M pre-seed | Use for Flat6Labs, 500 Global, angel investors |
-| [`SARA-Investor-Pitch-Vision2030.md`](SARA-Investor-Pitch-Vision2030.md) | 11-slide pitch for government/Vision 2030 funds — SAR 4M seed | Use for SVC, Jada, MOH, Quality of Life Program |
 
 ---
 
