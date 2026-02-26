@@ -7,7 +7,7 @@
 
 **SARA** (Smart • Adaptive • Restorative • Active) is Saudi Arabia's first clinically-backed, Arabic-native corporate wellness platform for chronic disease prevention. It targets large Saudi employers (1,000+ employees) and health insurance companies, helping them reduce the cost and burden of preventable chronic disease in the workforce.
 
-**The Arabic meaning:** سارة — a woman's name meaning happiness and warmth. Chosen intentionally for Saudi cultural resonance.
+**The Arabic meaning:** سُرى — من السَّيْر (المشي/السير) — مشتقة من الفعل "سرى" أي مشى وتحرّك. الاسم يربط مباشرة بمنهجية الدكتور الأنصاري في المشي كعلاج. Derived from the Arabic root س-ر-ي meaning "to walk / to journey" — directly connecting the brand name to Dr. Alansari's walking methodology.
 
 ---
 

@@ -602,7 +602,7 @@ PHASE 3 (Days 61-90)  → MASTERY     "عِش صحتك"     Live Your Health
 | Dawn Walker | 5 fajr walks completed | مشّاء الفجر |
 | Mind Master | 14 days of mental check-ins | صحة النفس |
 | 10K Champion | First day hitting 10,000 steps | بطل العشرة آلاف |
-| SARA Graduate | Complete full 90 days | خريج سارة |
+| SARA Graduate | Complete full 90 days | خريج سُرى |
 
 ### Notification Strategy
 
