@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SARA — Investor Pitch | عرض المستثمرين</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy: #153158;
+  --navy-deep: #0d1f38;
+  --navy-light: #1e4070;
+  --teal: #00C2A8;
+  --teal-light: #00d4b8;
+  --gold: #E8B84B;
+  --gold-light: #f0cc70;
+  --offwhite: #F5F8FC;
+  --white: #ffffff;
+  --text-muted: rgba(255,255,255,0.6);
+  --text-dim: rgba(255,255,255,0.35);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--navy-deep);
+  color: var(--white);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.2rem 4rem;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(13, 31, 56, 0.9);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0,194,168,0.1);
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; font-weight: 900;
+  color: var(--white); text-decoration: none;
+}
+.nav-logo span { color: var(--teal); }
+.nav-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem; letter-spacing: 0.1em;
+  color: var(--gold); border: 1px solid rgba(232,184,75,0.3);
+  padding: 0.3rem 0.8rem; border-radius: 50px;
+}
+.nav-back {
+  color: var(--text-muted); text-decoration: none;
+  font-size: 0.85rem; transition: color 0.2s;
+}
+.nav-back:hover { color: var(--teal); }
+
+/* SLIDE */
+.slide {
+  min-height: 100vh; padding: 8rem 4rem 4rem;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative; border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.slide:first-of-type { padding-top: 10rem; }
+
+.slide-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem; letter-spacing: 0.15em;
+  color: var(--teal); text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.slide-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 4vw, 3.8rem);
+  font-weight: 700; line-height: 1.15;
+  margin-bottom: 1.5rem; max-width: 900px;
+}
+.slide-title .teal { color: var(--teal); }
+.slide-title .gold { color: var(--gold); }
+.slide-subtitle {
+  font-size: 1.1rem; color: var(--text-muted);
+  max-width: 700px; margin-bottom: 2.5rem; line-height: 1.8;
+}
+
+/* QUOTE */
+.quote {
+  background: rgba(0,194,168,0.05);
+  border-left: 3px solid var(--teal);
+  padding: 2rem 2.5rem; border-radius: 0 16px 16px 0;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-style: italic; line-height: 1.7;
+  max-width: 900px; margin: 1rem 0 2rem;
+}
+
+/* STAT ROW */
+.stat-row {
+  display: flex; gap: 2rem; flex-wrap: wrap;
+  margin: 2rem 0;
+}
+.stat-box {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px; padding: 2rem;
+  flex: 1; min-width: 200px; text-align: center;
+  transition: all 0.3s;
+}
+.stat-box:hover { border-color: rgba(0,194,168,0.3); transform: translateY(-3px); }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem; font-weight: 700;
+  color: var(--teal); line-height: 1;
+}
+.stat-num.gold { color: var(--gold); }
+.stat-label {
+  font-size: 0.85rem; color: var(--text-muted);
+  margin-top: 0.5rem; line-height: 1.4;
+}
+
+/* CODE BLOCK */
+.code-block {
+  background: rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px; padding: 2rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.82rem; line-height: 1.8;
+  color: var(--text-muted); overflow-x: auto;
+  max-width: 800px; margin: 1.5rem 0;
+  white-space: pre;
+}
+.code-block .hl { color: var(--teal); }
+.code-block .gl { color: var(--gold); }
+
+/* TABLE */
+.pitch-table {
+  width: 100%; max-width: 900px;
+  border-collapse: collapse; margin: 1.5rem 0;
+}
+.pitch-table th {
+  text-align: left; padding: 0.8rem 1rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem; letter-spacing: 0.1em;
+  color: var(--teal); text-transform: uppercase;
+  border-bottom: 1px solid rgba(0,194,168,0.2);
+}
+.pitch-table td {
+  padding: 0.8rem 1rem; font-size: 0.9rem;
+  color: var(--text-muted);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.pitch-table tr:hover td { color: var(--white); }
+
+/* GRID 3 */
+.grid-3 {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem; margin: 2rem 0; max-width: 900px;
+}
+.card {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px; padding: 2rem;
+  transition: all 0.3s;
+}
+.card:hover { border-color: rgba(0,194,168,0.3); transform: translateY(-3px); }
+.card-icon { font-size: 2rem; margin-bottom: 1rem; }
+.card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem; font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.card-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+
+/* TIMELINE */
+.timeline {
+  display: flex; gap: 0; margin: 2rem 0; max-width: 900px;
+  position: relative;
+}
+.timeline::before {
+  content: ''; position: absolute;
+  top: 28px; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--teal), var(--gold));
+}
+.tl-item {
+  flex: 1; text-align: center; position: relative; padding-top: 3.5rem;
+}
+.tl-dot {
+  position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--teal); border: 3px solid var(--navy-deep);
+  z-index: 1;
+}
+.tl-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem; color: var(--teal);
+  letter-spacing: 0.08em; margin-bottom: 0.3rem;
+}
+.tl-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem;
+}
+.tl-desc { font-size: 0.75rem; color: var(--text-muted); }
+
+/* BULLET LIST */
+.bullet-list {
+  list-style: none; display: flex; flex-direction: column;
+  gap: 0.7rem; max-width: 700px; margin: 1rem 0;
+}
+.bullet-list li {
+  font-size: 0.95rem; color: var(--text-muted);
+  display: flex; align-items: flex-start; gap: 0.8rem;
+  line-height: 1.6;
+}
+.bullet-list li::before {
+  content: ''; flex-shrink: 0; margin-top: 8px;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--teal);
+}
+
+/* THESIS CARD */
+.thesis-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-left: 3px solid var(--teal);
+  border-radius: 0 12px 12px 0;
+  padding: 1.5rem 2rem; margin-bottom: 1rem;
+  max-width: 800px;
+}
+.thesis-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem; color: var(--teal);
+  letter-spacing: 0.1em; margin-bottom: 0.3rem;
+}
+.thesis-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem;
+}
+.thesis-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; }
+
+/* CTA */
+.pitch-cta {
+  text-align: center; padding: 6rem 4rem;
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0,194,168,0.08), transparent);
+}
+.pitch-cta .slide-title { margin: 0 auto 1rem; text-align: center; }
+.pitch-cta .slide-subtitle { margin: 0 auto 2.5rem; text-align: center; }
+.cta-btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--teal); color: var(--navy-deep);
+  padding: 1rem 2.5rem; border-radius: 50px;
+  font-weight: 700; font-size: 1rem;
+  text-decoration: none; transition: all 0.25s;
+}
+.cta-btn:hover { background: var(--teal-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,194,168,0.3); }
+
+/* DATA TABLE */
+.data-table {
+  width: 100%; max-width: 900px;
+  border-collapse: collapse; margin: 1.5rem 0;
+  font-size: 0.82rem;
+}
+.data-table th {
+  text-align: left; padding: 0.6rem 1rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem; letter-spacing: 0.08em;
+  color: var(--teal); text-transform: uppercase;
+  border-bottom: 1px solid rgba(0,194,168,0.2);
+  background: rgba(0,194,168,0.03);
+}
+.data-table td {
+  padding: 0.5rem 1rem; color: var(--text-muted);
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+
+/* FOOTER */
+.pitch-footer {
+  text-align: center; padding: 3rem 4rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.pitch-footer p {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem; color: var(--text-dim);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .slide { padding: 6rem 1.5rem 3rem; }
+  nav { padding: 1rem 1.5rem; }
+  .grid-3 { grid-template-columns: 1fr; }
+  .stat-row { flex-direction: column; }
+  .timeline { flex-direction: column; gap: 1.5rem; }
+  .timeline::before { display: none; }
+  .tl-item { padding-top: 0; text-align: left; padding-left: 2rem; }
+  .tl-dot { left: 0; top: 0; transform: none; }
+  .pitch-cta { padding: 4rem 1.5rem; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">SAR<span>A</span></a>
+  <div class="nav-badge">INVESTOR PITCH 2026</div>
+  <a href="index.html" class="nav-back">&larr; Back to Website</a>
+</nav>
+
+<!-- SLIDE 0: HOOK -->
+<div class="slide" style="text-align:center;align-items:center">
+  <div class="slide-num">The Opportunity</div>
+  <h1 class="slide-title" style="max-width:1000px">
+    Saudi Arabia has <span class="gold">13.2 million</span> insured employees.<br>
+    <span class="teal">43%</span> are heading toward chronic disease.
+  </h1>
+  <p class="slide-subtitle" style="max-width:700px;margin-left:auto;margin-right:auto">
+    Each high-risk employee costs SAR 8,500/year in healthcare and lost productivity.
+    That's a <strong style="color:var(--gold)">SAR 48 billion problem</strong> — and nobody has built a Saudi-native, clinically-backed solution to prevent it. Until now.
+  </p>
+  <div class="stat-row" style="max-width:700px;margin:2rem auto 0">
+    <div class="stat-box">
+      <div class="stat-num">SAR 17.8B</div>
+      <div class="stat-label">Preventable claims annually</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num gold">70%</div>
+      <div class="stat-label">Of chronic disease costs are avoidable</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">0</div>
+      <div class="stat-label">Saudi-native platforms solving this</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 1: THE PROBLEM -->
+<div class="slide">
+  <div class="slide-num">Slide 01 — The Problem</div>
+  <h2 class="slide-title">Three crises converging <span class="teal">at the same moment</span></h2>
+  <p class="slide-subtitle">Obesity at 23.1%, premiums tripling, and no local solution. The corporate math is brutal.</p>
+
+  <div class="code-block"><span class="gl">1,500-employee company today:</span>
+─────────────────────────────────────
+Annual insurance premiums:      <span class="hl">SAR 6.8M</span>
+Absenteeism (4.2 days avg):    <span class="hl">SAR 1.9M</span>
+Productivity loss (15%):        <span class="hl">SAR 3.4M</span>
+─────────────────────────────────────
+Total cost of poor health:      <span class="gl">SAR 12.1M/year</span>
+
+<span class="hl">70% of this is PREVENTABLE.</span>
+That's <span class="gl">SAR 8.5M</span> that doesn't need to be spent.</div>
+</div>
+
+<!-- SLIDE 2: WHY NOW -->
+<div class="slide">
+  <div class="slide-num">Slide 02 — Why Now</div>
+  <h2 class="slide-title">Three tailwinds make <span class="gold">2026</span> the perfect moment</h2>
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-icon">🏛️</div>
+      <div class="card-title">Regulatory Push</div>
+      <div class="card-desc">Vision 2030 allocated SAR 180B to health sector transformation. Government is actively incentivizing what SARA does.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">📈</div>
+      <div class="card-title">Insurance Explosion</div>
+      <div class="card-desc">Health insurance market: SAR 42B (2024) &rarr; SAR 83B (2030). Insurers seeking wellness platforms to cut loss ratios.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🤖</div>
+      <div class="card-title">Digital Health Surge</div>
+      <div class="card-desc">Digital health market: USD 4.4B &rarr; USD 15.3B by 2033 (13.2% CAGR). Wellness add-ons growing at 18.52% CAGR.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3: MARKET SIZE -->
+<div class="slide">
+  <div class="slide-num">Slide 03 — Market Size</div>
+  <h2 class="slide-title">TAM &rarr; SAM &rarr; <span class="teal">SOM</span></h2>
+
+  <div class="stat-row" style="max-width:900px">
+    <div class="stat-box">
+      <div class="stat-num gold">SAR 170B+</div>
+      <div class="stat-label">TAM<br>Health + Insurance combined</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">SAR 9.4B</div>
+      <div class="stat-label">SAM by 2030<br>Corporate Wellness (12% CAGR)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num" style="color:var(--teal)">SAR 99M</div>
+      <div class="stat-label">SOM Year 3<br>40 employers + 3 insurers</div>
+    </div>
+  </div>
+
+  <div class="code-block"><span class="hl">SARA Year 3 SOM breakdown:</span>
+40 employers x 2,000 employees x SAR 1,200/yr  = <span class="gl">SAR 96M</span>
+3 insurers x 15,000 members x SAR 300/yr       = <span class="gl">SAR 13.5M</span>
+────────────────────────────────────────────────
+Total Year 3 ARR:                                 <span class="hl">SAR 99M</span> (conservative)</div>
+</div>
+
+<!-- SLIDE 4: THE SOLUTION -->
+<div class="slide">
+  <div class="slide-num">Slide 04 — The Solution</div>
+  <h2 class="slide-title">One platform. Three beneficiaries. <span class="teal">Measurable outcomes.</span></h2>
+
+  <div class="grid-3">
+    <div class="card" style="border-top:2px solid var(--teal)">
+      <div class="card-icon">🔍</div>
+      <div class="card-title">SARA ASSESS</div>
+      <div class="card-desc">44-condition health risk assessment across 7 body systems. Generates personal SARA Score + employer population risk map. 15 minutes, Arabic-first.</div>
+    </div>
+    <div class="card" style="border-top:2px solid var(--gold)">
+      <div class="card-icon">🚶</div>
+      <div class="card-title">SARA COACH</div>
+      <div class="card-desc">90-day lifestyle modification program. 5 pillars: Walking, Nutrition, Sleep, Mental Health, Community. Islamically grounded. Saudi-adapted.</div>
+    </div>
+    <div class="card" style="border-top:2px solid #7C83FD">
+      <div class="card-icon">📊</div>
+      <div class="card-title">SARA INSIGHTS</div>
+      <div class="card-desc">Real-time employer and insurer dashboard. ROI in SAR. Risk reduction tracking. Insurance premium negotiation data. Board reports.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 5: TRACTION -->
+<div class="slide">
+  <div class="slide-num">Slide 05 — Traction & Validation</div>
+  <h2 class="slide-title">What we have today that <span class="teal">de-risks</span> the investment</h2>
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-title" style="color:var(--teal)">Clinical</div>
+      <ul class="bullet-list">
+        <li>Dr. Al-Ansari as co-founder — 30 years field-proven methodology</li>
+        <li>44-condition assessment framework from WHO-endorsed research</li>
+        <li>90-day program designed and deployment-ready</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:var(--gold)">Market</div>
+      <ul class="bullet-list">
+        <li>Pricing stress-tested against SAR 4,511 avg premium</li>
+        <li>ROI model: 4x-12x return at SAR 100 PEPM</li>
+        <li>Gain-share model eliminates insurer risk</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:#7C83FD">Community</div>
+      <ul class="bullet-list">
+        <li>138,000 Twitter followers = launch audience</li>
+        <li>Riyadh Walkers: 2,000+ active members = pilot group</li>
+        <li>100+ walking groups = grassroots distribution</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="quote" style="margin-top:2rem">
+    "We have the clinical co-founder, the methodology, the market model, the brand, and the community. What we're raising now is the capital to build the product and run the pilot that turns this into an undeniable case study."
+  </div>
+</div>
+
+<!-- SLIDE 6: DR ALANSARI -->
+<div class="slide">
+  <div class="slide-num">Slide 06 — The Moat</div>
+  <h2 class="slide-title">The co-founder <span class="teal">no competitor can replicate</span></h2>
+  <p class="slide-subtitle">Dr. Salih bin Saad Al-Ansari — Clinical Co-Founder</p>
+
+  <div class="stat-row" style="max-width:900px">
+    <div class="stat-box">
+      <div class="stat-num">30</div>
+      <div class="stat-label">Years in health promotion</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num gold">WHO</div>
+      <div class="stat-label">Physical Activity Guidelines contributor</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">138K</div>
+      <div class="stat-label">Twitter followers</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num" style="color:var(--teal)">5</div>
+      <div class="stat-label">Published books</div>
+    </div>
+  </div>
+
+  <ul class="bullet-list" style="margin-top:2rem">
+    <li>Assistant Professor, Family & Community Medicine — King Faisal University</li>
+    <li>Former Director General, School Health — Ministry of Education (10 years)</li>
+    <li>Founder, Riyadh Walkers — largest walking community in Saudi Arabia (2,000+ members, 24 neighborhoods)</li>
+    <li>Creator of the 44-condition framework linking walking to health outcomes</li>
+    <li>Creator of "Walking Deficiency Syndrome" thesis — chronic disease is solvable through movement</li>
+  </ul>
+</div>
+
+<!-- SLIDE 7: BUSINESS MODEL -->
+<div class="slide">
+  <div class="slide-num">Slide 07 — Business Model</div>
+  <h2 class="slide-title">Dual revenue channel = <span class="teal">faster profitability</span></h2>
+
+  <div class="code-block"><span class="hl">EMPLOYER CHANNEL</span>
+Essentials:    SAR  50/employee/month
+Pro:           SAR 100/employee/month  <span class="gl">&larr; Target</span>
+Enterprise:    SAR 150/employee/month
+Annual contract: SAR 600K - 3.6M per client
+
+<span class="hl">INSURER CHANNEL</span>
+Model A — PMPY:       SAR 200-400/member/year
+Model B — Gain Share:  SAR 100 base + 20% of verified savings
+Model C — Bundle:     SAR 150/member/year (wholesale)
+One insurer deal = <span class="gl">10,000-50,000 members overnight</span></div>
+
+  <div class="stat-row" style="max-width:700px">
+    <div class="stat-box">
+      <div class="stat-num">SAR 2.4M</div>
+      <div class="stat-label">Annual contract value<br>(2,000 employees @ Pro)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num gold">80%</div>
+      <div class="stat-label">Gross margin at scale</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num" style="color:var(--teal)">&lt; 6mo</div>
+      <div class="stat-label">Payback period</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8: FINANCIAL PROJECTIONS -->
+<div class="slide">
+  <div class="slide-num">Slide 08 — Financial Projections</div>
+  <h2 class="slide-title">Conservative, credible, <span class="gold">grounded in market data</span></h2>
+
+  <table class="pitch-table">
+    <thead>
+      <tr><th></th><th>Year 1</th><th>Year 2</th><th>Year 3</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Lives on Platform</td><td>4,500</td><td>25,000</td><td>90,000</td></tr>
+      <tr><td>Employer Clients</td><td>3</td><td>6</td><td>15</td></tr>
+      <tr><td>Insurer Partners</td><td>0</td><td>1</td><td>3</td></tr>
+      <tr><td style="color:var(--gold)"><strong>Gross Revenue</strong></td><td><strong>SAR 3.2M</strong></td><td><strong>SAR 29M</strong></td><td><strong>SAR 99M</strong></td></tr>
+      <tr><td>Gross Margin</td><td>65%</td><td>72%</td><td>80%</td></tr>
+      <tr><td>Operating Costs</td><td>SAR 4.8M</td><td>SAR 12M</td><td>SAR 28M</td></tr>
+      <tr><td style="color:var(--teal)"><strong>EBITDA</strong></td><td style="color:var(--gold)"><strong>(SAR 1.6M)</strong></td><td style="color:var(--teal)"><strong>SAR 17M</strong></td><td style="color:var(--teal)"><strong>SAR 71M</strong></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SLIDE 9: GO-TO-MARKET -->
+<div class="slide">
+  <div class="slide-num">Slide 09 — Go-to-Market</div>
+  <h2 class="slide-title">From zero to first client in <span class="teal">90 days</span></h2>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-label">NOW &rarr; MONTH 3</div>
+      <div class="tl-title">Build & Pilot</div>
+      <div class="tl-desc">Raise round. Build MVP (12 weeks). Deploy charity pilot.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot" style="background:var(--gold)"></div>
+      <div class="tl-label">MONTH 4-6</div>
+      <div class="tl-title">First Revenue</div>
+      <div class="tl-desc">Pilot data &rarr; 3 employer clients. SAR 3.2M ARR.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-label">MONTH 7-12</div>
+      <div class="tl-title">Insurance Channel</div>
+      <div class="tl-desc">Gain-share model &rarr; first insurer = 10K+ members.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot" style="background:var(--gold)"></div>
+      <div class="tl-label">YEAR 2-3</div>
+      <div class="tl-title">Scale & Series A</div>
+      <div class="tl-desc">SAR 29M ARR. Raise SAR 20M+ Series A.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 10: THE ASK -->
+<div class="slide">
+  <div class="slide-num">Slide 10 — The Ask</div>
+  <h2 class="slide-title">Raising <span class="teal">SAR 2-4M</span> to prove it with data</h2>
+
+  <div class="grid-3" style="margin-bottom:2rem">
+    <div class="card" style="text-align:center">
+      <div class="stat-num">SAR 2M</div>
+      <div class="stat-label" style="margin-top:0.5rem">Pre-Seed<br>VCs / Angels / Accelerators</div>
+    </div>
+    <div class="card" style="text-align:center;border-color:var(--teal)">
+      <div style="font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--navy-deep);background:var(--teal);padding:0.2rem 0.6rem;border-radius:50px;display:inline-block;margin-bottom:0.5rem">OR</div>
+      <div class="stat-num gold">SAR 4M</div>
+      <div class="stat-label" style="margin-top:0.5rem">Seed<br>Vision 2030 / Government Funds</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="stat-num" style="color:var(--teal)">15-20%</div>
+      <div class="stat-label" style="margin-top:0.5rem">Equity offered<br>SAR 20-26.7M pre-money</div>
+    </div>
+  </div>
+
+  <table class="pitch-table">
+    <thead>
+      <tr><th>Allocation</th><th>Amount</th><th>Purpose</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Product Development</td><td style="color:var(--teal)">40%</td><td>MVP: assessment engine + app + dashboard</td></tr>
+      <tr><td>Core Team (12 months)</td><td style="color:var(--teal)">30%</td><td>CTO + 2 developers + 1 sales lead</td></tr>
+      <tr><td>Sales & BD</td><td style="color:var(--teal)">15%</td><td>First 3 employers + 2 insurer conversations</td></tr>
+      <tr><td>Operations & Legal</td><td style="color:var(--teal)">10%</td><td>PDPL, CCHI, MOH alignment</td></tr>
+      <tr><td>Reserve</td><td style="color:var(--teal)">5%</td><td>Working capital</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SLIDE 11: INVESTMENT THESIS -->
+<div class="slide">
+  <div class="slide-num">Slide 11 — Investment Thesis</div>
+  <h2 class="slide-title">Why this is a <span class="gold">rare opportunity</span></h2>
+
+  <div class="thesis-card">
+    <div class="thesis-num">01</div>
+    <div class="thesis-title">Massive problem, no dominant local solution</div>
+    <div class="thesis-desc">USD 791M market growing at 12% CAGR. Existing players (Virgin Pulse, Optum) have zero Saudi cultural adaptation. SARA is built from the inside out.</div>
+  </div>
+  <div class="thesis-card" style="border-left-color:var(--gold)">
+    <div class="thesis-num">02</div>
+    <div class="thesis-title">The co-founder is the moat</div>
+    <div class="thesis-desc">Dr. Alansari's 30-year research, 138K+ followers, WHO recognition, and institutional relationships are locked to SARA. No competitor can replicate this.</div>
+  </div>
+  <div class="thesis-card">
+    <div class="thesis-num">03</div>
+    <div class="thesis-title">Dual revenue = faster profitability</div>
+    <div class="thesis-desc">Employer + insurer simultaneously. One insurer deal = more revenue than 10 employer deals. Insurer channel scales faster and stickier.</div>
+  </div>
+  <div class="thesis-card" style="border-left-color:var(--gold)">
+    <div class="thesis-num">04</div>
+    <div class="thesis-title">Vision 2030 tailwind is structural</div>
+    <div class="thesis-desc">Not a trend — a national policy shift. SAR 180B committed to health transformation. SARA surfs a wave the government is generating.</div>
+  </div>
+  <div class="thesis-card">
+    <div class="thesis-num">05</div>
+    <div class="thesis-title">Attractive exit landscape</div>
+    <div class="thesis-desc">Regional acquirers (Bupa Arabia, Tawuniya, Aramco Medical) actively seeking preventive health platforms. Global wellness companies valued at billions.</div>
+  </div>
+</div>
+
+<!-- SLIDE 12: V2030 ALIGNMENT -->
+<div class="slide">
+  <div class="slide-num">Slide 12 — Vision 2030 Alignment</div>
+  <h2 class="slide-title">SARA is a <span class="gold">Vision 2030</span> investment</h2>
+
+  <table class="pitch-table">
+    <thead>
+      <tr><th>Vision 2030 Goal</th><th>SARA's Contribution</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Quality of Life Program</td><td>Measurably improves employee wellbeing scores</td></tr>
+      <tr><td>Health Sector Transformation</td><td>Reduces chronic disease burden on hospitals</td></tr>
+      <tr><td>Workforce Productivity</td><td>Cuts absenteeism and presenteeism</td></tr>
+      <tr><td>Digital Health Transformation</td><td>Saudi-native AI health platform</td></tr>
+      <tr><td>Saudization</td><td>Arabic-first, culturally calibrated, locally built</td></tr>
+      <tr><td>Healthcare Cost Reduction</td><td>Direct impact on SAR 42B insurance market</td></tr>
+      <tr><td>Non-Oil GDP Growth</td><td>HealthTech SaaS — zero oil dependence</td></tr>
+    </tbody>
+  </table>
+
+  <div class="quote" style="margin-top:2rem">
+    "SARA is not asking Vision 2030 to fund a startup. SARA is asking Vision 2030 to fund one of its own strategic objectives."
+  </div>
+</div>
+
+<!-- SLIDE 13: TARGET FUNDS -->
+<div class="slide">
+  <div class="slide-num">Slide 13 — Target Investors</div>
+  <h2 class="slide-title">Who we're <span class="teal">talking to</span></h2>
+
+  <h3 style="font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--teal);letter-spacing:0.1em;margin-bottom:1rem">TIER 1 — DIRECT APPROACH</h3>
+  <table class="pitch-table">
+    <thead><tr><th>Fund</th><th>Why SARA Fits</th></tr></thead>
+    <tbody>
+      <tr><td><strong>SVC (Saudi Venture Capital)</strong></td><td>SAR 500K-2.4M range, healthtech priority</td></tr>
+      <tr><td><strong>Jada Fund of Funds (PIF)</strong></td><td>SAR 4B fund backing Vision 2030 sectors</td></tr>
+      <tr><td><strong>Flat6Labs Riyadh</strong></td><td>SVC + Jada backed, SAR 2.4M + acceleration</td></tr>
+      <tr><td><strong>Health Sector Transformation</strong></td><td>MOH direct grants for digital health</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--gold);letter-spacing:0.1em;margin:2rem 0 1rem">TIER 2 — STRATEGIC</h3>
+  <table class="pitch-table">
+    <thead><tr><th>Investor</th><th>Angle</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Saudi Aramco (Wa'ed)</strong></td><td>First client + investor</td></tr>
+      <tr><td><strong>STC Ventures</strong></td><td>Digital health portfolio</td></tr>
+      <tr><td><strong>Bupa Arabia</strong></td><td>Strategic insurer partner</td></tr>
+      <tr><td><strong>Riyad Capital</strong></td><td>Healthcare fund</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SLIDE 14: APPENDIX -->
+<div class="slide">
+  <div class="slide-num">Appendix — Due Diligence Data</div>
+  <h2 class="slide-title">Key data points, <span class="teal">sourced</span></h2>
+
+  <table class="data-table">
+    <thead><tr><th>Metric</th><th>Value</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>Saudi corporate wellness market 2024</td><td>USD 791.8M</td><td>IMARC Group</td></tr>
+      <tr><td>Saudi corporate wellness market 2030</td><td>USD 2.5B</td><td>Ken Research</td></tr>
+      <tr><td>Saudi health insurance market 2024</td><td>SAR 42B</td><td>Bupa Arabia</td></tr>
+      <tr><td>Saudi health insurance market 2030</td><td>SAR 83B</td><td>Bupa Arabia</td></tr>
+      <tr><td>Avg annual premium per person 2024</td><td>SAR 4,511</td><td>Argaam</td></tr>
+      <tr><td>Projected premium per person 2030</td><td>SAR 9,500</td><td>Argaam</td></tr>
+      <tr><td>Insured individuals in Saudi Arabia</td><td>13.2 million</td><td>CCHI</td></tr>
+      <tr><td>Obesity rate (15+ years)</td><td>23.1%</td><td>GASTAT 2024</td></tr>
+      <tr><td>Overweight population (15+ years)</td><td>45.1%</td><td>GASTAT 2024</td></tr>
+      <tr><td>Digital health market CAGR</td><td>13.20%</td><td>IMARC</td></tr>
+      <tr><td>Wellness/telehealth add-on CAGR</td><td>18.52%</td><td>Mordor Intelligence</td></tr>
+      <tr><td>Dr. Alansari Twitter followers</td><td>138,794</td><td>X / Twitter</td></tr>
+      <tr><td>Dr. Alansari published books</td><td>5 books</td><td>Saudi HPC</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- CTA CLOSE -->
+<div class="pitch-cta">
+  <div class="slide-num">The Close</div>
+  <h2 class="slide-title">Saudi Arabia is building the healthiest workforce in the Arab world.<br><span class="teal">SARA makes that possible.</span></h2>
+  <p class="slide-subtitle">
+    One employee, one employer, one insurer at a time.<br>
+    We are raising SAR 2-4M to prove it with data. Join us.
+  </p>
+  <a href="https://wa.me/966555056545?text=I'm%20interested%20in%20investing%20in%20SARA" target="_blank" class="cta-btn">Contact Us on WhatsApp &rarr;</a>
+</div>
+
+<!-- FOOTER -->
+<div class="pitch-footer">
+  <p>SARA &mdash; Smart &middot; Adaptive &middot; Restorative &middot; Active | سُرى — من السَّيْر<br>
+  &copy; 2026 SARA Health &middot; Built in Saudi Arabia<br><br>
+  <a href="index.html" style="color:var(--teal);text-decoration:none">&larr; Back to SARA Website</a></p>
+</div>
+
+<script>
+// Fade-in on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.slide, .pitch-cta').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(30px)';
+  el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>
