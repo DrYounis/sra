@@ -4,181 +4,227 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SARA لشركات التأمين | Insurance Partnership Platform</title>
+
+<!-- SEO Meta Tags -->
+<meta name="description" content="شراكة استراتيجية مع شركات التأمين — خفض نسبة خسارتك ١٥٪+ مع SARA. نحدد الأعضاء عالي الخطورة ونتدخل قبل حدوث المطالبات المكلفة.">
+<meta name="keywords" content="تأمين صحي, شركات تأمين, نسبة الخسارة, مطالبات, إدارة مخاطر, صحة مؤسسية, السعودية">
+<meta name="author" content="SARA Health">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="SARA لشركات التأمين | Insurance Partnership">
+<meta property="og:description" content="اخفض نسبة خسارتك ١٥٪+ بدون تغيير بوليصتك. SARA تمنع المطالبات قبل أن تحدث.">
+<meta property="og:url" content="https://sara-health.com/insurance.html">
+<meta property="og:site_name" content="SARA Health">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SARA لشركات التأمين">
+<meta name="twitter:description" content="برنامج شراكة التأمين الأول في السعودية لخفض نسب الخسارة">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+
+<!-- Preconnect to Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Stylesheet -->
+<link rel="stylesheet" href="css/sara.css">
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "SARA Insurance Partnership",
+  "description": "Insurance partnership program for loss ratio reduction",
+  "url": "https://sara-health.com/insurance.html",
+  "areaServed": { "@type": "Country", "name": "Saudi Arabia" },
+  "targetCustomer": { "@type": "BusinessAudience", "audienceType": "Health insurance companies" }
+}
+</script>
+
 <style>
-:root{--navy:#153158;--navy-deep:#0d1f38;--teal:#00C2A8;--teal-light:#00d4b8;--gold:#E8B84B;--gold-light:#f0cc70;--purple:#7C83FD;--white:#fff;--muted:rgba(255,255,255,.6);--dim:rgba(255,255,255,.35)}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Noto Naskh Arabic','DM Sans',sans-serif;background:var(--navy-deep);color:var(--white);direction:rtl;overflow-x:hidden;line-height:1.7}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 4rem;display:flex;align-items:center;justify-content:space-between;background:rgba(13,31,56,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(124,131,253,.15)}
-.nav-logo{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--white);text-decoration:none}
-.nav-logo span{color:var(--teal)}
-.nav-badge{background:rgba(124,131,253,.12);border:1px solid rgba(124,131,253,.3);border-radius:50px;padding:.3rem 1rem;font-size:.75rem;color:var(--purple);font-family:'DM Mono',monospace}
-.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:.88rem;transition:color .2s}
-.nav-links a:hover{color:var(--teal)}
-.nav-cta{background:var(--purple);color:var(--white);padding:.65rem 1.6rem;border-radius:50px;font-weight:700;font-size:.88rem;text-decoration:none;transition:all .2s}
-.nav-cta:hover{background:#6c73f5;transform:translateY(-1px)}
-.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:8rem 4rem 4rem;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 30% 50%,rgba(124,131,253,.07) 0%,transparent 70%)}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(124,131,253,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(124,131,253,.03) 1px,transparent 1px);background-size:60px 60px}
-.hero-content{position:relative;z-index:2}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:.6rem;background:rgba(124,131,253,.08);border:1px solid rgba(124,131,253,.25);border-radius:50px;padding:.45rem 1.1rem;font-size:.78rem;color:var(--purple);font-family:'DM Mono',monospace;margin-bottom:2rem;letter-spacing:.05em}
-.hero-eyebrow::before{content:'◈';font-size:.65rem}
-h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,4vw,4.5rem);font-weight:900;line-height:1.08;letter-spacing:-.03em;margin-bottom:1rem}
-h1 .teal{color:var(--teal)} h1 .gold{color:var(--gold)} h1 .purple{color:var(--purple)}
-.hero-sub{font-family:'Noto Naskh Arabic',serif;font-size:1.1rem;color:var(--muted);margin-bottom:2.5rem;max-width:500px;line-height:1.8}
-.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
-.btn-primary{background:var(--purple);color:var(--white);padding:1rem 2.4rem;border-radius:50px;font-weight:700;font-size:.95rem;text-decoration:none;transition:all .25s;display:inline-flex;align-items:center;gap:.5rem;font-family:'Noto Naskh Arabic',serif}
-.btn-primary:hover{background:#6c73f5;transform:translateY(-2px);box-shadow:0 8px 30px rgba(124,131,253,.3)}
-.btn-teal{background:var(--teal);color:var(--navy-deep);padding:1rem 2.4rem;border-radius:50px;font-weight:700;font-size:.95rem;text-decoration:none;transition:all .25s;display:inline-flex;align-items:center;gap:.5rem;font-family:'Noto Naskh Arabic',serif}
-.btn-teal:hover{background:var(--teal-light);transform:translateY(-2px)}
-.btn-outline{background:transparent;color:var(--white);padding:1rem 2.4rem;border-radius:50px;font-weight:500;font-size:.95rem;text-decoration:none;border:1px solid rgba(255,255,255,.2);transition:all .25s;font-family:'Noto Naskh Arabic',serif}
-.btn-outline:hover{border-color:var(--purple);color:var(--purple)}
-.hero-stats{display:flex;gap:3rem;margin-top:4rem;padding-top:3rem;border-top:1px solid rgba(255,255,255,.07)}
-.stat-item{display:flex;flex-direction:column;gap:.25rem}
-.stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--purple);line-height:1}
-.stat-num span{color:var(--teal);font-size:1.3rem}
-.stat-lbl{font-size:.75rem;color:var(--muted);font-family:'Noto Naskh Arabic',serif}
-.hero-visual{position:relative;z-index:2;display:flex;justify-content:center;align-items:center}
-.loss-card{background:rgba(255,255,255,.03);border:1px solid rgba(124,131,253,.2);border-radius:24px;padding:2.2rem;width:380px;backdrop-filter:blur(10px)}
-.lc-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem}
-.lc-title{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--purple);letter-spacing:.1em;text-transform:uppercase}
-.lc-badge{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:50px;padding:.25rem .7rem;font-family:'DM Mono',monospace;font-size:.65rem;color:#EF4444}
-.loss-ratio-display{text-align:center;margin:1.5rem 0}
-.lr-label{font-family:'Noto Naskh Arabic',serif;font-size:.8rem;color:var(--muted);margin-bottom:.4rem}
-.lr-before{font-family:'Playfair Display',serif;font-size:3rem;font-weight:700;color:#EF4444;line-height:1}
-.lr-arrow{font-size:1.5rem;color:var(--muted);margin:.5rem 0}
-.lr-after{font-family:'Playfair Display',serif;font-size:3rem;font-weight:700;color:var(--teal);line-height:1}
-.lr-after-lbl{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--teal);margin-top:.3rem}
-.lc-metrics{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:1.5rem}
-.lc-metric{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:.9rem;text-align:center}
-.lc-metric-num{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--teal);line-height:1;margin-bottom:.2rem}
-.lc-metric-lbl{font-family:'Noto Naskh Arabic',serif;font-size:.7rem;color:var(--muted)}
-.float-chip{position:absolute;background:var(--navy);border:1px solid rgba(124,131,253,.25);border-radius:10px;padding:.6rem .9rem;font-family:'DM Mono',monospace;font-size:.68rem;color:var(--purple);white-space:nowrap;animation:float 3s ease-in-out infinite}
-.chip1{top:-18px;left:-15px;animation-delay:0s}
-.chip2{bottom:10px;right:-35px;animation-delay:1.5s}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-section{padding:6rem 4rem;position:relative}
-.section-tag{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.15em;color:var(--purple);text-transform:uppercase;margin-bottom:1rem;direction:ltr;display:inline-block}
-.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3vw,3rem);font-weight:700;line-height:1.2;margin-bottom:.7rem}
-.section-title .teal{color:var(--teal)} .section-title .gold{color:var(--gold)} .section-title .purple{color:var(--purple)}
-.section-sub{font-family:'Noto Naskh Arabic',serif;font-size:1.05rem;color:var(--muted);max-width:600px;line-height:1.9}
-/* INSURER PROBLEMS */
-.problems-section{background:linear-gradient(180deg,var(--navy-deep) 0%,rgba(21,49,88,.25) 100%)}
-.prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem}
-.prob-card{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);border-top:3px solid var(--card-color,var(--purple));border-radius:16px;padding:2rem;transition:all .3s}
-.prob-card:hover{transform:translateY(-4px)}
-.prob-icon{font-size:2rem;margin-bottom:1rem}
-.prob-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:.5rem}
-.prob-title-ar{font-family:'Noto Naskh Arabic',serif;font-size:.82rem;color:var(--purple);margin-bottom:.8rem}
-.prob-body{font-family:'Noto Naskh Arabic',serif;font-size:.88rem;color:var(--muted);line-height:1.7}
-/* MECHANISM */
-.mechanism-section{background:rgba(21,49,88,.18)}
-.mech-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:3.5rem;position:relative;z-index:1}
-.mech-flow::before{content:'';position:absolute;top:50%;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(124,131,253,.3),transparent);z-index:0}
-.mech-step{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:1.8rem 1.4rem;text-align:center;position:relative;z-index:1;transition:all .3s}
-.mech-step:hover{border-color:rgba(124,131,253,.3);transform:translateY(-4px)}
-.mech-num{width:36px;height:36px;background:rgba(124,131,253,.12);border:1px solid rgba(124,131,253,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:.75rem;color:var(--purple);margin:0 auto .9rem}
-.mech-icon{font-size:1.6rem;margin-bottom:.7rem}
-.mech-title{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;margin-bottom:.4rem}
-.mech-desc{font-family:'Noto Naskh Arabic',serif;font-size:.78rem;color:var(--muted);line-height:1.6}
-/* PRICING MODELS */
-.models-section{background:var(--navy-deep)}
-.models-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem}
-.model-card{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:2.2rem 1.8rem;transition:all .3s;position:relative}
-.model-card:hover{transform:translateY(-4px)}
-.model-card.recommended{background:rgba(124,131,253,.05);border-color:var(--purple)}
-.model-rec-badge{position:absolute;top:-12px;right:50%;transform:translateX(50%);background:var(--purple);color:var(--white);font-family:'DM Mono',monospace;font-size:.62rem;padding:.28rem .9rem;border-radius:50px;font-weight:700;white-space:nowrap}
-.model-name{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;margin-bottom:.2rem}
-.model-name-ar{font-family:'Noto Naskh Arabic',serif;font-size:.82rem;color:var(--muted);margin-bottom:1.2rem}
-.model-price{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--purple);line-height:1;margin-bottom:.2rem}
-.model-price-desc{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--dim);margin-bottom:1.3rem}
-.model-features{list-style:none;display:flex;flex-direction:column;gap:.55rem;margin-bottom:1.5rem}
-.model-features li{font-family:'Noto Naskh Arabic',serif;font-size:.85rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem}
-.model-features li::before{content:'◈';color:var(--purple);flex-shrink:0;font-size:.7rem;margin-top:.2rem}
-.model-cta{display:block;text-align:center;padding:.9rem;border-radius:50px;font-family:'Noto Naskh Arabic',serif;font-size:.9rem;font-weight:600;text-decoration:none;transition:all .2s}
-.cta-purple{background:var(--purple);color:var(--white)}
-.cta-purple:hover{background:#6c73f5}
-.cta-outline-p{border:1px solid rgba(124,131,253,.3);color:var(--purple)}
-.cta-outline-p:hover{background:rgba(124,131,253,.08)}
-/* DATA SECTION */
-.data-section{background:rgba(21,49,88,.15)}
-.data-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:3.5rem}
-.data-points{display:flex;flex-direction:column;gap:1.2rem}
-.data-point{display:flex;align-items:flex-start;gap:1rem;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:1.4rem}
-.dp-icon{font-size:1.6rem;flex-shrink:0}
-.dp-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;margin-bottom:.3rem}
-.dp-body{font-family:'Noto Naskh Arabic',serif;font-size:.85rem;color:var(--muted);line-height:1.6}
-.data-visual{background:rgba(255,255,255,.025);border:1px solid rgba(124,131,253,.2);border-radius:20px;padding:2.2rem}
-.dv-title{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--purple);letter-spacing:.1em;margin-bottom:1.5rem;text-transform:uppercase}
-.risk-segment{display:flex;flex-direction:column;gap:.8rem}
-.rs-row{display:flex;align-items:center;gap:.8rem}
-.rs-label{font-family:'Noto Naskh Arabic',serif;font-size:.75rem;color:var(--muted);width:85px;text-align:right}
-.rs-bar-track{flex:1;height:8px;background:rgba(255,255,255,.05);border-radius:4px;overflow:hidden}
-.rs-bar-fill{height:100%;border-radius:4px;animation:rfill 1.5s ease forwards}
-@keyframes rfill{from{width:0!important}}
-.rs-pct{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--muted);width:35px}
-.rf-green{background:#34D399;width:37%}
-.rf-yellow{background:#FBBF24;width:34%}
-.rf-orange{background:#F97316;width:23%}
-.rf-red{background:#EF4444;width:6%}
-.dv-savings{margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.06);text-align:center}
-.dv-save-num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--teal)}
-.dv-save-lbl{font-family:'Noto Naskh Arabic',serif;font-size:.8rem;color:var(--muted);margin-top:.3rem}
-/* ROI MODEL */
-.insurer-roi{background:linear-gradient(135deg,rgba(21,49,88,.6),var(--navy-deep))}
-.roi-table-wrap{max-width:780px;margin:3.5rem auto 0;background:rgba(255,255,255,.02);border:1px solid rgba(124,131,253,.15);border-radius:20px;overflow:hidden}
-.roi-table{width:100%;border-collapse:collapse}
-.roi-table th{background:rgba(124,131,253,.08);padding:1rem 1.5rem;font-family:'DM Mono',monospace;font-size:.72rem;color:var(--purple);letter-spacing:.07em;text-transform:uppercase;text-align:right;border-bottom:1px solid rgba(255,255,255,.06)}
-.roi-table td{padding:1rem 1.5rem;font-family:'Noto Naskh Arabic',serif;font-size:.9rem;color:var(--muted);border-bottom:1px solid rgba(255,255,255,.04)}
-.roi-table tr:last-child td{border-bottom:none;font-weight:700;color:var(--teal);font-family:'Playfair Display',serif}
-.roi-table .num{font-family:'DM Mono',monospace;color:var(--white);direction:ltr;text-align:left}
-.roi-table .gain{color:var(--teal)}
-/* COMPLIANCE */
-.compliance-section{background:var(--navy-deep)}
-.compliance-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem}
-.comp-card{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:1.8rem;text-align:center;transition:all .3s}
-.comp-card:hover{border-color:rgba(0,194,168,.2);transform:scale(1.03)}
-.comp-icon{font-size:2rem;margin-bottom:.8rem}
-.comp-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;margin-bottom:.4rem}
-.comp-body{font-family:'Noto Naskh Arabic',serif;font-size:.83rem;color:var(--muted);line-height:1.6}
-/* INSURERS LOGOS PLACEHOLDER */
-.insurers-section{background:rgba(21,49,88,.12);padding:4rem}
-.insurers-label{text-align:center;font-family:'DM Mono',monospace;font-size:.72rem;color:var(--dim);letter-spacing:.15em;text-transform:uppercase;margin-bottom:2rem}
-.insurer-logos{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap}
-.insurer-chip{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1rem 2rem;font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--muted);transition:all .3s}
-.insurer-chip:hover{border-color:rgba(0,194,168,.3);color:var(--white)}
-/* CTA */
-.cta-section{padding:6rem 4rem;text-align:center;position:relative;overflow:hidden}
-.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(124,131,253,.06),transparent)}
-.cta-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,3.2rem);font-weight:700;margin-bottom:1rem;position:relative;z-index:1}
-.cta-sub{font-family:'Noto Naskh Arabic',serif;font-size:1.1rem;color:var(--muted);margin-bottom:3rem;position:relative;z-index:1}
-.cta-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
-.btn-wa{background:#25D366;color:#fff;padding:1.1rem 2.8rem;border-radius:50px;font-weight:700;font-size:1rem;text-decoration:none;transition:all .25s;display:inline-flex;align-items:center;gap:.6rem;font-family:'Noto Naskh Arabic',serif}
-.btn-wa:hover{background:#20be5a;transform:translateY(-2px);box-shadow:0 8px 30px rgba(37,211,102,.3)}
-.footer-strip{background:rgba(0,0,0,.3);border-top:1px solid rgba(255,255,255,.05);padding:2rem 4rem;display:flex;justify-content:space-between;align-items:center}
-.footer-logo{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--white);text-decoration:none}
-.footer-logo span{color:var(--teal)}
-.footer-links{display:flex;gap:2rem;list-style:none}
-.footer-links a{color:var(--dim);text-decoration:none;font-size:.82rem;transition:color .2s}
-.footer-links a:hover{color:var(--teal)}
-@media(max-width:900px){
-  nav{padding:1rem 1.5rem}
-  .hero,.prob-grid,.models-grid,.data-grid,.compliance-grid,.mech-flow{grid-template-columns:1fr}
-  section{padding:4rem 1.5rem}
-  .hero{padding:7rem 1.5rem 3rem}
-  .hero-visual{display:none}
-  .footer-strip{padding:1.5rem;flex-direction:column;gap:1rem;text-align:center}
+/* Insurance-specific overrides */
+.nav-badge {
+  background: rgba(124,131,253,0.12);
+  border: 1px solid rgba(124,131,253,0.3);
+  color: var(--purple);
+}
+
+.nav-cta {
+  background: var(--purple);
+  color: var(--white);
+}
+.nav-cta:hover {
+  background: var(--purple-light);
+}
+
+.hero-eyebrow {
+  background: rgba(124,131,253,0.08);
+  border: 1px solid rgba(124,131,253,0.25);
+  color: var(--purple);
+}
+.hero-eyebrow::before {
+  content: '◈';
+}
+
+.hero::before {
+  background: radial-gradient(ellipse 70% 60% at 30% 50%, rgba(124,131,253,0.07) 0%, transparent 70%);
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(124,131,253,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124,131,253,0.03) 1px, transparent 1px);
+}
+
+.btn-primary {
+  background: var(--purple);
+}
+.btn-primary:hover {
+  background: var(--purple-light);
+  box-shadow: 0 8px 30px rgba(124,131,253,0.3);
+}
+
+.btn-outline:hover {
+  border-color: var(--purple);
+  color: var(--purple);
+}
+
+.stat-num {
+  color: var(--purple);
+}
+
+.section-tag {
+  color: var(--purple);
+}
+
+.btn-teal {
+  background: var(--purple);
+  color: var(--white);
+}
+.btn-teal:hover {
+  background: var(--purple-light);
+}
+
+.float-chip {
+  border-color: rgba(124,131,253,0.25);
+  color: var(--purple);
+}
+
+.loss-card {
+  border-color: rgba(124,131,253,0.2);
+}
+
+.lc-title {
+  color: var(--purple);
+}
+
+.lc-badge {
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.3);
+  color: #EF4444;
+}
+
+.lr-before {
+  color: #EF4444;
+}
+
+.lr-after {
+  color: var(--teal);
+}
+
+.lr-after-lbl {
+  color: var(--teal);
+}
+
+.prob-card {
+  border-top-color: var(--card-color, var(--purple));
+}
+
+.mech-num {
+  background: rgba(124,131,253,0.12);
+  border-color: rgba(124,131,253,0.3);
+  color: var(--purple);
+}
+
+.mech-step:hover {
+  border-color: rgba(124,131,253,0.3);
+}
+
+.model-card.recommended {
+  background: rgba(124,131,253,0.05);
+  border-color: var(--purple);
+}
+
+.model-rec-badge {
+  background: var(--purple);
+  color: var(--white);
+}
+
+.model-price {
+  color: var(--purple);
+}
+
+.model-features li::before {
+  content: '◈';
+  color: var(--purple);
+}
+
+.cta-purple {
+  background: var(--purple);
+  color: var(--white);
+}
+.cta-purple:hover {
+  background: var(--purple-light);
+}
+
+.cta-outline-p {
+  border: 1px solid rgba(124,131,253,0.3);
+  color: var(--purple);
+}
+.cta-outline-p:hover {
+  background: rgba(124,131,253,0.08);
+}
+
+.data-visual {
+  border-color: rgba(124,131,253,0.2);
+}
+
+.dv-title {
+  color: var(--purple);
+}
+
+.roi-table-wrap {
+  border-color: rgba(124,131,253,0.15);
+}
+
+.roi-table th {
+  color: var(--purple);
+  border-bottom-color: rgba(124,131,253,0.2);
+  background: rgba(124,131,253,0.03);
+}
+
+.comp-card:hover {
+  border-color: rgba(0,194,168,0.2);
 }
 </style>
 </head>
+
 <body>
+<a href="#main-content" class="skip-link">انتقل إلى المحتوى الرئيسي</a>
 
 <!-- NAV -->
-<nav>
+<nav role="navigation" aria-label="Main navigation">
   <a href="index.html" class="nav-logo">SAR<span>A</span></a>
   <span class="nav-badge">لشركات التأمين | For Insurers</span>
+  
+  <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  
   <ul class="nav-links">
     <li><a href="index.html">الرئيسية</a></li>
     <li><a href="b2b.html">للشركات</a></li>
@@ -187,18 +233,34 @@ section{padding:6rem 4rem;position:relative}
   </ul>
 </nav>
 
+<!-- MAIN -->
+<main id="main-content">
+
 <!-- HERO -->
-<div class="hero">
-  <div class="hero-grid"></div>
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-grid" aria-hidden="true"></div>
+  
   <div class="hero-content">
     <div class="hero-eyebrow">Insurance Partnership Program · برنامج شراكة التأمين</div>
-    <h1>اخفض نسبة<br>خسارتك <span class="teal">١٥٪+</span><br>بدون تغيير <span class="purple">بوليصتك</span></h1>
-    <p class="hero-sub">SARA تمنع المطالبات قبل أن تحدث. نحدد أعضاءك عالي الخطورة مبكراً، ونحوّلهم خلال ٩٠ يوماً — وأنت توفّر على محفظة التأمين الجماعي.</p>
+    
+    <h1 id="hero-title">
+      اخفض نسبة<br>
+      خسارتك <span class="teal">١٥٪+</span><br>
+      بدون تغيير <span class="purple">بوليصتك</span>
+    </h1>
+    
+    <p class="hero-sub">
+      SARA تمنع المطالبات قبل أن تحدث. نحدد أعضاءك عالي الخطورة مبكراً، ونحوّلهم خلال ٩٠ يوماً — وأنت توفّر على محفظة التأمين الجماعي.
+    </p>
+    
     <div class="hero-actions">
-      <a href="https://wa.me/966555056545?text=أود الاستفسار عن برنامج الشراكة مع SARA لشركة التأمين" class="btn-primary">ابدأ شراكة استراتيجية ←</a>
+      <a href="https://wa.me/966555056545?text=أود الاستفسار عن برنامج الشراكة مع SARA لشركة التأمين" class="btn-primary" data-track-cta="partnership_insurance" data-track-location="hero">
+        ابدأ شراكة استراتيجية ←
+      </a>
       <a href="#models" class="btn-outline">استعرض نماذج التسعير</a>
     </div>
-    <div class="hero-stats">
+    
+    <div class="hero-stats" role="region" aria-label="Key statistics">
       <div class="stat-item">
         <div class="stat-num">١٥<span>٪+</span></div>
         <div class="stat-lbl">انخفاض متوقع في نسبة الخسارة</div>
@@ -213,97 +275,137 @@ section{padding:6rem 4rem;position:relative}
       </div>
     </div>
   </div>
-  <div class="hero-visual">
+  
+  <div class="hero-visual" aria-label="Loss Ratio Impact Dashboard">
     <div class="loss-card">
       <div class="lc-header">
         <div class="lc-title">LOSS RATIO IMPACT</div>
         <div class="lc-badge">Before SARA</div>
       </div>
+      
       <div class="loss-ratio-display">
         <div class="lr-label">نسبة الخسارة الحالية</div>
         <div class="lr-before">٧٨٪</div>
-        <div class="lr-arrow">↓</div>
+        <div class="lr-arrow" aria-hidden="true">↓</div>
         <div class="lr-after">٦٣٪</div>
         <div class="lr-after-lbl">بعد برنامج SARA · After SARA Program</div>
       </div>
-      <div class="lc-metrics">
-        <div class="lc-metric"><div class="lc-metric-num">٣٠٪</div><div class="lc-metric-lbl">انخفاض مطالبات الأمراض المزمنة</div></div>
-        <div class="lc-metric"><div class="lc-metric-num">٤٤</div><div class="lc-metric-lbl">حالة يتم تقييمها وتتبعها</div></div>
-        <div class="lc-metric"><div class="lc-metric-num">٩٠</div><div class="lc-metric-lbl">يوماً لتحويل الأعضاء عالي الخطورة</div></div>
-        <div class="lc-metric"><div class="lc-metric-num">SAR</div><div class="lc-metric-lbl">تقارير توفير لإعادة التسعير</div></div>
+      
+      <div class="lc-metrics" role="region" aria-label="Key metrics">
+        <div class="lc-metric">
+          <div class="lc-metric-num">٣٠٪</div>
+          <div class="lc-metric-lbl">انخفاض مطالبات الأمراض المزمنة</div>
+        </div>
+        <div class="lc-metric">
+          <div class="lc-metric-num">٤٤</div>
+          <div class="lc-metric-lbl">حالة يتم تقييمها وتتبعها</div>
+        </div>
+        <div class="lc-metric">
+          <div class="lc-metric-num">٩٠</div>
+          <div class="lc-metric-lbl">يوماً لتحويل الأعضاء عالي الخطورة</div>
+        </div>
+        <div class="lc-metric">
+          <div class="lc-metric-num">SAR</div>
+          <div class="lc-metric-lbl">تقارير توفير لإعادة التسعير</div>
+        </div>
       </div>
     </div>
-    <div class="float-chip chip1">📊 Real-time Risk Stratification</div>
-    <div class="float-chip chip2">🛡️ CCHI Compliant Data</div>
+    
+    <div class="float-chip chip1" aria-hidden="true">📊 Real-time Risk Stratification</div>
+    <div class="float-chip chip2" aria-hidden="true">🛡️ CCHI Compliant Data</div>
   </div>
-</div>
+</section>
 
 <!-- INSURER PROBLEMS -->
-<section class="problems-section" id="problem">
+<section class="problems-section" id="problem" aria-labelledby="problem-title">
   <div class="section-tag">THE INSURER CHALLENGE // تحدي شركات التأمين</div>
-  <div class="section-title">ثلاثة تحديات<br>تضغط على <span class="purple">محفظتك</span></div>
+  <h2 class="section-title" id="problem-title">
+    ثلاثة تحديات<br>تضغط على <span class="purple">محفظتك</span>
+  </h2>
+  
   <div class="prob-grid">
-    <div class="prob-card" style="--card-color:#EF4444">
-      <div class="prob-icon">📈</div>
-      <div class="prob-title">نسب خسارة متصاعدة</div>
+    <article class="prob-card" style="--card-color:#EF4444">
+      <div class="prob-icon" aria-hidden="true">📈</div>
+      <h3 class="prob-title">نسب خسارة متصاعدة</h3>
       <div class="prob-title-ar">Rising Loss Ratios</div>
-      <div class="prob-body">الأمراض المزمنة كالسكري وأمراض القلب ترفع نسب خسارة عقود المجموعات إلى مستويات غير مستدامة — مع تجديد العقود بأقساط أعلى أو خسارة العميل.</div>
-    </div>
-    <div class="prob-card" style="--card-color:#F97316">
-      <div class="prob-icon">🔍</div>
-      <div class="prob-title">رؤية محدودة لمخاطر الأعضاء</div>
+      <p class="prob-body">
+        الأمراض المزمنة كالسكري وأمراض القلب ترفع نسب خسارة عقود المجموعات إلى مستويات غير مستدامة — مع تجديد العقود بأقساط أعلى أو خسارة العميل.
+      </p>
+    </article>
+    
+    <article class="prob-card" style="--card-color:#F97316">
+      <div class="prob-icon" aria-hidden="true">🔍</div>
+      <h3 class="prob-title">رؤية محدودة لمخاطر الأعضاء</h3>
       <div class="prob-title-ar">Limited Member Risk Visibility</div>
-      <div class="prob-body">تكتشف ارتفاع المطالبات بعد حدوثها. لا يوجد نظام يحدد الأعضاء عالي الخطورة مسبقاً قبل أن يتحولوا إلى مطالبات باهظة.</div>
-    </div>
-    <div class="prob-card" style="--card-color:var(--purple)">
-      <div class="prob-icon">🏆</div>
-      <div class="prob-title">ضغط تنافسي متزايد</div>
+      <p class="prob-body">
+        تكتشف ارتفاع المطالبات بعد حدوثها. لا يوجد نظام يحدد الأعضاء عالي الخطورة مسبقاً قبل أن يتحولوا إلى مطالبات باهظة.
+      </p>
+    </article>
+    
+    <article class="prob-card" style="--card-color:var(--purple)">
+      <div class="prob-icon" aria-hidden="true">🏆</div>
+      <h3 class="prob-title">ضغط تنافسي متزايد</h3>
       <div class="prob-title-ar">Competitive Differentiation Pressure</div>
-      <div class="prob-body">شركات التأمين العالمية تقدم برامج صحة مؤسسية كـ value-add. بدون حل صحي مدمج، تخسر عقود الشركات الكبرى.</div>
-    </div>
+      <p class="prob-body">
+        شركات التأمين العالمية تقدم برامج صحة مؤسسية كـ value-add. بدون حل صحي مدمج، تخسر عقود الشركات الكبرى.
+      </p>
+    </article>
   </div>
 </section>
 
 <!-- MECHANISM -->
-<section class="mechanism-section" id="how">
+<section class="mechanism-section" id="how" aria-labelledby="how-title">
   <div class="section-tag">HOW IT WORKS // آلية العمل</div>
-  <div class="section-title">من <span class="purple">تحديد الخطر</span><br>إلى <span class="teal">منع المطالبة</span></div>
-  <p class="section-sub">SARA تعمل بشكل استباقي — تكشف المخاطر قبل أن تتحول إلى مطالبات، وتتدخل بالوقت المناسب.</p>
+  <h2 class="section-title" id="how-title">
+    من <span class="purple">تحديد الخطر</span><br>
+    إلى <span class="teal">منع المطالبة</span>
+  </h2>
+  <p class="section-sub">
+    SARA تعمل بشكل استباقي — تكشف المخاطر قبل أن تتحول إلى مطالبات، وتتدخل بالوقت المناسب.
+  </p>
+  
   <div class="mech-flow">
-    <div class="mech-step">
+    <article class="mech-step">
       <div class="mech-num">01</div>
-      <div class="mech-icon">📋</div>
-      <div class="mech-title">تقييم الأعضاء</div>
-      <div class="mech-desc">تقييم ٤٤ حالة صحية لجميع موظفي الشركة المؤمّن عليها خلال ١٥ دقيقة.</div>
-    </div>
-    <div class="mech-step">
+      <div class="mech-icon" aria-hidden="true">📋</div>
+      <h3 class="mech-title">تقييم الأعضاء</h3>
+      <p class="mech-desc">تقييم ٤٤ حالة صحية لجميع موظفي الشركة المؤمّن عليها خلال ١٥ دقيقة.</p>
+    </article>
+    
+    <article class="mech-step">
       <div class="mech-num">02</div>
-      <div class="mech-icon">📊</div>
-      <div class="mech-title">تصنيف المخاطر</div>
-      <div class="mech-desc">نعطي كل عضو نقاط SARA (٠-١٠٠) ونصنف المحفظة: منخفض / متوسط / عالٍ / حرج.</div>
-    </div>
-    <div class="mech-step">
+      <div class="mech-icon" aria-hidden="true">📊</div>
+      <h3 class="mech-title">تصنيف المخاطر</h3>
+      <p class="mech-desc">نعطي كل عضو نقاط SARA (٠-١٠٠) ونصنف المحفظة: منخفض / متوسط / عالٍ / حرج.</p>
+    </article>
+    
+    <article class="mech-step">
       <div class="mech-num">03</div>
-      <div class="mech-icon">🚶</div>
-      <div class="mech-title">التدخل المبكر</div>
-      <div class="mech-desc">الأعضاء عالي الخطورة يدخلون برنامج ٩٠ يوماً لتغيير نمط الحياة قبل المرض.</div>
-    </div>
-    <div class="mech-step">
+      <div class="mech-icon" aria-hidden="true">🚶</div>
+      <h3 class="mech-title">التدخل المبكر</h3>
+      <p class="mech-desc">الأعضاء عالي الخطورة يدخلون برنامج ٩٠ يوماً لتغيير نمط الحياة قبل المرض.</p>
+    </article>
+    
+    <article class="mech-step">
       <div class="mech-num">04</div>
-      <div class="mech-icon">💰</div>
-      <div class="mech-title">توفير المطالبات</div>
-      <div class="mech-desc">تقارير دقيقة تثبت انخفاض المطالبات وتدعم إعادة تسعير العقود بثقة.</div>
-    </div>
+      <div class="mech-icon" aria-hidden="true">💰</div>
+      <h3 class="mech-title">توفير المطالبات</h3>
+      <p class="mech-desc">تقارير دقيقة تثبت انخفاض المطالبات وتدعم إعادة تسعير العقود بثقة.</p>
+    </article>
   </div>
 </section>
 
 <!-- PRICING MODELS -->
-<section class="models-section" id="models">
+<section class="models-section" id="models" aria-labelledby="models-title">
   <div class="section-tag">PARTNERSHIP MODELS // نماذج الشراكة</div>
-  <div class="section-title">ثلاثة نماذج<br>تناسب <span class="purple">استراتيجيتك</span></div>
+  <h2 class="section-title" id="models-title">
+    ثلاثة نماذج<br>
+    تناسب <span class="purple">استراتيجيتك</span>
+  </h2>
+  
   <div class="models-grid">
-    <div class="model-card">
-      <div class="model-name">PMPY</div>
+    <article class="model-card">
+      <h3 class="model-name">PMPY</h3>
       <div class="model-name-ar">رسوم سنوية لكل عضو</div>
       <div class="model-price">٢٠٠ – ٤٠٠</div>
       <div class="model-price-desc">SAR per member per year</div>
@@ -314,12 +416,13 @@ section{padding:6rem 4rem;position:relative}
         <li>بيانات تحليلية لإعادة التسعير</li>
       </ul>
       <a href="https://wa.me/966555056545?text=أود الاستفسار عن نموذج PMPY" class="model-cta cta-outline-p">ابدأ المفاوضة</a>
-    </div>
-    <div class="model-card recommended">
+    </article>
+    
+    <article class="model-card recommended">
       <div class="model-rec-badge">⭐ الأعلى عائداً</div>
-      <div class="model-name">Gain-Share</div>
+      <h3 class="model-name">Gain-Share</h3>
       <div class="model-name-ar">المشاركة في الوفورات</div>
-      <div class="model-price" style="color:var(--teal)">١٠٠ SAR</div>
+      <div class="model-price" style="color:var(--teal)">١٠٠</div>
       <div class="model-price-desc">base + 20% of verified claims savings</div>
       <ul class="model-features">
         <li>رسوم قاعدية منخفضة (١٠٠ ر.س/عضو/سنة)</li>
@@ -329,9 +432,10 @@ section{padding:6rem 4rem;position:relative}
         <li>مثالي لعقود المجموعات الكبرى (+٥٠٠٠)</li>
       </ul>
       <a href="https://wa.me/966555056545?text=أود الاستفسار عن نموذج Gain-Share" class="model-cta cta-purple">ابدأ شراكة استراتيجية</a>
-    </div>
-    <div class="model-card">
-      <div class="model-name">Bundle</div>
+    </article>
+    
+    <article class="model-card">
+      <h3 class="model-name">Bundle</h3>
       <div class="model-name-ar">التضمين في البوليصة</div>
       <div class="model-price">١٥٠</div>
       <div class="model-price-desc">SAR per member per year</div>
@@ -342,52 +446,76 @@ section{padding:6rem 4rem;position:relative}
         <li>وايت لابل — علامتك التجارية كاملة</li>
       </ul>
       <a href="https://wa.me/966555056545?text=أود الاستفسار عن نموذج Bundle" class="model-cta cta-outline-p">ابدأ المفاوضة</a>
-    </div>
+    </article>
   </div>
 </section>
 
 <!-- DATA & ANALYTICS -->
-<section class="data-section" id="data">
+<section class="data-section" id="data" aria-labelledby="data-title">
   <div class="section-tag">DATA & ANALYTICS // البيانات والتحليلات</div>
-  <div class="section-title">بيانات <span class="teal">الاكتواري</span><br>الذي لم تملكه من قبل</div>
+  <h2 class="section-title" id="data-title">
+    بيانات <span class="teal">الاكتواري</span><br>
+    الذي لم تملكه من قبل
+  </h2>
+  
   <div class="data-grid">
     <div class="data-points">
-      <div class="data-point">
-        <div class="dp-icon">🗂️</div>
+      <article class="data-point">
+        <div class="dp-icon" aria-hidden="true">🗂️</div>
         <div>
-          <div class="dp-title">تصنيف المخاطر السكانية</div>
-          <div class="dp-body">توزيع دقيق لمحفظة الأعضاء عبر ٤ مستويات خطورة و٧ أجهزة جسمية — بيانات إدارة المخاطر الحقيقية.</div>
+          <h3 class="dp-title">تصنيف المخاطر السكانية</h3>
+          <p class="dp-body">توزيع دقيق لمحفظة الأعضاء عبر ٤ مستويات خطورة و٧ أجهزة جسمية — بيانات إدارة المخاطر الحقيقية.</p>
         </div>
-      </div>
-      <div class="data-point">
-        <div class="dp-icon">🔔</div>
+      </article>
+      
+      <article class="data-point">
+        <div class="dp-icon" aria-hidden="true">🔔</div>
         <div>
-          <div class="dp-title">تنبيهات التدخل المبكر</div>
-          <div class="dp-body">تنبيهات فورية عند رصد تغييرات في نقاط SARA تشير لزيادة خطر المطالبات — قبل الحدوث.</div>
+          <h3 class="dp-title">تنبيهات التدخل المبكر</h3>
+          <p class="dp-body">تنبيهات فورية عند رصد تغييرات في نقاط SARA تشير لزيادة خطر المطالبات — قبل الحدوث.</p>
         </div>
-      </div>
-      <div class="data-point">
-        <div class="dp-icon">📑</div>
+      </article>
+      
+      <article class="data-point">
+        <div class="dp-icon" aria-hidden="true">📑</div>
         <div>
-          <div class="dp-title">تقارير إعادة التسعير</div>
-          <div class="dp-body">تقرير شامل عند تجديد العقد يثبت انخفاض الملف الصحي للمجموعة — أساس تفاوض قوي مع الشركات.</div>
+          <h3 class="dp-title">تقارير إعادة التسعير</h3>
+          <p class="dp-body">تقرير شامل عند تجديد العقد يثبت انخفاض الملف الصحي للمجموعة — أساس تفاوض قوي مع الشركات.</p>
         </div>
-      </div>
-      <div class="data-point">
-        <div class="dp-icon">🔗</div>
+      </article>
+      
+      <article class="data-point">
+        <div class="dp-icon" aria-hidden="true">🔗</div>
         <div>
-          <div class="dp-title">تكامل API مع أنظمة TPA</div>
-          <div class="dp-body">تكامل مباشر مع منصات إدارة المطالبات. بيانات متزامنة في الوقت الحقيقي.</div>
+          <h3 class="dp-title">تكامل API مع أنظمة TPA</h3>
+          <p class="dp-body">تكامل مباشر مع منصات إدارة المطالبات. بيانات متزامنة في الوقت الحقيقي.</p>
         </div>
-      </div>
+      </article>
     </div>
-    <div class="data-visual">
+    
+    <div class="data-visual" aria-label="Risk Distribution Chart">
       <div class="dv-title">MEMBER RISK DISTRIBUTION — SAMPLE PORTFOLIO</div>
-      <div class="risk-segment">
-        <div class="rs-row"><span class="rs-label">🟢 منخفض</span><div class="rs-bar-track"><div class="rs-bar-fill rf-green"></div></div><span class="rs-pct">37%</span></div>
-        <div class="rs-row"><span class="rs-label">🟡 متوسط</span><div class="rs-bar-track"><div class="rs-bar-fill rf-yellow"></div></div><span class="rs-pct">34%</span></div>
-        <div class="rs-row"><span class="rs-label">🟠 عالٍ</span><div class="rs-bar-track"><div class="rs-bar-fill rf-orange"></div></div><span class="rs-pct">23%</span></div>
-        <div class="rs-row"><span class="rs-label">🔴 حرج</span><div class="rs-bar-track"><div class="rs-bar-fill rf-red"></div></div><span class="rs-pct">6%</span></div>
+      <div class="risk-segment" role="region" aria-label="Risk distribution">
+        <div class="rs-row">
+          <span class="rs-label">🟢 منخفض</span>
+          <div class="rs-bar-track"><div class="rs-bar-fill rf-green" style="width: 37%"></div></div>
+          <span class="rs-pct">37%</span>
+        </div>
+        <div class="rs-row">
+          <span class="rs-label">🟡 متوسط</span>
+          <div class="rs-bar-track"><div class="rs-bar-fill rf-yellow" style="width: 34%"></div></div>
+          <span class="rs-pct">34%</span>
+        </div>
+        <div class="rs-row">
+          <span class="rs-label">🟠 عالٍ</span>
+          <div class="rs-bar-track"><div class="rs-bar-fill rf-orange" style="width: 23%"></div></div>
+          <span class="rs-pct">23%</span>
+        </div>
+        <div class="rs-row">
+          <span class="rs-label">🔴 حرج</span>
+          <div class="rs-bar-track"><div class="rs-bar-fill rf-red" style="width: 6%"></div></div>
+          <span class="rs-pct">6%</span>
+        </div>
       </div>
       <div class="dv-savings">
         <div class="dv-save-num">SAR 1,804,400</div>
@@ -398,10 +526,15 @@ section{padding:6rem 4rem;position:relative}
 </section>
 
 <!-- INSURER ROI MODEL -->
-<section class="insurer-roi" id="roi">
+<section class="insurer-roi" id="roi" aria-labelledby="roi-title">
   <div class="section-tag">INSURER ROI MODEL // نموذج العائد للشركة</div>
-  <div class="section-title">الأرقام <span class="teal">تتحدث</span></div>
-  <p class="section-sub">مثال حقيقي لمحفظة ٢٠٬٠٠٠ موظف مؤمّن عليهم بباقة Gain-Share:</p>
+  <h2 class="section-title" id="roi-title">
+    الأرقام <span class="teal">تتحدث</span>
+  </h2>
+  <p class="section-sub">
+    مثال حقيقي لمحفظة ٢٠٬٠٠٠ موظف مؤمّن عليهم بباقة Gain-Share:
+  </p>
+  
   <div class="roi-table-wrap">
     <table class="roi-table">
       <thead>
@@ -425,17 +558,17 @@ section{padding:6rem 4rem;position:relative}
         <tr>
           <td>انخفاض المطالبات المتوقع</td>
           <td>٢٠٪ انخفاض لمجموعة الخطورة العالية</td>
-          <td class="num">18,500,000</td>
+          <td class="num gain">18,500,000</td>
         </tr>
         <tr>
-          <td>إجمالي تكلفة SARA (قاعدي + ٢٠٪ وفورات)</td>
-          <td>٢M قاعدي + ٣.٧٪ مشاركة</td>
-          <td class="num">5,700,000</td>
+          <td>حصة SARA (٢٠٪)</td>
+          <td>من الوفورات المُحقَّقة</td>
+          <td class="num">3,700,000</td>
         </tr>
-        <tr style="background:rgba(0,194,168,.04)">
-          <td class="gain">صافي الوفورات للشركة</td>
-          <td class="gain">الوفورات ناقص تكلفة SARA</td>
-          <td class="num gain">SAR 12,800,000</td>
+        <tr>
+          <td><strong>صافي وفورات التأمين</strong></td>
+          <td><strong>بعد خصم تكلفة SARA</strong></td>
+          <td class="num gain"><strong>12,800,000</strong></td>
         </tr>
       </tbody>
     </table>
@@ -443,52 +576,72 @@ section{padding:6rem 4rem;position:relative}
 </section>
 
 <!-- COMPLIANCE -->
-<section class="compliance-section" id="compliance">
-  <div class="section-tag">COMPLIANCE & TRUST // الامتثال والثقة</div>
-  <div class="section-title">بناء على <span class="teal">معايير</span><br>تضمن <span class="gold">الثقة</span></div>
+<section class="compliance-section" aria-labelledby="compliance-title">
+  <div class="section-tag">COMPLIANCE // التوافق التنظيمي</div>
+  <h2 class="section-title" id="compliance-title">
+    متوافق مع<br>
+    <span class="teal">أنظمة المملكة</span>
+  </h2>
+  
   <div class="compliance-grid">
-    <div class="comp-card">
-      <div class="comp-icon">🛡️</div>
-      <div class="comp-title">متوافق مع CCHI</div>
-      <div class="comp-body">التزام كامل بلوائح مجلس الضمان الصحي التعاوني ومتطلبات البيانات الصحية في المملكة.</div>
-    </div>
-    <div class="comp-card">
-      <div class="comp-icon">🏥</div>
-      <div class="comp-title">معتمد من وزارة الصحة</div>
-      <div class="comp-body">المنهجية الطبية مبنية على بحوث WHO وتتوافق مع استراتيجية تحويل القطاع الصحي لرؤية ٢٠٣٠.</div>
-    </div>
-    <div class="comp-card">
-      <div class="comp-icon">🔒</div>
-      <div class="comp-title">حماية البيانات</div>
-      <div class="comp-body">تشفير كامل للبيانات الصحية، إدارة صارمة للوصول، البيانات تبقى في المملكة العربية السعودية.</div>
-    </div>
+    <article class="comp-card">
+      <div class="comp-icon" aria-hidden="true">🛡️</div>
+      <h3 class="comp-title">PDPL Compliant</h3>
+      <p class="comp-body">متوافق مع نظام حماية البيانات الشخصية السعودي — جميع البيانات مشفرة ومخزنة محلياً.</p>
+    </article>
+    
+    <article class="comp-card">
+      <div class="comp-icon" aria-hidden="true">🏥</div>
+      <h3 class="comp-title">CCHI Aligned</h3>
+      <p class="comp-body">متوافق مع معايير المركز السعودي لاعتماد المنشآت الصحية — تقارير معتمدة لإعادة التسعير.</p>
+    </article>
+    
+    <article class="comp-card">
+      <div class="comp-icon" aria-hidden="true">🇸🇦</div>
+      <h3 class="comp-title">Vision 2030</h3>
+      <p class="comp-body">يدعم أهداف رؤية ٢٠٣٠ لجودة الحياة والتحول الصحي — مؤشرات أداء قابلة للقياس.</p>
+    </article>
   </div>
 </section>
 
-<!-- TARGET INSURERS -->
-<div class="insurers-section">
-  <div class="insurers-label">TARGET INSURANCE PARTNERS · شركاء التأمين المستهدفون</div>
-  <div class="insurer-logos">
-    <div class="insurer-chip">Bupa Arabia · بوبا العربية</div>
-    <div class="insurer-chip">Tawuniya · التعاونية</div>
-    <div class="insurer-chip">MedGulf · الخليج للتأمين</div>
-    <div class="insurer-chip">Malath · ملاذ</div>
-    <div class="insurer-chip">AXA Cooperative · أكسا</div>
+<!-- INSURERS LOGOS -->
+<section class="insurers-section" aria-label="Partner insurance companies">
+  <div class="insurers-label">شركات التأمين التي نتحدث معها</div>
+  <div class="insurer-logos" role="list">
+    <div class="insurer-chip" role="listitem">Bupa Arabia</div>
+    <div class="insurer-chip" role="listitem">Tawuniya</div>
+    <div class="insurer-chip" role="listitem">Medgulf</div>
+    <div class="insurer-chip" role="listitem">Malath</div>
+    <div class="insurer-chip" role="listitem">Walaa</div>
+    <div class="insurer-chip" role="listitem">Salama</div>
   </div>
-</div>
+</section>
 
 <!-- CTA -->
-<section class="cta-section" id="contact">
-  <div class="cta-title">جاهز لتحويل محفظة<br>التأمين الجماعي إلى <span style="color:var(--teal)">ميزة تنافسية؟</span></div>
-  <p class="cta-sub">تحدث معنا لمناقشة نموذج الشراكة المناسب لمحفظتك وحجم أعمالك.</p>
-  <div class="cta-buttons">
-    <a href="https://wa.me/966555056545?text=أود مناقشة شراكة استراتيجية مع SARA لشركة التأمين" class="btn-wa">📱 تواصل عبر واتساب</a>
-    <a href="b2b.html" class="btn-outline">للشركات الموظِّفة ←</a>
+<section class="cta-section" id="cta" aria-labelledby="cta-title">
+  <div class="cta-content">
+    <h2 class="cta-title" id="cta-title">
+      جاهز لخفض<br>
+      نسبة <span class="purple">خسارتك</span>؟
+    </h2>
+    <p class="cta-sub">
+      احجز اجتماع استراتيجي — ونعرض لك دراسة حالة مفصلة لكيفية توفير SARA لملايين الريالات على محفظة تأمينك.
+    </p>
+    <div class="cta-buttons">
+      <a href="https://wa.me/966555056545?text=أود الاستفسار عن برنامج الشراكة مع SARA لشركة التأمين" class="btn-wa" data-track-cta="whatsapp_insurance" data-track-location="footer">
+        💬 تواصل عبر واتساب
+      </a>
+      <a href="mailto:insurance@sara-health.com" class="btn-outline">
+        📧 أرسل بريد إلكتروني
+      </a>
+    </div>
   </div>
 </section>
 
+</main>
+
 <!-- FOOTER -->
-<div class="footer-strip">
+<footer role="contentinfo">
   <a href="index.html" class="footer-logo">SAR<span>A</span></a>
   <ul class="footer-links">
     <li><a href="index.html">الرئيسية</a></li>
@@ -496,7 +649,13 @@ section{padding:6rem 4rem;position:relative}
     <li><a href="investor.html">المستثمرون</a></li>
     <li><a href="https://wa.me/966555056545">واتساب</a></li>
   </ul>
-</div>
+  <div class="footer-copy">
+    © 2026 SARA Health · Built in Saudi Arabia 🇸🇦
+  </div>
+</footer>
+
+<!-- JavaScript -->
+<script src="js/sara.js"></script>
 
 </body>
 </html>
