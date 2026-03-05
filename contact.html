@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تواصل معنا | Contact SARA Health</title>
+
+<!-- SEO Meta Tags -->
+<meta name="description" content="تواصل مع فريق SARA للاستفسار عن برامج الصحة المؤسسية. نحن هنا لمساعدتك في تحسين صحة موظفيك وخفض التكاليف.">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="تواصل معنا | Contact SARA">
+<meta property="og:description" content="فريق SARA جاهز للإجابة على جميع استفساراتك">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📞</text></svg>">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Stylesheet -->
+<link rel="stylesheet" href="css/sara.css">
+
+<!-- Formspree (Replace YOUR_FORM_ID) -->
+<!--
+<script>
+  // Uncomment and add your Formspree ID
+  const FORMSPREE_ID = 'YOUR_FORM_ID';
+</script>
+-->
+
+<style>
+.contact-page {
+  min-height: 100vh;
+  padding: 8rem 2rem 4rem;
+  background: var(--navy-deep);
+}
+
+.contact-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.contact-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.contact-header h1 .teal {
+  color: var(--teal);
+}
+
+.contact-header p {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.contact-methods {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+
+.contact-method {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.contact-method:hover {
+  border-color: var(--teal);
+  transform: translateY(-4px);
+}
+
+.contact-method .icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.contact-method h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.contact-method p {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.contact-method a {
+  color: var(--teal);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.contact-method a:hover {
+  text-decoration: underline;
+}
+
+.contact-form-wrapper {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px;
+  padding: 3rem;
+  margin-bottom: 3rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 1rem;
+  color: var(--white);
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--teal);
+  background: rgba(255,255,255,0.08);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-note {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin-top: 1rem;
+}
+
+.form-status {
+  margin-top: 2rem;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  text-align: center;
+  font-family: 'Noto Naskh Arabic', serif;
+  display: none;
+}
+
+.form-status.success {
+  background: rgba(52,211,153,0.1);
+  border: 1px solid rgba(52,211,153,0.3);
+  color: #34D399;
+}
+
+.form-status.error {
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.3);
+  color: #EF4444;
+}
+
+.faq-section {
+  margin-top: 4rem;
+}
+
+.faq-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.faq-item {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  padding: 1.5rem;
+}
+
+.faq-question {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+  color: var(--teal);
+}
+
+.faq-answer {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .contact-methods {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .faq-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .contact-form-wrapper {
+    padding: 2rem 1.5rem;
+  }
+}
+</style>
+</head>
+
+<body>
+<a href="#main-content" class="skip-link">انتقل إلى المحتوى الرئيسي</a>
+
+<!-- NAV -->
+<nav role="navigation" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo">SAR<span>A</span></a>
+  
+  <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  
+  <ul class="nav-links">
+    <li><a href="index.html">الرئيسية</a></li>
+    <li><a href="b2b.html">للشركات</a></li>
+    <li><a href="insurance.html">لشركات التأمين</a></li>
+    <li><a href="investor.html">المستثمرون</a></li>
+  </ul>
+  
+  <a href="https://wa.me/966555056545" class="nav-cta">واتساب 🡒</a>
+</nav>
+
+<!-- MAIN -->
+<main id="main-content" class="contact-page">
+  <div class="contact-container">
+    
+    <!-- HEADER -->
+    <div class="contact-header">
+      <h1>تواصل <span class="teal">معنا</span></h1>
+      <p>فريق SARA جاهز للإجابة على جميع استفساراتك ومساعدتك في اختيار الحل الأنسب لمؤسستك</p>
+    </div>
+    
+    <!-- CONTACT METHODS -->
+    <div class="contact-methods">
+      <article class="contact-method">
+        <div class="icon">💬</div>
+        <h3>واتساب</h3>
+        <p>تواصل سريع ومباشر</p>
+        <a href="https://wa.me/966555056545" target="_blank" rel="noopener">+966 55 505 6545 →</a>
+      </article>
+      
+      <article class="contact-method">
+        <div class="icon">📧</div>
+        <h3>البريد الإلكتروني</h3>
+        <p>لل استفسارات الرسمية</p>
+        <a href="mailto:hello@sara-health.com">hello@sara-health.com →</a>
+      </article>
+      
+      <article class="contact-method">
+        <div class="icon">📞</div>
+        <h3>اتصال هاتفي</h3>
+        <p>الأحد - الخميس، ٩-٥</p>
+        <a href="tel:+966555056545">+966 55 505 6545 →</a>
+      </article>
+    </div>
+    
+    <!-- CONTACT FORM -->
+    <div class="contact-form-wrapper">
+      <h2 style="font-family:'Playfair Display';font-size:1.8rem;margin-bottom:1.5rem;text-align:center">
+        أرسل لنا رسالة
+      </h2>
+      
+      <!-- FORMSPREE FORM - Replace YOUR_FORM_ID -->
+      <form 
+        action="https://formspree.io/f/YOUR_FORM_ID" 
+        method="POST"
+        class="contact-form"
+        data-form-type="contact"
+      >
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="name">الاسم الكامل *</label>
+            <input 
+              type="text" 
+              id="name" 
+              name="name" 
+              required
+              placeholder="محمد أحمد"
+              autocomplete="name"
+            >
+          </div>
+          
+          <div class="form-group">
+            <label for="email">البريد الإلكتروني *</label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              required
+              placeholder="name@company.com"
+              autocomplete="email"
+            >
+          </div>
+          
+          <div class="form-group">
+            <label for="company">اسم الشركة *</label>
+            <input 
+              type="text" 
+              id="company" 
+              name="company" 
+              required
+              placeholder="شركة ..."
+              autocomplete="organization"
+            >
+          </div>
+          
+          <div class="form-group">
+            <label for="employees">عدد الموظفين *</label>
+            <select id="employees" name="employees" required>
+              <option value="">اختر...</option>
+              <option value="500-1000">٥٠٠ - ١٠٠٠</option>
+              <option value="1000-5000">١٠٠٠ - ٥٠٠٠</option>
+              <option value="5000-10000">٥٠٠٠ - ١٠٬٠٠٠</option>
+              <option value="10000+">١٠٬٠٠٠+</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="phone">رقم الجوال *</label>
+          <input 
+            type="tel" 
+            id="phone" 
+            name="phone" 
+            required
+            placeholder="+966 5X XXX XXXX"
+            autocomplete="tel"
+            dir="ltr"
+          >
+        </div>
+        
+        <div class="form-group">
+          <label for="interest">اهتمامك *</label>
+          <select id="interest" name="interest" required>
+            <option value="">اختر...</option>
+            <option value="employer">كصاحب عمل (Employer)</option>
+            <option value="insurer">كشركة تأمين (Insurer)</option>
+            <option value="investor">كمستثمر (Investor)</option>
+            <option value="other">أخرى</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="message">الرسالة</label>
+          <textarea 
+            id="message" 
+            name="message" 
+            rows="4" 
+            placeholder="أود الاستفسار عن..."
+          ></textarea>
+        </div>
+        
+        <!-- Hidden fields -->
+        <input type="hidden" name="_subject" value="🎯 New SARA Lead!">
+        <input type="hidden" name="_cc" value="hello@sara-health.com">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="_gotcha" style="display:none">
+        
+        <button type="submit" class="btn-primary" style="width:100%">
+          إرسال الرسالة ←
+        </button>
+        
+        <p class="form-note">
+          🔒 بياناتك محمية. لن نشارك معلوماتك مع أي طرف ثالث.
+        </p>
+      </form>
+      
+      <div id="form-status" class="form-status"></div>
+    </div>
+    
+    <!-- FAQ -->
+    <section class="faq-section" aria-labelledby="faq-title">
+      <h2 id="faq-title">الأسئلة الشائعة</h2>
+      
+      <div class="faq-grid">
+        <article class="faq-item">
+          <h3 class="faq-question">كم يستغرق الرد؟</h3>
+          <p class="faq-answer">نرد عادةً خلال ٢٤ ساعة عمل. للاستفسارات العاجلة، تواصل عبر واتساب.</p>
+        </article>
+        
+        <article class="faq-item">
+          <h3 class="faq-question">هل يوجد عرض تجريبي؟</h3>
+          <p class="faq-answer">نعم، نقدم عرضًا تجريبيًا مجانيًا كاملاً يوضح جميع ميزات المنصة.</p>
+        </article>
+        
+        <article class="faq-item">
+          <h3 class="faq-question">ما الحد الأدنى للموظفين؟</h3>
+          <p class="faq-answer">نخدم الشركات من ٥٠٠ موظف فأكثر. للتواصل الفردي، تابع برنامج Riyadh Walkers.</p>
+        </article>
+        
+        <article class="faq-item">
+          <h3 class="faq-question">هل البيانات آمنة؟</h3>
+          <p class="faq-answer">نعم، جميع البيانات مشفرة ومتوافقة مع نظام حماية البيانات الشخصية السعودي (PDPL).</p>
+        </article>
+      </div>
+    </section>
+    
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer role="contentinfo" style="border-top:1px solid rgba(255,255,255,0.06);padding:3rem 2rem;text-align:center;margin-top:4rem">
+  <div class="footer-logo" style="font-family:'Playfair Display';font-size:1.8rem;font-weight:900;color:var(--white);margin-bottom:1rem">
+    SAR<span style="color:var(--teal)">A</span>
+  </div>
+  <div style="font-family:'Noto Naskh Arabic';font-size:0.8rem;color:var(--text-muted);margin-bottom:1.5rem">
+    سُرى — من السَّيْر
+  </div>
+  <div class="footer-links" style="display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem">
+    <a href="index.html" style="color:var(--text-muted);text-decoration:none">الرئيسية</a>
+    <a href="b2b.html" style="color:var(--text-muted);text-decoration:none">للشركات</a>
+    <a href="insurance.html" style="color:var(--text-muted);text-decoration:none">لشركات التأمين</a>
+    <a href="investor.html" style="color:var(--text-muted);text-decoration:none">المستثمرون</a>
+  </div>
+  <div style="font-family:'DM Mono';font-size:0.7rem;color:var(--text-dim)">
+    © 2026 SARA Health · Built in Saudi Arabia 🇸🇦
+  </div>
+</footer>
+
+<!-- JavaScript -->
+<script src="js/sara.js"></script>
+
+<!-- Form Handler -->
+<script>
+// Formspree Form Handler
+async function handleFormspreeForm(event) {
+  event.preventDefault();
+  
+  const form = event.target;
+  const statusDiv = document.getElementById('form-status');
+  const submitBtn = form.querySelector('button[type="submit"]');
+  
+  // Disable button
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'جاري الإرسال...';
+  
+  try {
+    const formData = new FormData(form);
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+    
+    if (response.ok) {
+      // Success
+      statusDiv.textContent = '✅ تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.';
+      statusDiv.className = 'form-status success';
+      statusDiv.style.display = 'block';
+      form.reset();
+      
+      // Track conversion
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'form_submit', {
+          event_category: 'contact',
+          event_label: 'Contact Form Submission'
+        });
+      }
+    } else {
+      const data = await response.json();
+      throw new Error(data.errors?.[0]?.message || 'Failed to send');
+    }
+  } catch (error) {
+    statusDiv.textContent = '❌ حدث خطأ. يرجى المحاولة مرة أخرى أو التواصل عبر واتساب.';
+    statusDiv.className = 'form-status error';
+    statusDiv.style.display = 'block';
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'إرسال الرسالة ←';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.querySelector('form[data-form-type="contact"]');
+  if (form && form.action.includes('formspree.io')) {
+    form.addEventListener('submit', handleFormspreeForm);
+  }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>شكراً لتواصلك | Thank You - SARA Health</title>
+
+<!-- SEO -->
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Stylesheet -->
+<link rel="stylesheet" href="css/sara.css">
+
+<style>
+.thanks-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rem 2rem 4rem;
+  background: var(--navy-deep);
+  position: relative;
+  overflow: hidden;
+}
+
+.thanks-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(0,194,168,0.08), transparent);
+}
+
+.thanks-container {
+  max-width: 700px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.thanks-icon {
+  font-size: 5rem;
+  margin-bottom: 2rem;
+  animation: bounce 1s ease infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+.thanks-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.thanks-title .teal {
+  color: var(--teal);
+}
+
+.thanks-subtitle {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  margin-bottom: 3rem;
+  line-height: 1.8;
+}
+
+.thanks-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px;
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.thanks-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--teal);
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(255,255,255,0.03);
+  border-radius: 12px;
+}
+
+.contact-item .icon {
+  font-size: 1.5rem;
+}
+
+.contact-item a {
+  color: var(--white);
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1rem;
+}
+
+.contact-item a:hover {
+  color: var(--teal);
+}
+
+.next-steps {
+  margin-top: 3rem;
+}
+
+.next-steps h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.step {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.step-num {
+  width: 40px;
+  height: 40px;
+  background: var(--teal);
+  color: var(--navy-deep);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin: 0 auto 1rem;
+}
+
+.step h5 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.step p {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .steps-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .contact-item {
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+
+<body>
+<main class="thanks-page">
+  <div class="thanks-container">
+    
+    <!-- Icon -->
+    <div class="thanks-icon" aria-hidden="true">🎉</div>
+    
+    <!-- Title -->
+    <h1 class="thanks-title">
+      شكراً <span class="teal">لتواصلك</span>
+    </h1>
+    
+    <p class="thanks-subtitle">
+      استلمنا رسالتك وسيتواصل معك فريقنا خلال ٢٤ ساعة<br>
+      نحن هنا للإجابة على جميع استفساراتك
+    </p>
+    
+    <!-- What's Next -->
+    <div class="next-steps">
+      <h4>ماذا يحدث الآن؟</h4>
+      
+      <div class="steps-grid">
+        <article class="step">
+          <div class="step-num">١</div>
+          <h5>مراجعة الطلب</h5>
+          <p>فريقنا يراجع معلوماتك ويحضر الرد المناسب</p>
+        </article>
+        
+        <article class="step">
+          <div class="step-num">٢</div>
+          <h5>التواصل</h5>
+          <p>نتواصل معك خلال ٢٤ ساعة عبر البريد أو الهاتف</p>
+        </article>
+        
+        <article class="step">
+          <div class="step-num">٣</div>
+          <h5>العرض المخصص</h5>
+          <p>نقدم لك عرضاً مفصلاً يناسب احتياجات شركتك</p>
+        </article>
+      </div>
+    </div>
+    
+    <!-- Contact Info -->
+    <div class="thanks-card">
+      <h3>تواصل سريع</h3>
+      <div class="contact-info">
+        <div class="contact-item">
+          <span class="icon">💬</span>
+          <a href="https://wa.me/966555056545" target="_blank" rel="noopener">
+            +966 55 505 6545
+          </a>
+        </div>
+        <div class="contact-item">
+          <span class="icon">📧</span>
+          <a href="mailto:hello@sara-health.com">
+            hello@sara-health.com
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CTA Buttons -->
+    <div class="cta-buttons">
+      <a href="index.html" class="btn-primary">
+        ← العودة للرئيسية
+      </a>
+      <a href="https://wa.me/966555056545" class="btn-wa">
+        💬 واتساب
+      </a>
+    </div>
+    
+  </div>
+</main>
+
+<!-- Auto-redirect after 30 seconds -->
+<script>
+// Track thank you page view
+if (typeof gtag !== 'undefined') {
+  gtag('event', 'conversion', {
+    event_category: 'contact_form',
+    event_label: 'Thank You Page View'
+  });
+}
+
+// Optional: Auto-redirect to homepage after 30 seconds
+setTimeout(() => {
+  if (confirm('العودة إلى الصفحة الرئيسية؟')) {
+    window.location.href = 'index.html';
+  }
+}, 30000);
+</script>
+
+</body>
+</html>
