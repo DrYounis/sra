@@ -1,0 +1,12 @@
+# macOS junk
+.DS_Store
+._*
+.AppleDouble
+.LSOverride
+
+# Large media files (too big for GitHub Pages)
+*.mp4
+*.mov
+
+# PDFs (large source docs — store locally)
+*.pdf
