@@ -748,8 +748,26 @@
   </div>
 </section>
 
-<!-- Rest of your sections (Problem, How It Works, etc.) -->
-<!-- For now, keeping existing sections from your original file -->
+<!-- CONTACT SECTION -->
+<section id="contact" class="cta-section" aria-labelledby="contact-title" style="background: linear-gradient(135deg, rgba(0,194,168,0.08), transparent); padding: 6rem 4rem;">
+  <div class="cta-content" style="position: relative; z-index: 1; max-width: 700px; margin: 0 auto;">
+    <h2 class="cta-title" id="contact-title" style="font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700; line-height: 1.2; margin-bottom: 1rem; text-align: center;">
+      جاهز لبدء<br>
+      <span class="teal" style="color: #00C2A8;">رحلة الصحة</span>؟
+    </h2>
+    <p class="cta-subtitle" style="font-family: 'Noto Naskh Arabic', serif; font-size: 1.1rem; color: rgba(255,255,255,0.7); margin-bottom: 2.5rem; line-height: 1.8; text-align: center;">
+      احجز عرضًا تجريبيًا مجانيًا اليوم — واكتشف كيف يمكن لـ SARA أن توفر لمؤسستك آلاف الريالات مع تحسين صحة موظفيك.
+    </p>
+    <div class="cta-actions" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+      <a href="https://wa.me/966555056545?text=أود حجز عرض تجريبي لـ SARA لشركتي" class="btn-primary" style="background: linear-gradient(135deg, #00C2A8, #00d4b8); color: #0d1f38; padding: 1.2rem 2.8rem; border-radius: 100px; font-weight: 700; font-size: 1.05rem; text-decoration: none; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); font-family: 'Noto Naskh Arabic', serif; display: inline-flex; align-items: center; gap: 0.7rem; box-shadow: 0 8px 30px rgba(0, 194, 168, 0.3); border: 2px solid transparent;">
+        💬 احجز عرضًا عبر واتساب ←
+      </a>
+      <a href="mailto:hello@sara-health.com" class="btn-secondary" style="background: rgba(255,255,255,0.05); color: #ffffff; padding: 1.2rem 2.8rem; border-radius: 100px; font-weight: 600; font-size: 1.05rem; text-decoration: none; border: 2px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); font-family: 'Noto Naskh Arabic', serif;">
+        📧 أرسل بريد إلكتروني
+      </a>
+    </div>
+  </div>
+</section>
 
 </main>
 
@@ -778,6 +796,40 @@
 <!-- JavaScript -->
 <script src="js/news-ticker.js"></script>
 <script src="js/sara.js"></script>
+
+<!-- Smooth Scroll Script -->
+<script>
+// Smooth scroll for anchor links
+document.addEventListener('DOMContentLoaded', function() {
+  // Handle all anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (targetId !== '#' && targetId.length > 1) {
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          e.preventDefault();
+          const navHeight = document.querySelector('nav')?.offsetHeight || 70;
+          const targetPosition = targetElement.offsetTop - navHeight;
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+          
+          // Track click if it's the assessment button
+          if (this.dataset.trackCta) {
+            console.log('📊 CTA Click:', {
+              cta: this.dataset.trackCta,
+              location: this.dataset.trackLocation
+            });
+          }
+        }
+      }
+    });
+  });
+});
+</script>
 
 </body>
 </html>
