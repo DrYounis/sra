@@ -489,15 +489,32 @@
   color: #00C2A8;
   cursor: pointer;
   font-weight: 600;
-  transition: all 0.3s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  text-decoration: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  border: 2px solid rgba(0, 194, 168, 0.3);
+  background: rgba(0, 194, 168, 0.05);
 }
 
 .card-cta-text:hover {
-  color: #00d4b8;
-  transform: translateX(-5px);
+  color: #0d1f38;
+  background: linear-gradient(135deg, #00C2A8, #00d4b8);
+  border-color: #00C2A8;
+  transform: translateX(-5px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 194, 168, 0.4);
+}
+
+.card-cta-text:active {
+  transform: translateX(-5px) scale(0.98);
+}
+
+.card-cta-text:focus {
+  outline: 2px solid #00C2A8;
+  outline-offset: 2px;
 }
 
 .card-dr {
@@ -716,9 +733,9 @@
       </div>
       
       <div class="card-footer">
-        <div class="card-cta-text" tabindex="0">
+        <a href="#contact" class="card-cta-text" tabindex="0" data-track-cta="score_card_assessment" data-track-location="hero_visual">
           ابدأ التقييم المجاني →
-        </div>
+        </a>
         <div class="card-dr">
           Dr. Al-Ansari<br>
           30 yrs research
