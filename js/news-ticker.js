@@ -290,6 +290,51 @@ async function initNewsTicker() {
 }
 
 /**
+ * Track news item clicks for analytics
+ */
+function trackNewsClick(newsItem, clickType) {
+  // Google Analytics
+  if (typeof gtag !== 'undefined') {
+    gtag('event', 'news_ticker_click', {
+      event_category: 'engagement',
+      event_label: newsItem.title,
+      news_source: newsItem.source,
+      news_category: newsItem.category,
+      news_impact: newsItem.impact,
+      click_type: clickType
+    });
+  }
+  
+  // Facebook Pixel
+  if (typeof fbq !== 'undefined') {
+    fbq('track', 'Custom', {
+      content_name: 'News Ticker Click',
+      content_category: newsItem.category
+    });
+  }
+  
+  // Console logging for debugging
+  console.log('📰 News Click:', {
+    title: newsItem.title,
+    source: newsItem.source,
+    category: newsItem.category,
+    impact: newsItem.impact,
+    type: clickType
+  });
+  
+  // Store in localStorage for internal analytics
+  const clicks = JSON.parse(localStorage.getItem('sara_news_clicks') || '[]');
+  clicks.push({
+    timestamp: new Date().toISOString(),
+    title: newsItem.title,
+    source: newsItem.source,
+    category: newsItem.category,
+    impact: newsItem.impact
+  });
+  localStorage.setItem('sara_news_clicks', JSON.stringify(clicks.slice(-100))); // Keep last 100
+}
+
+/**
  * Setup control buttons
  */
 function setupControls() {
@@ -301,6 +346,11 @@ function setupControls() {
     prevBtn.addEventListener('click', () => {
       currentNewsIndex = (currentNewsIndex - 1 + newsItems.length) % newsItems.length;
       updateTickerDisplay();
+      
+      // Track navigation click
+      if (newsItems[currentNewsIndex]) {
+        trackNewsClick(newsItems[currentNewsIndex], 'navigation_prev');
+      }
     });
   }
   
@@ -308,6 +358,11 @@ function setupControls() {
     nextBtn.addEventListener('click', () => {
       currentNewsIndex = (currentNewsIndex + 1) % newsItems.length;
       updateTickerDisplay();
+      
+      // Track navigation click
+      if (newsItems[currentNewsIndex]) {
+        trackNewsClick(newsItems[currentNewsIndex], 'navigation_next');
+      }
     });
   }
   
@@ -315,8 +370,34 @@ function setupControls() {
     pauseBtn.addEventListener('click', () => {
       isPaused = !isPaused;
       pauseBtn.textContent = isPaused ? '▶' : '⏸';
+      
+      // Track pause/play
+      trackNewsClick(
+        newsItems[currentNewsIndex] || {},
+        isPaused ? 'pause' : 'resume'
+      );
     });
   }
+  
+  // Add click tracking to news links
+  setTimeout(() => {
+    const newsLinks = document.querySelectorAll('.news-link');
+    newsLinks.forEach((link, index) => {
+      link.addEventListener('click', (e) => {
+        const newsItem = newsItems[index];
+        if (newsItem) {
+          trackNewsClick(newsItem, 'read_more_link');
+          
+          // Track outbound click
+          gtag?.('event', 'outbound_link', {
+            event_category: 'navigation',
+            event_label: link.href,
+            news_source: newsItem.source
+          });
+        }
+      });
+    });
+  }, 100);
 }
 
 /**
@@ -563,5 +644,56 @@ window.SARANews = {
   prev: () => {
     currentNewsIndex = (currentNewsIndex - 1 + newsItems.length) % newsItems.length;
     updateTickerDisplay();
+  },
+  // Analytics
+  getClicks: () => JSON.parse(localStorage.getItem('sara_news_clicks') || '[]'),
+  clearClicks: () => localStorage.removeItem('sara_news_clicks'),
+  getStats: () => {
+    const clicks = JSON.parse(localStorage.getItem('sara_news_clicks') || '[]');
+    const stats = {
+      total: clicks.length,
+      byCategory: {},
+      bySource: {},
+      byImpact: {},
+      topItems: []
+    };
+    
+    clicks.forEach(click => {
+      // By category
+      stats.byCategory[click.category] = (stats.byCategory[click.category] || 0) + 1;
+      
+      // By source
+      stats.bySource[click.source] = (stats.bySource[click.source] || 0) + 1;
+      
+      // By impact
+      stats.byImpact[click.impact] = (stats.byImpact[click.impact] || 0) + 1;
+    });
+    
+    // Top items
+    const itemCounts = {};
+    clicks.forEach(click => {
+      itemCounts[click.title] = (itemCounts[click.title] || 0) + 1;
+    });
+    
+    stats.topItems = Object.entries(itemCounts)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10);
+    
+    return stats;
+  },
+  // Show analytics in console
+  showAnalytics: () => {
+    const stats = window.SARANews.getStats();
+    console.group('📊 News Ticker Analytics');
+    console.log('Total Clicks:', stats.total);
+    console.log('By Category:', stats.byCategory);
+    console.log('By Source:', stats.bySource);
+    console.log('By Impact:', stats.byImpact);
+    console.log('Top 10 Items:');
+    stats.topItems.forEach((item, i) => {
+      console.log(`${i + 1}. ${item[0]} (${item[1]} clicks)`);
+    });
+    console.groupEnd();
+    return stats;
   }
 };
