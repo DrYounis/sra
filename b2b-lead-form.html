@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SARA للشركات | اطلب عرض سعر</title>
+
+<!-- SEO -->
+<meta name="description" content="احصل على عرض سعر مخصص لمنصة SARA للصحة المؤسسية. خفض تكاليف التأمين بنسبة ١٥٪+ مع تحسين صحة موظفيك.">
+<meta name="robots" content="index, follow">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Styles -->
+<link rel="stylesheet" href="css/sara.css">
+
+<style>
+.b2b-form-page {
+  min-height: 100vh;
+  padding: 8rem 2rem 4rem;
+  background: linear-gradient(135deg, #0d1f38 0%, #153158 100%);
+}
+
+.form-container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.form-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.form-header h1 .teal {
+  color: #00C2A8;
+}
+
+.form-header p {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.8;
+}
+
+.b2b-form {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px;
+  padding: 3rem;
+  backdrop-filter: blur(10px);
+}
+
+.form-section {
+  margin-bottom: 2.5rem;
+}
+
+.form-section-title {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #00C2A8;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form-section-title::before {
+  content: '';
+  width: 4px;
+  height: 20px;
+  background: linear-gradient(180deg, #00C2A8, transparent);
+  border-radius: 2px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.8);
+  font-weight: 500;
+}
+
+.form-group label .required {
+  color: #EF4444;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 1rem;
+  color: #ffffff;
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #00C2A8;
+  background: rgba(255,255,255,0.08);
+  box-shadow: 0 0 0 3px rgba(0, 194, 168, 0.1);
+}
+
+.form-group select option {
+  background: #153158;
+  color: #ffffff;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-note {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+  margin-top: 0.5rem;
+}
+
+.submit-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #00C2A8, #00d4b8);
+  color: #0d1f38;
+  padding: 1.2rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Noto Naskh Arabic', serif;
+  box-shadow: 0 8px 30px rgba(0, 194, 168, 0.3);
+}
+
+.submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(0, 194, 168, 0.5);
+}
+
+.submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.form-status {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  font-family: 'Noto Naskh Arabic', serif;
+  display: none;
+}
+
+.form-status.success {
+  background: rgba(52,211,153,0.1);
+  border: 1px solid rgba(52,211,153,0.3);
+  color: #34D399;
+}
+
+.form-status.error {
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.3);
+  color: #EF4444;
+}
+
+.form-footer {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.form-footer p {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 1rem;
+}
+
+.contact-alt {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.contact-alt a {
+  color: #00C2A8;
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 0.6rem 1.2rem;
+  border: 1px solid rgba(0, 194, 168, 0.3);
+  border-radius: 50px;
+  transition: all 0.3s;
+}
+
+.contact-alt a:hover {
+  background: rgba(0, 194, 168, 0.1);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .b2b-form {
+    padding: 2rem 1.5rem;
+  }
+}
+</style>
+</head>
+
+<body>
+<a href="#main-content" class="skip-link">انتقل إلى المحتوى الرئيسي</a>
+
+<!-- NAV -->
+<nav role="navigation" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo">SAR<span>A</span></a>
+  <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  <ul class="nav-links">
+    <li><a href="index.html">الرئيسية</a></li>
+    <li><a href="b2b.html">للشركات</a></li>
+    <li><a href="insurance.html">لشركات التأمين</a></li>
+    <li><a href="investor.html">المستثمرون</a></li>
+  </ul>
+  <a href="https://wa.me/966555056545" class="nav-cta">واتساب 🡒</a>
+</nav>
+
+<!-- MAIN -->
+<main id="main-content" class="b2b-form-page">
+  <div class="form-container">
+    
+    <!-- HEADER -->
+    <div class="form-header">
+      <h1>اطلب <span class="teal">عرض سعر</span></h1>
+      <p>احصل على عرض سعر مخصص خلال ٢٤ ساعة — وابدأ في توفير آلاف الريالات على تكاليف التأمين والصحة</p>
+    </div>
+    
+    <!-- FORM -->
+    <form class="b2b-form" id="b2b-lead-form" data-form-type="b2b-lead">
+      
+      <!-- Section 1: Company Info -->
+      <div class="form-section">
+        <h2 class="form-section-title">معلومات الشركة</h2>
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="company-name">اسم الشركة <span class="required">*</span></label>
+            <input type="text" id="company-name" name="company_name" required placeholder="اسم الشركة الرسمي">
+          </div>
+          
+          <div class="form-group">
+            <label for="company-size">عدد الموظفين <span class="required">*</span></label>
+            <select id="company-size" name="company_size" required>
+              <option value="">اختر...</option>
+              <option value="500-1000">٥٠٠ - ١٠٠٠ موظف</option>
+              <option value="1000-3000">١٠٠٠ - ٣٠٠٠ موظف</option>
+              <option value="3000-5000">٣٠٠٠ - ٥٠٠٠ موظف</option>
+              <option value="5000-10000">٥٠٠٠ - ١٠٬٠٠٠ موظف</option>
+              <option value="10000+">١٠٬٠٠٠+ موظف</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="industry">قطاع الشركة <span class="required">*</span></label>
+            <select id="industry" name="industry" required>
+              <option value="">اختر...</option>
+              <option value="technology">تقنية واتصالات</option>
+              <option value="finance">بنوك وتمويل</option>
+              <option value="healthcare">رعاية صحية</option>
+              <option value="manufacturing">تصنيع</option>
+              <option value="retail">تجزئة</option>
+              <option value="construction">إنشاءات</option>
+              <option value="energy">طاقة</option>
+              <option value="government">حكومة</option>
+              <option value="education">تعليم</option>
+              <option value="other">أخرى</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="city">المدينة <span class="required">*</span></label>
+            <select id="city" name="city" required>
+              <option value="">اختر...</option>
+              <option value="riyadh">الرياض</option>
+              <option value="jeddah">جدة</option>
+              <option value="dammam">الدمام</option>
+              <option value="khobar">الخبر</option>
+              <option value="medina">المدينة المنورة</option>
+              <option value="makkah">مكة المكرمة</option>
+              <option value="other">أخرى</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Section 2: Contact Person -->
+      <div class="form-section">
+        <h2 class="form-section-title">بيانات التواصل</h2>
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="contact-name">اسم الشخص المسؤول <span class="required">*</span></label>
+            <input type="text" id="contact-name" name="contact_name" required placeholder="الاسم الكامل">
+          </div>
+          
+          <div class="form-group">
+            <label for="contact-position">المسمى الوظيفي <span class="required">*</span></label>
+            <select id="contact-position" name="contact_position" required>
+              <option value="">اختر...</option>
+              <option value="ceo">رئيس تنفيذي / CEO</option>
+              <option value="cfo">مدير مالي / CFO</option>
+              <option value="hrd">مدير موارد بشرية / HR Director</option>
+              <option value="hr">موارد بشرية / HR</option>
+              <option value="operations">عمليات / Operations</option>
+              <option value="other">أخرى</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="email">البريد الإلكتروني <span class="required">*</span></label>
+            <input type="email" id="email" name="email" required placeholder="name@company.com">
+            <p class="form-note">سيرسل العرض إلى هذا البريد</p>
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">رقم الجوال <span class="required">*</span></label>
+            <input type="tel" id="phone" name="phone" required placeholder="05XXXXXXXX" dir="ltr">
+          </div>
+        </div>
+      </div>
+      
+      <!-- Section 3: Requirements -->
+      <div class="form-section">
+        <h2 class="form-section-title">المتطلبات</h2>
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="interest">الخدمة المهتم بها <span class="required">*</span></label>
+            <select id="interest" name="interest" required>
+              <option value="">اختر...</option>
+              <option value="assessment">تقييم صحي فقط (SARA ASSESS)</option>
+              <option value="full">البرنامج الكامل (ASSESS + COACH)</option>
+              <option value="enterprise">باقة المؤسسات (Enterprise)</option>
+              <option value="unsure">لست متأكد - أريد استشارة</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="timeline">متى تريد البدء؟ <span class="required">*</span></label>
+            <select id="timeline" name="timeline" required>
+              <option value="">اختر...</option>
+              <option value="immediate">فوراً / خلال أسبوع</option>
+              <option value="month">خلال شهر</option>
+              <option value="quarter">خلال ٣ أشهر</option>
+              <option value="just-looking">أبحث فقط</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="message">رسالة إضافية (اختياري)</label>
+          <textarea id="message" name="message" placeholder="أي معلومات إضافية تود مشاركتها..."></textarea>
+        </div>
+      </div>
+      
+      <!-- Hidden Fields -->
+      <input type="hidden" name="form_type" value="b2b_lead">
+      <input type="hidden" name="source" value="website_b2b_form">
+      <input type="hidden" name="date" id="form-date">
+      
+      <!-- Submit Button -->
+      <button type="submit" class="submit-btn">
+        اطلب العرض الآن ←
+      </button>
+      
+      <!-- Status Messages -->
+      <div id="form-status" class="form-status"></div>
+      
+      <!-- Footer -->
+      <div class="form-footer">
+        <p>أو تواصل مباشرة:</p>
+        <div class="contact-alt">
+          <a href="https://wa.me/966555056545" target="_blank">💬 واتساب</a>
+          <a href="tel:+966555056545">📞 اتصال</a>
+          <a href="mailto:op.younis@gmail.com">📧 بريد إلكتروني</a>
+        </div>
+      </div>
+    </form>
+    
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer role="contentinfo" style="border-top:1px solid rgba(255,255,255,0.06);padding:3rem 2rem;margin-top:4rem;text-align:center">
+  <div style="font-family:'Playfair Display';font-size:1.8rem;font-weight:900;color:var(--white);margin-bottom:0.5rem">
+    SAR<span style="color:#00C2A8">A</span>
+  </div>
+  <div style="font-family:'Noto Naskh Arabic';font-size:0.8rem;color:rgba(255,255,255,0.5);margin-bottom:1.5rem">
+    سُرى — من السَّيْر
+  </div>
+  <div style="font-family:'DM Mono';font-size:0.7rem;color:rgba(255,255,255,0.4)">
+    © 2026 SARA Health · Built in Saudi Arabia 🇸🇦
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="js/sara.js"></script>
+
+<!-- Form Handler -->
+<script>
+// Set form date
+document.getElementById('form-date').value = new Date().toISOString();
+
+// Form Handler
+async function handleB2BForm(event) {
+  event.preventDefault();
+  
+  const form = event.target;
+  const statusDiv = document.getElementById('form-status');
+  const submitBtn = form.querySelector('.submit-btn');
+  
+  // Disable button
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'جاري الإرسال...';
+  
+  // Get form data
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData);
+  
+  // Add WhatsApp message
+  const whatsappMessage = `
+🎯 طلب عرض سعر جديد - SARA B2B
+
+📋 معلومات الشركة:
+• الاسم: ${data.company_name}
+• عدد الموظفين: ${data.company_size}
+• القطاع: ${data.industry}
+• المدينة: ${data.city}
+
+👤 بيانات التواصل:
+• الاسم: ${data.contact_name}
+• المنصب: ${data.contact_position}
+• البريد: ${data.email}
+• الجوال: ${data.phone}
+
+💼 المتطلبات:
+• الخدمة: ${data.interest}
+• الوقت: ${data.timeline}
+
+📝 رسالة: ${data.message || 'لا يوجد'}
+
+📅 التاريخ: ${new Date(data.date).toLocaleDateString('ar-SA')}
+  `.trim();
+  
+  try {
+    // Send to Formspree (update with your Form ID)
+    const response = await fetch('https://formspree.io/f/YOUR_FORMSPREE_ID', {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+    
+    if (response.ok) {
+      // Success
+      statusDiv.textContent = '✅ تم إرسال طلبك بنجاح!\n\nسنتواصل معك خلال ٢٤ ساعة على البريد أو الجوال.';
+      statusDiv.className = 'form-status success';
+      statusDiv.style.display = 'block';
+      statusDiv.style.whiteSpace = 'pre-line';
+      form.reset();
+      
+      // Track conversion
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'b2b_form_submit', {
+          event_category: 'conversion',
+          event_label: data.company_name,
+          company_size: data.company_size,
+          industry: data.industry
+        });
+      }
+      
+      // Optional: Also send to WhatsApp
+      // Uncomment to enable:
+      // setTimeout(() => {
+      //   window.open(`https://wa.me/966555056545?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
+      // }, 1500);
+      
+    } else {
+      throw new Error('Failed to send');
+    }
+  } catch (error) {
+    console.error('Form error:', error);
+    statusDiv.textContent = '❌ حدث خطأ أثناء الإرسال.\n\nيرجى المحاولة مرة أخرى أو التواصل عبر الواتساب.';
+    statusDiv.className = 'form-status error';
+    statusDiv.style.display = 'block';
+    statusDiv.style.whiteSpace = 'pre-line';
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'اطلب العرض الآن ←';
+  }
+}
+
+// Initialize form
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('b2b-lead-form')?.addEventListener('submit', handleB2BForm);
+});
+</script>
+
+</body>
+</html>
