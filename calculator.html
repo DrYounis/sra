@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SARA - حاسبة العائد على الاستثمار</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Styles -->
+<link rel="stylesheet" href="css/sara.css">
+
+<style>
+.calculator-page {
+  min-height: 100vh;
+  padding: 8rem 2rem 4rem;
+  background: linear-gradient(135deg, #0d1f38 0%, #153158 100%);
+}
+
+.calculator-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.calculator-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.calculator-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.calculator-header h1 .teal {
+  color: #00C2A8;
+}
+
+.calculator-header p {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.7);
+}
+
+.calculator-widget {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 24px;
+  padding: 3rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.calc-section {
+  margin-bottom: 3rem;
+}
+
+.calc-section-title {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #00C2A8;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.calc-section-title::before {
+  content: '';
+  width: 4px;
+  height: 24px;
+  background: linear-gradient(180deg, #00C2A8, transparent);
+  border-radius: 2px;
+}
+
+.input-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.input-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.input-item label {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.8);
+  font-weight: 600;
+}
+
+.input-item input[type="range"] {
+  width: 100%;
+  -webkit-appearance: none;
+  height: 6px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 3px;
+  outline: none;
+}
+
+.input-item input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, #00C2A8, #00d4b8);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(0, 194, 168, 0.5);
+  transition: transform 0.2s;
+}
+
+.input-item input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.value-display {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #00C2A8;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.package-selector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.package-btn {
+  background: rgba(255,255,255,0.03);
+  border: 2px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: center;
+}
+
+.package-btn:hover {
+  border-color: rgba(0, 194, 168, 0.3);
+  background: rgba(0, 194, 168, 0.05);
+}
+
+.package-btn.active {
+  border-color: #00C2A8;
+  background: rgba(0, 194, 168, 0.1);
+  box-shadow: 0 0 30px rgba(0, 194, 168, 0.2);
+}
+
+.package-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.package-price {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.9rem;
+  color: #00C2A8;
+}
+
+.package-features {
+  list-style: none;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.6);
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.result-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.result-label {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 0.5rem;
+}
+
+.result-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #E8B84B;
+}
+
+.result-value.highlight {
+  color: #00C2A8;
+  font-size: 2.5rem;
+}
+
+.main-result {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, rgba(0,194,168,0.1), rgba(0,194,168,0.05));
+  border: 2px solid rgba(0, 194, 168, 0.3);
+  padding: 2rem;
+  text-align: center;
+  border-radius: 20px;
+  margin-top: 1rem;
+}
+
+.main-result-label {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 1rem;
+}
+
+.main-result-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #00C2A8, #00d4b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.main-result-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+  margin-top: 0.5rem;
+}
+
+.cta-section {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-calculate {
+  background: linear-gradient(135deg, #00C2A8, #00d4b8);
+  color: #0d1f38;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: 'Noto Naskh Arabic', serif;
+  box-shadow: 0 8px 30px rgba(0, 194, 168, 0.3);
+}
+
+.btn-calculate:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(0, 194, 168, 0.5);
+}
+
+.btn-outline {
+  background: transparent;
+  color: #ffffff;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  border: 2px solid rgba(255,255,255,0.2);
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: 'Noto Naskh Arabic', serif;
+}
+
+.btn-outline:hover {
+  border-color: #00C2A8;
+  color: #00C2A8;
+}
+
+@media (max-width: 768px) {
+  .input-group,
+  .package-selector,
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .calculator-widget {
+    padding: 2rem 1.5rem;
+  }
+
+  .main-result-value {
+    font-size: 3rem;
+  }
+}
+</style>
+</head>
+
+<body>
+<!-- NAV -->
+<nav role="navigation" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo">SAR<span>A</span></a>
+  <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  <ul class="nav-links">
+    <li><a href="index.html">الرئيسية</a></li>
+    <li><a href="b2b.html">للشركات</a></li>
+    <li><a href="b2b-lead-form.html" style="color:#E8B84B">اطلب عرضاً</a></li>
+    <li><a href="insurance.html">لشركات التأمين</a></li>
+    <li><a href="investor.html">المستثمرون</a></li>
+  </ul>
+  <a href="https://wa.me/966555056545" class="nav-cta">واتساب 🡒</a>
+</nav>
+
+<!-- MAIN -->
+<main class="calculator-page">
+  <div class="calculator-container">
+    
+    <!-- HEADER -->
+    <div class="calculator-header">
+      <h1>احسب <span class="teal">عائد الاستثمار</span></h1>
+      <p>اكتشف كم يمكن لشركتك أن توفر مع SARA — حاسبة تفاعلية توضح التوفير بالريال السعودي</p>
+    </div>
+
+    <!-- CALCULATOR WIDGET -->
+    <div class="calculator-widget">
+      
+      <!-- Input Section -->
+      <div class="calc-section">
+        <h2 class="calc-section-title">📊 أدخل بيانات شركتك</h2>
+        
+        <div class="input-group">
+          <div class="input-item">
+            <label>عدد الموظفين</label>
+            <div class="value-display" id="employeeDisplay">2,000</div>
+            <input type="range" id="employeeSlider" min="500" max="10000" step="100" value="2000">
+          </div>
+          
+          <div class="input-item">
+            <label>نسبة الموظفين عالي الخطورة</label>
+            <div class="value-display" id="riskDisplay">29%</div>
+            <input type="range" id="riskSlider" min="10" max="60" step="1" value="29">
+          </div>
+        </div>
+      </div>
+
+      <!-- Package Selection -->
+      <div class="calc-section">
+        <h2 class="calc-section-title">💎 اختر الباقة</h2>
+        
+        <div class="package-selector">
+          <div class="package-btn" onclick="selectPackage('essentials', 50)">
+            <div class="package-name">Essentials</div>
+            <div class="package-price">50 ريال / موظف / شهر</div>
+            <ul class="package-features">
+              <li>✓ التقييم الصحي</li>
+              <li>✓ لوحة البيانات الأساسية</li>
+            </ul>
+          </div>
+          
+          <div class="package-btn active" onclick="selectPackage('pro', 100)">
+            <div class="package-name" style="color:#00C2A8">Pro ⭐</div>
+            <div class="package-price">100 ريال / موظف / شهر</div>
+            <ul class="package-features">
+              <li>✓ كل مميزات Essentials</li>
+              <li>✓ برنامج 90 يوماً</li>
+              <li>✓ تقارير أسبوعية</li>
+            </ul>
+          </div>
+          
+          <div class="package-btn" onclick="selectPackage('enterprise', 150)">
+            <div class="package-name">Enterprise</div>
+            <div class="package-price">150 ريال / موظف / شهر</div>
+            <ul class="package-features">
+              <li>✓ كل مميزات Pro</li>
+              <li>✓ تكامل API</li>
+              <li>✓ مدير حساب مخصص</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results Section -->
+      <div class="calc-section">
+        <h2 class="calc-section-title">💰 التوفير المتوقع</h2>
+        
+        <div class="results-grid">
+          <div class="result-card">
+            <div class="result-label">تكلفة SARA السنوية</div>
+            <div class="result-value" id="costValue">SAR 2.4M</div>
+          </div>
+          
+          <div class="result-card">
+            <div class="result-label">إجمالي التوفيرات</div>
+            <div class="result-value" id="savingsValue">SAR 3.4M</div>
+          </div>
+          
+          <div class="result-card">
+            <div class="result-label">صافي الربح</div>
+            <div class="result-value highlight" id="netValue">SAR 1.0M</div>
+          </div>
+          
+          <div class="main-result">
+            <div class="main-result-label">عائد الاستثمار (ROI)</div>
+            <div class="main-result-value" id="roiValue">43%</div>
+            <div class="main-result-sub">أي 0.43 ريال عن كل ريال تنفقه</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Section -->
+      <div class="cta-section">
+        <div class="cta-buttons">
+          <button class="btn-calculate" onclick="shareQuote()">
+            📤 شارك عرض السعر
+          </button>
+          <a href="b2b-lead-form.html" class="btn-calculate" style="text-decoration:none">
+            اطلب عرض سعر مخصص ←
+          </a>
+          <a href="https://wa.me/966555056545?text=أود مناقشة عرض سعر من الحاسبة" class="btn-outline">
+            💬 واتساب
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer style="border-top:1px solid rgba(255,255,255,0.06);padding:3rem 2rem;margin-top:4rem;text-align:center">
+  <div style="font-family:'Playfair Display';font-size:1.8rem;font-weight:900;color:var(--white);margin-bottom:0.5rem">
+    SAR<span style="color:#00C2A8">A</span>
+  </div>
+  <div style="font-family:'Noto Naskh Arabic';font-size:0.8rem;color:rgba(255,255,255,0.5);margin-bottom:1.5rem">
+    سُرى — من السَّيْر
+  </div>
+  <div style="font-family:'DM Mono';font-size:0.7rem;color:rgba(255,255,255,0.4)">
+    © 2026 SARA Health · Built in Saudi Arabia 🇸🇦
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script>
+// State
+let currentPackage = 'pro';
+let currentPrice = 100;
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+  const employeeSlider = document.getElementById('employeeSlider');
+  const riskSlider = document.getElementById('riskSlider');
+  
+  employeeSlider.addEventListener('input', calculate);
+  riskSlider.addEventListener('input', calculate);
+  
+  calculate();
+});
+
+// Select package
+function selectPackage(name, price) {
+  currentPackage = name;
+  currentPrice = price;
+  
+  // Update UI
+  document.querySelectorAll('.package-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  event.target.closest('.package-btn').classList.add('active');
+  
+  calculate();
+}
+
+// Calculate ROI
+function calculate() {
+  const employees = parseInt(document.getElementById('employeeSlider').value);
+  const riskPercent = parseInt(document.getElementById('riskSlider').value);
+  
+  // Update displays
+  document.getElementById('employeeDisplay').textContent = employees.toLocaleString('en-US');
+  document.getElementById('riskDisplay').textContent = riskPercent + '%';
+  
+  // Calculations
+  const monthlyPEPM = currentPrice;
+  const annualCost = employees * monthlyPEPM * 12;
+  
+  const highRiskEmployees = employees * (riskPercent / 100);
+  const savingsPerEmployee = 8500; // SAR per high-risk employee per year
+  const totalSavings = highRiskEmployees * savingsPerEmployee;
+  
+  const netGain = totalSavings - annualCost;
+  const roi = annualCost > 0 ? ((netGain / annualCost) * 100) : 0;
+  
+  // Update results
+  document.getElementById('costValue').textContent = formatCurrency(annualCost);
+  document.getElementById('savingsValue').textContent = formatCurrency(totalSavings);
+  document.getElementById('netValue').textContent = formatCurrency(netGain);
+  document.getElementById('roiValue').textContent = roi.toFixed(0) + '%';
+  
+  // Color code ROI
+  const roiElement = document.getElementById('roiValue');
+  if (roi >= 100) {
+    roiElement.style.background = 'linear-gradient(135deg, #34D399, #10B981)';
+    roiElement.style.webkitBackgroundClip = 'text';
+  } else if (roi >= 50) {
+    roiElement.style.background = 'linear-gradient(135deg, #00C2A8, #00d4b8)';
+    roiElement.style.webkitBackgroundClip = 'text';
+  } else {
+    roiElement.style.background = 'linear-gradient(135deg, #E8B84B, #f0cc70)';
+    roiElement.style.webkitBackgroundClip = 'text';
+  }
+}
+
+// Format currency
+function formatCurrency(amount) {
+  const absAmount = Math.abs(amount);
+  const formatted = absAmount >= 1000000 
+    ? 'SAR ' + (absAmount / 1000000).toFixed(1) + 'M'
+    : 'SAR ' + Math.round(absAmount / 1000).toLocaleString('en-US') + 'K';
+  
+  return amount < 0 ? '-' + formatted : formatted;
+}
+
+// Share quote
+function shareQuote() {
+  const employees = document.getElementById('employeeDisplay').textContent;
+  const risk = document.getElementById('riskDisplay').textContent;
+  const savings = document.getElementById('savingsValue').textContent;
+  const roi = document.getElementById('roiValue').textContent;
+  
+  const message = `
+📊 عرض سعر SARA
+
+📋 بيانات الشركة:
+• الموظفين: ${employees}
+• عالي الخطورة: ${risk}
+
+💰 التوفير المتوقع:
+• التوفير السنوي: ${savings}
+• عائد الاستثمار: ${roi}
+
+الباقة: ${currentPackage.toUpperCase()}
+
+احسب لشركتك:
+https://sra-health.vercel.app/calculator.html
+  `.trim();
+  
+  // Copy to clipboard
+  navigator.clipboard.writeText(message).then(() => {
+    alert('✅ تم نسخ عرض السعر! يمكنك مشاركته الآن');
+    
+    // Track share
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'calculator_share', {
+        event_category: 'engagement',
+        employees: employees,
+        roi: roi
+      });
+    }
+  }).catch(err => {
+    console.error('Failed to copy:', err);
+  });
+}
+</script>
+
+<!-- WhatsApp Widget -->
+<script src="js/whatsapp-widget.js"></script>
+
+</body>
+</html>
