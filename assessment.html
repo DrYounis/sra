@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SARA - التقييم الصحي الشامل | Free Health Assessment</title>
+<meta name="description" content="احصل على تقييم صحي شامل مجاني - 44 حالة صحية في 15 دقيقة. اعرف نقاط صحتك واحصل على توصيات مخصصة.">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/sara.css">
+
+<style>
+.assessment-page {
+  min-height: 100vh;
+  padding: 6rem 2rem 4rem;
+  background: linear-gradient(135deg, #0d1f38 0%, #153158 100%);
+}
+
+.assessment-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.assessment-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.assessment-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.assessment-header h1 .teal {
+  color: #00C2A8;
+}
+
+.assessment-header p {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.8;
+}
+
+.progress-container {
+  background: rgba(255,255,255,0.05);
+  border-radius: 50px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  position: sticky;
+  top: 80px;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.progress-text {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.8);
+}
+
+.progress-number {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.9rem;
+  color: #00C2A8;
+}
+
+.progress-bar {
+  height: 8px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00C2A8, #00d4b8);
+  border-radius: 10px;
+  transition: width 0.5s ease;
+  box-shadow: 0 0 20px rgba(0, 194, 168, 0.5);
+}
+
+.assessment-form {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 24px;
+  padding: 3rem;
+  backdrop-filter: blur(10px);
+}
+
+.section-divider {
+  background: linear-gradient(90deg, rgba(0,194,168,0.3), transparent);
+  height: 2px;
+  margin: 3rem 0 2rem;
+  border: none;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #00C2A8;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.section-icon {
+  font-size: 1.8rem;
+}
+
+.question-group {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: rgba(255,255,255,0.03);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.question-label {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.option-label {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem;
+  background: rgba(255,255,255,0.03);
+  border: 2px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.option-label:hover {
+  border-color: rgba(0, 194, 168, 0.3);
+  background: rgba(0, 194, 168, 0.05);
+}
+
+.option-label input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  accent-color: #00C2A8;
+}
+
+.option-text {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.8);
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 3rem;
+  justify-content: space-between;
+}
+
+.btn-prev {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  border: 2px solid rgba(255,255,255,0.2);
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: 'Noto Naskh Arabic', serif;
+}
+
+.btn-prev:hover {
+  border-color: #fff;
+  background: rgba(255,255,255,0.15);
+}
+
+.btn-next, .btn-submit {
+  background: linear-gradient(135deg, #00C2A8, #00d4b8);
+  color: #0d1f38;
+  padding: 1rem 3rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Noto Naskh Arabic', serif;
+  box-shadow: 0 8px 30px rgba(0, 194, 168, 0.3);
+}
+
+.btn-next:hover, .btn-submit:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(0, 194, 168, 0.5);
+}
+
+.btn-next:disabled, .btn-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Results Styles */
+.results-container {
+  display: none;
+}
+
+.results-header {
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.score-circle {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 2rem;
+  position: relative;
+}
+
+.score-circle svg {
+  transform: rotate(-90deg);
+  width: 100%;
+  height: 100%;
+}
+
+.score-circle-track {
+  fill: none;
+  stroke: rgba(255,255,255,0.1);
+  stroke-width: 12;
+}
+
+.score-circle-fill {
+  fill: none;
+  stroke: url(#scoreGradient);
+  stroke-width: 12;
+  stroke-linecap: round;
+  stroke-dasharray: 565;
+  stroke-dashoffset: 565;
+  transition: stroke-dashoffset 2s ease;
+}
+
+.score-number {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #00C2A8, #00d4b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.score-label {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.score-description {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1rem;
+  color: rgba(255,255,255,0.7);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 3rem 0;
+}
+
+.result-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.result-card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.result-card-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #00C2A8;
+  margin-bottom: 0.5rem;
+}
+
+.result-card-label {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.6);
+}
+
+.recommendations {
+  background: rgba(0, 194, 168, 0.05);
+  border: 1px solid rgba(0, 194, 168, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  margin: 3rem 0;
+}
+
+.recommendations h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: #00C2A8;
+  margin-bottom: 1.5rem;
+}
+
+.recommendation-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: rgba(255,255,255,0.02);
+  border-radius: 12px;
+}
+
+.rec-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.rec-content h4 {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.rec-content p {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.7;
+}
+
+.cta-box {
+  background: linear-gradient(135deg, rgba(0,194,168,0.1), rgba(0,194,168,0.05));
+  border: 2px solid rgba(0, 194, 168, 0.3);
+  border-radius: 20px;
+  padding: 2.5rem;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.cta-box h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.cta-box p {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+  .options-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .assessment-form {
+    padding: 2rem 1.5rem;
+  }
+  
+  .nav-buttons {
+    flex-direction: column;
+  }
+  
+  .btn-prev, .btn-next, .btn-submit {
+    width: 100%;
+  }
+  
+  .score-number {
+    font-size: 2.5rem;
+  }
+}
+</style>
+</head>
+
+<body>
+<!-- NAV -->
+<nav role="navigation" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo">SAR<span>A</span></a>
+  <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  <ul class="nav-links">
+    <li><a href="index.html">الرئيسية</a></li>
+    <li><a href="b2b.html">للشركات</a></li>
+    <li><a href="calculator.html">الحاسبة</a></li>
+    <li><a href="cases.html">قصص النجاح</a></li>
+  </ul>
+  <a href="https://wa.me/966555056545" class="nav-cta">واتساب 🡒</a>
+</nav>
+
+<!-- MAIN -->
+<main class="assessment-page">
+  <div class="assessment-container">
+    
+    <!-- Assessment Form -->
+    <div id="assessmentForm" class="assessment-form">
+      
+      <!-- Progress Bar -->
+      <div class="progress-container">
+        <div class="progress-info">
+          <span class="progress-text" id="progressText">القسم 1 من 7</span>
+          <span class="progress-number" id="progressNumber">0%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <form id="healthAssessment" onsubmit="return false;">
+        
+        <!-- Section 1: Personal Info -->
+        <div class="assessment-section" data-section="1">
+          <h2 class="section-title">
+            <span class="section-icon">👤</span>
+            المعلومات الشخصية
+          </h2>
+          
+          <div class="question-group">
+            <label class="question-label">الجنس</label>
+            <div class="options-grid">
+              <label class="option-label">
+                <input type="radio" name="gender" value="male" required>
+                <span class="option-text">ذكر</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="gender" value="female" required>
+                <span class="option-text">أنثى</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="question-group">
+            <label class="question-label">العمر</label>
+            <div class="options-grid">
+              <label class="option-label">
+                <input type="radio" name="age" value="under30" required>
+                <span class="option-text">أقل من 30</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="age" value="30-40" required>
+                <span class="option-text">30 - 40</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="age" value="41-50" required>
+                <span class="option-text">41 - 50</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="age" value="over50" required>
+                <span class="option-text">أكثر من 50</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="question-group">
+            <label class="question-label">الطول (سم)</label>
+            <input type="number" name="height" placeholder="مثال: 175" required 
+                   style="width:100%;padding:1rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:#fff;font-family:'Noto Naskh Arabic';font-size:1rem">
+          </div>
+
+          <div class="question-group">
+            <label class="question-label">الوزن (كجم)</label>
+            <input type="number" name="weight" placeholder="مثال: 75" required 
+                   style="width:100%;padding:1rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:#fff;font-family:'Noto Naskh Arabic';font-size:1rem">
+          </div>
+        </div>
+
+        <!-- Section 2: Cardiovascular Health -->
+        <div class="assessment-section" data-section="2" style="display:none">
+          <h2 class="section-title">
+            <span class="section-icon">❤️</span>
+            صحة القلب والأوعية
+          </h2>
+          
+          <div class="question-group">
+            <label class="question-label">هل تعاني من ارتفاع ضغط الدم؟</label>
+            <div class="options-grid">
+              <label class="option-label">
+                <input type="radio" name="high_bp" value="yes">
+                <span class="option-text">نعم</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="high_bp" value="no" checked>
+                <span class="option-text">لا</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="question-group">
+            <label class="question-label">هل تعاني من ارتفاع الكوليسترول؟</label>
+            <div class="options-grid">
+              <label class="option-label">
+                <input type="radio" name="high_cholesterol" value="yes">
+                <span class="option-text">نعم</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="high_cholesterol" value="no" checked>
+                <span class="option-text">لا</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="question-group">
+            <label class="question-label">هل لديك تاريخ عائلي بأمراض القلب؟</label>
+            <div class="options-grid">
+              <label class="option-label">
+                <input type="radio" name="heart_family" value="yes">
+                <span class="option-text">نعم</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="heart_family" value="no" checked>
+                <span class="option-text">لا</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="question-group">
+            <label class="question-label">كم مرة تمارس نشاط بدني أسبوعياً؟</label>
+            <div class="options-grid">
+              <label class="option-label">
+                <input type="radio" name="exercise" value="never">
+                <span class="option-text">نادراً أو أبداً</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="exercise" value="1-2">
+                <span class="option-text">1-2 مرة</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="exercise" value="3-4">
+                <span class="option-text">3-4 مرات</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="exercise" value="5+">
+                <span class="option-text">5+ مرات</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Metabolic Health -->
+        <div class="assessment-section" data-section="3" style="display:none">
+          <h2 class="section-title">
+            <span class="section-icon">🍽️</span>
+            الصحة الأيضية
+          </h2>
+          
+          <div class="question-group">
+            <label class="question-label">هل تم تشخيصك بالسكري؟</label>
+            <div class="options-grid">
+              <label class="option-label">
+                <input type="radio" name="diabetes" value="yes">
+                <span class="option-text">نعم</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="diabetes" value="no" checked>
+                <span class="option-text">لا</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="question-group">
+            <label class="question-label">هل تعاني من مقاومة الأنسولين؟</label>
+            <div class="options-grid">
+              <label class="option-label">
+                <input type="radio" name="insulin_resistance" value="yes">
+                <span class="option-text">نعم</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="insulin_resistance" value="no" checked>
+                <span class="option-text">لا</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="question-group">
+            <label class="question-label">كم وجبة سريعة تستهلك أسبوعياً؟</label>
+            <div class="options-grid">
+              <label class="option-label">
+                <input type="radio" name="fast_food" value="0">
+                <span class="option-text">0</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="fast_food" value="1-2">
+                <span class="option-text">1-2</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="fast_food" value="3-5">
+                <span class="option-text">3-5</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="fast_food" value="6+">
+                <span class="option-text">6+</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 4: Mental Health -->
+        <div class="assessment-section" data-section="4" style="display:none">
+          <h2 class="section-title">
+            <span class="section-icon">🧠</span>
+            الصحة النفسية
+          </h2>
+          
+          <div class="question-group">
+            <label class="question-label">كيف تقيم مستوى توترك اليومي؟</label>
+            <div class="options-grid">
+              <label class="option-label">
+                <input type="radio" name="stress_level" value="low">
+                <span class="option-text">منخفض</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="stress_level" value="moderate">
+                <span class="option-text">متوسط</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="stress_level" value="high">
+                <span class="option-text">مرتفع</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="stress_level" value="very_high">
+                <span class="option-text">مرتفع جداً</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="question-group">
+            <label class="question-label">كم ساعة تنام في المتوسط؟</label>
+            <div class="options-grid">
+              <label class="option-label">
+                <input type="radio" name="sleep_hours" value="less5">
+                <span class="option-text">أقل من 5 ساعات</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="sleep_hours" value="5-6">
+                <span class="option-text">5-6 ساعات</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="sleep_hours" value="7-8">
+                <span class="option-text">7-8 ساعات</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="sleep_hours" value="9+">
+                <span class="option-text">9+ ساعات</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="question-group">
+            <label class="question-label">هل تشعر بالإرهاق المستمر؟</label>
+            <div class="options-grid">
+              <label class="option-label">
+                <input type="radio" name="burnout" value="often">
+                <span class="option-text">غالباً</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="burnout" value="sometimes">
+                <span class="option-text">أحياناً</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="burnout" value="rarely">
+                <span class="option-text">نادراً</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 5: Lifestyle -->
+        <div class="assessment-section" data-section="5" style="display:none">
+          <h2 class="section-title">
+            <span class="section-icon">🚬</span>
+            نمط الحياة
+          </h2>
+          
+          <div class="question-group">
+            <label class="question-label">هل تدخن؟</label>
+            <div class="options-grid">
+              <label class="option-label">
+                <input type="radio" name="smoking" value="yes">
+                <span class="option-text">نعم</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="smoking" value="no" checked>
+                <span class="option-text">لا</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="question-group">
+            <label class="question-label">كم كوب قهوة تشرب يومياً؟</label>
+            <div class="options-grid">
+              <label class="option-label">
+                <input type="radio" name="coffee" value="0">
+                <span class="option-text">0</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="coffee" value="1-2">
+                <span class="option-text">1-2</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="coffee" value="3-4">
+                <span class="option-text">3-4</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="coffee" value="5+">
+                <span class="option-text">5+</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="question-group">
+            <label class="question-label">كم لتر ماء تشرب يومياً؟</label>
+            <div class="options-grid">
+              <label class="option-label">
+                <input type="radio" name="water" value="less1">
+                <span class="option-text">أقل من 1 لتر</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="water" value="1-2">
+                <span class="option-text">1-2 لتر</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="water" value="2-3">
+                <span class="option-text">2-3 لتر</span>
+              </label>
+              <label class="option-label">
+                <input type="radio" name="water" value="3+">
+                <span class="option-text">3+ لتر</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 6: Contact Info -->
+        <div class="assessment-section" data-section="6" style="display:none">
+          <h2 class="section-title">
+            <span class="section-icon">📧</span>
+            بيانات التواصل
+          </h2>
+          
+          <div class="question-group">
+            <label class="question-label">الاسم الكامل</label>
+            <input type="text" name="full_name" placeholder="محمد أحمد" required 
+                   style="width:100%;padding:1rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:#fff;font-family:'Noto Naskh Arabic';font-size:1rem">
+          </div>
+
+          <div class="question-group">
+            <label class="question-label">البريد الإلكتروني</label>
+            <input type="email" name="email" placeholder="name@company.com" required 
+                   style="width:100%;padding:1rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:#fff;font-family:'Noto Naskh Arabic';font-size:1rem">
+          </div>
+
+          <div class="question-group">
+            <label class="question-label">رقم الجوال</label>
+            <input type="tel" name="phone" placeholder="05XXXXXXXX" required dir="ltr"
+                   style="width:100%;padding:1rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:#fff;font-family:'Noto Naskh Arabic';font-size:1rem;text-align:left">
+          </div>
+
+          <div class="question-group">
+            <label class="question-label">اسم الشركة (اختياري)</label>
+            <input type="text" name="company" placeholder="شركة ..." 
+                   style="width:100%;padding:1rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:#fff;font-family:'Noto Naskh Arabic';font-size:1rem">
+          </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+          <button type="button" class="btn-prev" id="prevBtn" onclick="changeSection(-1)" style="display:none">
+            ← السابق
+          </button>
+          <button type="button" class="btn-next" id="nextBtn" onclick="changeSection(1)">
+            التالي →
+          </button>
+          <button type="submit" class="btn-submit" id="submitBtn" style="display:none" onclick="submitAssessment()">
+            احصل على نتيجتك المجانية ←
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- Results Container -->
+    <div id="resultsContainer" class="results-container">
+      <!-- Results will be injected here -->
+    </div>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer style="border-top:1px solid rgba(255,255,255,0.06);padding:3rem 2rem;text-align:center;margin-top:4rem">
+  <div style="font-family:'Playfair Display';font-size:1.8rem;font-weight:900;color:#fff;margin-bottom:0.5rem">
+    SAR<span style="color:#00C2A8">A</span>
+  </div>
+  <div style="font-family:'Noto Naskh Arabic';font-size:0.8rem;color:rgba(255,255,255,0.5);margin-bottom:1.5rem">
+    سُرى — من السَّيْر
+  </div>
+  <div style="font-family:'DM Mono';font-size:0.7rem;color:rgba(255,255,255,0.4)">
+    © 2026 SARA Health · Built in Saudi Arabia 🇸🇦
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="js/whatsapp-widget.js"></script>
+<script src="js/assessment.js"></script>
+
+</body>
+</html>

@@ -306,7 +306,7 @@
         <div class="icon">📧</div>
         <h3>البريد الإلكتروني</h3>
         <p>لل استفسارات الرسمية</p>
-        <a href="mailto:رحلة الصحة؟">رحلة الصحة؟ →</a>
+        <a href="mailto:hello@sara-health.com">hello@sara-health.com →</a>
       </article>
       
       <article class="contact-method">
@@ -325,7 +325,7 @@
       
       <!-- FORMSPREE FORM - Replace YOUR_FORM_ID -->
       <form 
-        action="https://formspree.io/f/جاهز لبدء" 
+        action="https://formspree.io/f/YOUR_FORM_ID" 
         method="POST"
         class="contact-form"
         data-form-type="contact"
@@ -415,7 +415,7 @@
         
         <!-- Hidden fields -->
         <input type="hidden" name="_subject" value="🎯 New SARA Lead!">
-        <input type="hidden" name="_cc" value="رحلة الصحة؟">
+        <input type="hidden" name="_cc" value="hello@sara-health.com">
         <input type="hidden" name="_template" value="table">
         <input type="text" name="_gotcha" style="display:none">
         
