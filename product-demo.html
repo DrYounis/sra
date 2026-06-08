@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SARA - منصة العافية المؤسسية | Product Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --c-green:       #1B3D2F;
+  --c-green-mid:   #2E6B52;
+  --c-green-pale:  #E6F0EB;
+  --c-amber:       #B87333;
+  --c-amber-pale:  #FBF3E8;
+  --c-red:         #B83232;
+  --c-risk-high:   #D4732A;
+  --c-surface:     #F4F1EB;
+  --c-black:       #111111;
+  --c-white:       #FAFAF8;
+  --c-muted:       #6B7280;
+  --c-subtle:      #9CA3AF;
+  --b-light:       rgba(17,17,17,0.09);
+  --b-mid:         rgba(17,17,17,0.16);
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 20px;
+  --r-pill: 999px;
+  --sh-xs: 0 1px 2px rgba(0,0,0,0.05), 0 2px 6px rgba(0,0,0,0.04);
+  --sh-sm: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.05);
+  --sh-md: 0 4px 12px rgba(0,0,0,0.07), 0 12px 36px rgba(0,0,0,0.06);
+  --sh-lg: 0 12px 40px rgba(0,0,0,0.09), 0 4px 12px rgba(0,0,0,0.05);
+  --ease: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  background: var(--c-surface);
+  color: var(--c-black);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  direction: rtl;
+}
+
+/* ── Demo Wrapper (simulates a browser frame) ── */
+.demo-wrapper {
+  width: 100%;
+  max-width: 1100px;
+  height: 92vh;
+  max-height: 780px;
+  background: var(--c-white);
+  border-radius: var(--r-xl);
+  box-shadow: var(--sh-lg), 0 0 0 1px var(--b-light);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Browser Chrome ── */
+.demo-chrome {
+  height: 44px;
+  background: #1A1A1C;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.chrome-dot { width: 10px; height: 10px; border-radius: 50%; }
+.chrome-dot.red { background: #FF5F57; }
+.chrome-dot.yellow { background: #FEBE2E; }
+.chrome-dot.green { background: #28CA41; }
+.chrome-url {
+  margin-right: 64px;
+  background: #2A2A2C;
+  color: var(--c-subtle);
+  font-size: 12px;
+  padding: 5px 14px;
+  border-radius: 6px;
+  flex: 1;
+  text-align: center;
+  max-width: 420px;
+}
+
+/* ── App Shell ── */
+.app-shell {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  width: 220px;
+  background: var(--c-white);
+  border-left: 1px solid var(--b-light);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  padding: 20px 0;
+}
+.sidebar-logo {
+  padding: 0 20px 24px;
+  border-bottom: 1px solid var(--b-light);
+  margin-bottom: 8px;
+}
+.sidebar-logo-text {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--c-green);
+  letter-spacing: -0.5px;
+}
+.sidebar-logo-text span { color: var(--c-green-mid); }
+
+.sidebar-steps { list-style: none; padding: 8px 12px; flex: 1; }
+.sidebar-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: var(--r-md);
+  cursor: pointer;
+  transition: var(--ease);
+  margin-bottom: 2px;
+  position: relative;
+  user-select: none;
+}
+.sidebar-step:hover { background: var(--c-surface); }
+.sidebar-step.active { background: var(--c-green-pale); }
+.sidebar-step.active .step-label { color: var(--c-green); font-weight: 600; }
+.sidebar-step.completed .step-icon { background: var(--c-green-mid); border-color: var(--c-green-mid); color: white; }
+.sidebar-step.completed .step-check { display: flex; }
+
+.step-icon {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  border: 2px solid var(--b-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--c-muted);
+  flex-shrink: 0;
+  transition: var(--ease);
+  position: relative;
+}
+.sidebar-step.active .step-icon {
+  border-color: var(--c-green);
+  background: var(--c-green);
+  color: white;
+}
+.step-check {
+  display: none;
+  position: absolute;
+  inset: 0;
+  background: var(--c-green-mid);
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+}
+.step-content { display: flex; flex-direction: column; }
+.step-number { font-size: 10px; color: var(--c-subtle); text-transform: uppercase; letter-spacing: 0.06em; }
+.step-label { font-size: 13px; color: var(--c-muted); transition: var(--ease); line-height: 1.3; }
+
+.sidebar-footer {
+  padding: 12px 20px;
+  border-top: 1px solid var(--b-light);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.avatar-sm {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--c-green);
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 13px; font-weight: 600;
+  flex-shrink: 0;
+}
+.user-info { font-size: 12px; color: var(--c-muted); }
+.user-info strong { color: var(--c-black); display: block; }
+
+/* ── Main Content ── */
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 28px 32px;
+  background: var(--c-surface);
+}
+
+.screen { display: none; }
+.screen.active { display: block; animation: fadeSlideIn 0.32s ease; }
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* ── Screen: Health Assessment ── */
+.assessment-header { margin-bottom: 24px; }
+.assessment-header h2 { font-size: 20px; font-weight: 700; letter-spacing: -0.4px; color: var(--c-black); margin-bottom: 6px; }
+.assessment-header p { font-size: 13px; color: var(--c-muted); }
+
+.progress-wrap { margin-bottom: 28px; }
+.progress-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; color: var(--c-muted); }
+.progress-bar-bg { height: 5px; background: var(--c-green-pale); border-radius: var(--r-pill); overflow: hidden; }
+.progress-bar-fill { height: 100%; background: var(--c-green); border-radius: var(--r-pill); transition: width 0.45s ease; }
+
+.question-card {
+  background: var(--c-white);
+  border-radius: var(--r-lg);
+  padding: 28px;
+  box-shadow: var(--sh-xs);
+  margin-bottom: 20px;
+  border: 1px solid var(--b-light);
+}
+.question-card h3 { font-size: 17px; font-weight: 600; color: var(--c-black); margin-bottom: 16px; }
+.question-card .q-icon {
+  display: inline-flex;
+  width: 36px; height: 36px;
+  border-radius: var(--r-sm);
+  background: var(--c-green-pale);
+  align-items: center; justify-content: center;
+  font-size: 18px;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.option-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border: 1.5px solid var(--b-light);
+  border-radius: var(--r-sm);
+  background: var(--c-white);
+  cursor: pointer;
+  transition: var(--ease);
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--c-black);
+  text-align: right;
+}
+.option-btn:hover { border-color: var(--c-green); background: var(--c-green-pale); }
+.option-btn.selected { border-color: var(--c-green); background: var(--c-green-pale); color: var(--c-green); font-weight: 500; }
+.option-radio {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--b-mid);
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--ease);
+}
+.option-btn.selected .option-radio { border-color: var(--c-green); }
+.option-btn.selected .option-radio::after {
+  content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--c-green);
+}
+
+.assessment-actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 8px; }
+.btn {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: var(--r-md);
+  cursor: pointer;
+  transition: var(--ease);
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-primary { background: var(--c-green); color: white; }
+.btn-primary:hover { background: var(--c-green-mid); transform: translateY(-1px); box-shadow: var(--sh-sm); }
+.btn-primary:disabled { background: var(--b-mid); color: var(--c-subtle); cursor: not-allowed; transform: none; box-shadow: none; }
+.btn-outline { background: var(--c-white); color: var(--c-muted); border: 1.5px solid var(--b-mid); }
+.btn-outline:hover { border-color: var(--c-black); color: var(--c-black); background: var(--c-surface); }
+
+/* ── Screen: SARA Score ── */
+.score-layout { display: grid; grid-template-columns: 260px 1fr; gap: 28px; align-items: start; }
+.score-card {
+  background: var(--c-white);
+  border-radius: var(--r-lg);
+  padding: 32px 24px;
+  box-shadow: var(--sh-xs);
+  border: 1px solid var(--b-light);
+  text-align: center;
+}
+.score-card h2 { font-size: 20px; font-weight: 700; letter-spacing: -0.4px; color: var(--c-black); margin-bottom: 6px; }
+.score-card .score-subtitle { font-size: 13px; color: var(--c-muted); margin-bottom: 20px; }
+
+.gauge-wrap { position: relative; width: 180px; height: 180px; margin: 0 auto 16px; }
+.gauge-wrap svg { transform: rotate(-90deg); }
+.gauge-bg { fill: none; stroke: var(--c-green-pale); stroke-width: 11; }
+.gauge-fill {
+  fill: none;
+  stroke: var(--c-green);
+  stroke-width: 11;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.gauge-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.gauge-value { font-family: 'IBM Plex Mono', monospace; font-size: 42px; font-weight: 700; color: var(--c-green); line-height: 1; }
+.gauge-label { font-size: 12px; color: var(--c-muted); margin-top: 2px; }
+
+.risk-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border-radius: var(--r-pill);
+  font-size: 12px;
+  font-weight: 700;
+  margin: 12px auto 0;
+}
+.risk-badge.moderate { background: var(--c-amber-pale); color: var(--c-amber); }
+
+.bars-card {
+  background: var(--c-white);
+  border-radius: var(--r-lg);
+  padding: 28px;
+  box-shadow: var(--sh-xs);
+  border: 1px solid var(--b-light);
+}
+.bars-card h2 { font-size: 20px; font-weight: 700; letter-spacing: -0.4px; color: var(--c-black); margin-bottom: 20px; }
+
+.bar-item { margin-bottom: 18px; }
+.bar-item:last-child { margin-bottom: 0; }
+.bar-header { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 14px; }
+.bar-header .bar-label { font-weight: 500; color: var(--c-muted); }
+.bar-header .bar-value { font-family: 'IBM Plex Mono', monospace; font-weight: 600; color: var(--c-black); }
+
+.bar-track { height: 7px; background: var(--c-green-pale); border-radius: var(--r-pill); overflow: hidden; }
+.bar-fill {
+  height: 100%;
+  border-radius: var(--r-pill);
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.bar-fill.green  { background: var(--c-green); }
+.bar-fill.teal   { background: var(--c-green-mid); }
+.bar-fill.blue   { background: var(--c-green-mid); }
+.bar-fill.amber  { background: var(--c-amber); }
+.bar-fill.orange { background: var(--c-risk-high); }
+
+/* ── Screen: Coaching Program ── */
+.coaching-header { margin-bottom: 24px; }
+.coaching-header h2 { font-size: 20px; font-weight: 700; letter-spacing: -0.4px; color: var(--c-black); margin-bottom: 4px; }
+.coaching-header p { font-size: 13px; color: var(--c-muted); }
+
+.week-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin-bottom: 28px;
+}
+.day-cell {
+  background: var(--c-white);
+  border: 1px solid var(--b-light);
+  border-radius: var(--r-sm);
+  padding: 14px 8px;
+  text-align: center;
+  transition: var(--ease);
+}
+.day-cell.completed { background: var(--c-green-pale); border-color: rgba(27,61,47,0.20); }
+.day-cell.today { border-color: var(--c-green); box-shadow: 0 0 0 2px rgba(27,61,47,0.12); }
+.day-name { font-size: 12px; color: var(--c-subtle); margin-bottom: 4px; }
+.day-num { font-size: 18px; font-weight: 700; color: var(--c-black); }
+.day-cell.completed .day-num { color: var(--c-green); }
+.day-check {
+  font-size: 14px;
+  margin-top: 4px;
+}
+.day-cell.completed .day-check::after { content: '✓'; color: var(--c-green); font-weight: 700; }
+
+.pillars-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.pillar-card {
+  background: var(--c-white);
+  border-radius: var(--r-lg);
+  padding: 22px;
+  box-shadow: var(--sh-xs);
+  border: 1px solid var(--b-light);
+}
+.pillar-icon {
+  width: 42px; height: 42px;
+  border-radius: var(--r-md);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; margin-bottom: 12px;
+}
+.pillar-card h4 { font-size: 15px; font-weight: 600; color: var(--c-black); margin-bottom: 3px; }
+.pillar-card .pillar-subtitle { font-size: 12px; color: var(--c-muted); margin-bottom: 12px; }
+
+.pillar-progress-header { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px; }
+.pillar-progress-header .pillar-pct { font-family: 'IBM Plex Mono', monospace; font-weight: 700; color: var(--c-green); }
+.pillar-progress-bg { height: 5px; background: var(--c-green-pale); border-radius: var(--r-pill); overflow: hidden; }
+.pillar-progress-fill {
+  height: 100%;
+  border-radius: var(--r-pill);
+  transition: width 0.8s ease;
+}
+
+/* ── Screen: Dashboard ── */
+.dash-header { margin-bottom: 24px; }
+.dash-header h2 { font-size: 20px; font-weight: 700; letter-spacing: -0.4px; color: var(--c-black); margin-bottom: 4px; }
+.dash-header p { font-size: 13px; color: var(--c-muted); }
+
+.kpi-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+.kpi-card {
+  background: var(--c-white);
+  border-radius: var(--r-lg);
+  padding: 22px 24px;
+  box-shadow: var(--sh-xs);
+  border: 1px solid var(--b-light);
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.kpi-icon {
+  width: 44px; height: 44px;
+  border-radius: var(--r-md);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.kpi-icon.green-bg { background: var(--c-green-pale); }
+.kpi-info { flex: 1; }
+.kpi-value { font-family: 'IBM Plex Mono', monospace; font-size: 22px; font-weight: 700; color: var(--c-black); line-height: 1; margin-bottom: 4px; }
+.kpi-label { font-size: 13px; color: var(--c-muted); }
+.kpi-change { font-size: 11px; color: var(--c-green-mid); font-weight: 600; margin-top: 4px; }
+
+.charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.chart-card {
+  background: var(--c-white);
+  border-radius: var(--r-lg);
+  padding: 24px;
+  box-shadow: var(--sh-xs);
+  border: 1px solid var(--b-light);
+}
+.chart-card h3 { font-size: 15px; font-weight: 600; letter-spacing: -0.2px; color: var(--c-black); margin-bottom: 16px; }
+.donut-wrap { display: flex; align-items: center; justify-content: center; gap: 20px; }
+.donut-wrap canvas { width: 160px; height: 160px; }
+
+.legend-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.legend-item { display: flex; align-items: center; gap: 10px; font-size: 13px; }
+.legend-dot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+.legend-dot.green  { background: var(--c-green-mid); }
+.legend-dot.amber  { background: var(--c-amber); }
+.legend-dot.orange { background: var(--c-risk-high); }
+.legend-dot.red    { background: var(--c-red); }
+.legend-label { color: var(--c-muted); }
+.legend-pct { font-family: 'IBM Plex Mono', monospace; font-weight: 700; color: var(--c-black); margin-right: auto; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .app-shell { flex-direction: column; }
+  .sidebar { width: 100%; flex-direction: row; padding: 12px; overflow-x: auto; flex-shrink: 0; border-left: none; border-bottom: 1px solid var(--b-light); }
+  .sidebar-logo { display: none; }
+  .sidebar-steps { display: flex; gap: 6px; padding: 0; }
+  .sidebar-step { flex-direction: column; gap: 4px; padding: 10px 14px; text-align: center; white-space: nowrap; }
+  .sidebar-footer { display: none; }
+  .score-layout { grid-template-columns: 1fr; }
+  .charts-row { grid-template-columns: 1fr; }
+  .kpi-row { grid-template-columns: 1fr; }
+  .pillars-grid { grid-template-columns: 1fr; }
+  .week-grid { grid-template-columns: repeat(7, 1fr); }
+  .options-grid { grid-template-columns: 1fr; }
+  .main-content { padding: 20px 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="demo-wrapper">
+
+  <!-- Browser Chrome -->
+  <div class="demo-chrome">
+    <div class="chrome-dot red"></div>
+    <div class="chrome-dot yellow"></div>
+    <div class="chrome-dot green"></div>
+    <div class="chrome-url">app.sara.sa</div>
+  </div>
+
+  <!-- App Shell -->
+  <div class="app-shell">
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <div class="sidebar-logo">
+        <div class="sidebar-logo-text">S<span>A</span>RA</div>
+      </div>
+      <ul class="sidebar-steps" id="sidebarSteps">
+        <li class="sidebar-step active" data-screen="0">
+          <div class="step-icon">1</div>
+          <div class="step-content">
+            <span class="step-number">الخطوة ١</span>
+            <span class="step-label">تقييم الصحة</span>
+          </div>
+        </li>
+        <li class="sidebar-step" data-screen="1">
+          <div class="step-icon">2</div>
+          <div class="step-content">
+            <span class="step-number">الخطوة ٢</span>
+            <span class="step-label">نتيجة SARA</span>
+          </div>
+        </li>
+        <li class="sidebar-step" data-screen="2">
+          <div class="step-icon">3</div>
+          <div class="step-content">
+            <span class="step-number">الخطوة ٣</span>
+            <span class="step-label">برنامج ٩٠ يوم</span>
+          </div>
+        </li>
+        <li class="sidebar-step" data-screen="3">
+          <div class="step-icon">4</div>
+          <div class="step-content">
+            <span class="step-number">الخطوة ٤</span>
+            <span class="step-label">لوحة البيانات</span>
+          </div>
+        </li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="avatar-sm">أح</div>
+        <div class="user-info">
+          <strong>أحمد محمد</strong>
+          موظف تجريبي
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+
+      <!-- Screen 1: Health Assessment -->
+      <div class="screen active" id="screen0">
+        <div class="assessment-header">
+          <h2>تقييم الصحة الشامل</h2>
+          <p>أجب عن ٥ أسئلة بسيطة لنقدم لك تحليلاً دقيقاً لوضعك الصحي</p>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-info">
+            <span id="progressLabel">السؤال ١ من ٥</span>
+            <span id="progressPct">٠٪</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progressBar" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <div class="question-card" id="questionCard">
+          <h3><span class="q-icon" id="qIcon">🏃</span> <span id="qText">مستوى النشاط البدني</span></h3>
+          <div class="options-grid" id="optionsGrid"></div>
+        </div>
+
+        <div class="assessment-actions">
+          <button class="btn btn-outline" id="prevBtn" style="visibility: hidden;">السابق</button>
+          <button class="btn btn-primary" id="nextBtn" disabled>التالي ←</button>
+        </div>
+      </div>
+
+      <!-- Screen 2: SARA Score -->
+      <div class="screen" id="screen1">
+        <div class="score-layout">
+          <div class="score-card">
+            <h2>نتيجتك</h2>
+            <p class="score-subtitle">SARA Score</p>
+            <div class="gauge-wrap">
+              <svg viewBox="0 0 160 160" width="160" height="160">
+                <circle class="gauge-bg" cx="80" cy="80" r="68"/>
+                <circle class="gauge-fill" id="gaugeFill" cx="80" cy="80" r="68"
+                  stroke="#2D4A3E"
+                  stroke-dasharray="427.26"
+                  stroke-dashoffset="427.26"
+                  stroke-linecap="round"/>
+              </svg>
+              <div class="gauge-center">
+                <div class="gauge-value" id="gaugeValue">0</div>
+                <div class="gauge-label">من ١٠٠</div>
+              </div>
+            </div>
+            <div class="risk-badge moderate" id="riskBadge">⚡ خطر متوسط</div>
+          </div>
+
+          <div class="bars-card">
+            <h2>تفصيل المؤشرات الصحية</h2>
+            <div id="barsContainer"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Screen 3: 90-Day Coaching Program -->
+      <div class="screen" id="screen2">
+        <div class="coaching-header">
+          <h2>برنامج ٩٠ يوم التدريبي</h2>
+          <p>خطتك الشخصية للوصول إلى العافية المثلى - الأسبوع الأول</p>
+        </div>
+
+        <div class="week-grid" id="weekGrid"></div>
+
+        <div class="pillars-grid" id="pillarsGrid"></div>
+      </div>
+
+      <!-- Screen 4: Employer Dashboard -->
+      <div class="screen" id="screen3">
+        <div class="dash-header">
+          <h2>لوحة بيانات المؤسسة</h2>
+          <p>نظرة عامة على صحة موظفيك وعائد الاستثمار</p>
+        </div>
+
+        <div class="kpi-row" id="kpiRow"></div>
+
+        <div class="charts-row">
+          <div class="chart-card">
+            <h3>توزيع المخاطر الصحية</h3>
+            <div class="donut-wrap">
+              <canvas id="donutCanvas" width="160" height="160"></canvas>
+              <ul class="legend-list" id="legendList"></ul>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <h3>أداء البرنامج</h3>
+            <div id="programSummary"></div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────
+// SARA Product Demo - Full Interactive Engine
+// ─────────────────────────────────────────────
+
+// ── State ──
+const state = {
+  currentScreen: 0,
+  currentQuestion: 0,
+  answers: [null, null, null, null, null],
+  totalScreens: 4
+};
+
+// ── Questions Data ──
+const questions = [
+  {
+    icon: '🏃',
+    text: 'مستوى النشاط البدني',
+    options: ['خامل (لا أمارس الرياضة)', 'معتدل (١-٢ مرات أسبوعياً)', 'نشط (٣-٤ مرات أسبوعياً)', 'نشط جداً (يومياً)']
+  },
+  {
+    icon: '🥗',
+    text: 'النظام الغذائي',
+    options: ['غير صحي (وجبات سريعة بكثرة)', 'متوسط (خليط من الصحي وغير الصحي)', 'صحي (أغلب الوجبات متوازنة)', 'صحي جداً (مدروس ومتوازن)']
+  },
+  {
+    icon: '😴',
+    text: 'جودة النوم',
+    options: ['أقل من ٥ ساعات', '٥-٦ ساعات', '٧-٨ ساعات', 'أكثر من ٨ ساعات']
+  },
+  {
+    icon: '🧬',
+    text: 'التاريخ العائلي للأمراض المزمنة',
+    options: ['لا يوجد', 'أحد الوالدين', 'كلا الوالدين', 'غير معروف']
+  },
+  {
+    icon: '🧘',
+    text: 'مستوى التوتر والضغط النفسي',
+    options: ['منخفض', 'متوسط', 'مرتفع', 'مرتفع جداً']
+  }
+];
+
+// ── Bars Data ──
+const barData = [
+  { label: 'التمثيل الغذائي', value: 72, color: 'green' },
+  { label: 'القلب والأوعية الدموية', value: 65, color: 'teal' },
+  { label: 'الصحة النفسية', value: 58, color: 'blue' },
+  { label: 'الوزن', value: 70, color: 'amber' },
+  { label: 'الهرمونات', value: 62, color: 'orange' }
+];
+
+// ── Pillars Data ──
+const pillars = [
+  { icon: '🚶', title: 'المشي', subtitle: 'خطوات يومية', pct: 73, bg: '#E8F5EE', color: '#2D4A3E' },
+  { icon: '🥑', title: 'التغذية', subtitle: 'خطة غذائية', pct: 60, bg: '#FFF7ED', color: '#F59E0B' },
+  { icon: '🌙', title: 'النوم', subtitle: 'جودة النوم', pct: 85, bg: '#EFF6FF', color: '#3B82F6' },
+  { icon: '🧠', title: 'التأمل', subtitle: 'تمارين ذهنية', pct: 40, bg: '#FDF2F8', color: '#EC4899' }
+];
+
+// ── KPI Data ──
+const kpis = [
+  { icon: '👥', value: '١٬٨٤٧', label: 'موظف تم تقييمهم', change: '↑ ١٢٪ هذا الشهر', iconBg: 'green-bg' },
+  { icon: '💰', value: 'SAR ٢٫١M', label: 'توفير متوقع', change: '↓ ١٨٪ تكاليف صحية', iconBg: 'green-bg' },
+  { icon: '📈', value: '٤٫٢x', label: 'عائد الاستثمار', change: '↑ ٠٫٨x عن المتوقع', iconBg: 'green-bg' }
+];
+
+// ── Donut Data ──
+const donutData = [
+  { label: 'منخفض', pct: 37, color: '#4CAF84' },
+  { label: 'متوسط', pct: 34, color: '#FBBF24' },
+  { label: 'مرتفع', pct: 23, color: '#F59E0B' },
+  { label: 'حرج', pct: 6, color: '#EF4444' }
+];
+
+// ── Week Days ──
+const weekDays = [
+  { name: 'السبت', num: 1, completed: true },
+  { name: 'الأحد', num: 2, completed: true },
+  { name: 'الاثنين', num: 3, completed: true },
+  { name: 'الثلاثاء', num: 4, completed: true },
+  { name: 'الأربعاء', num: 5, completed: true },
+  { name: 'الخميس', num: 6, completed: false, today: true },
+  { name: 'الجمعة', num: 7, completed: false }
+];
+
+// ── DOM Refs ──
+const $ = (s) => document.querySelector(s);
+const $$ = (s) => document.querySelectorAll(s);
+
+// ── Screen Switching ──
+function switchScreen(index) {
+  state.currentScreen = index;
+  // Update sidebar
+  $$('.sidebar-step').forEach((el, i) => {
+    el.classList.toggle('active', i === index);
+    if (i <= index) el.classList.add('completed');
+    else el.classList.remove('completed');
+    // Update step icon for completed
+    const icon = el.querySelector('.step-icon');
+    if (i < index) {
+      icon.innerHTML = '✓';
+    } else {
+      icon.innerHTML = i + 1;
+    }
+  });
+  // Update screens
+  $$('.screen').forEach((el, i) => el.classList.toggle('active', i === index));
+  // Initialize screen-specific content
+  if (index === 1) renderScoreScreen();
+  if (index === 2) renderCoachingScreen();
+  if (index === 3) renderDashboardScreen();
+}
+
+// ── Assessment Engine ──
+function renderQuestion() {
+  const q = questions[state.currentQuestion];
+  $('#qIcon').textContent = q.icon;
+  $('#qText').textContent = q.text;
+  $('#progressLabel').textContent = `السؤال ${arabicNum(state.currentQuestion + 1)} من ${arabicNum(5)}`;
+  $('#progressPct').textContent = `${arabicNum(Math.round((state.currentQuestion / 5) * 100))}٪`;
+  $('#progressBar').style.width = `${(state.currentQuestion / 5) * 100}%`;
+
+  let html = '';
+  q.options.forEach((opt, i) => {
+    const selected = state.answers[state.currentQuestion] === i ? ' selected' : '';
+    html += `
+      <button class="option-btn${selected}" data-index="${i}" onclick="selectOption(${i})">
+        <span class="option-radio"></span>
+        ${opt}
+      </button>`;
+  });
+  $('#optionsGrid').innerHTML = html;
+
+  // Update buttons
+  const prevBtn = $('#prevBtn');
+  const nextBtn = $('#nextBtn');
+  prevBtn.style.visibility = state.currentQuestion === 0 ? 'hidden' : 'visible';
+  nextBtn.textContent = state.currentQuestion === 4 ? 'عرض النتيجة ←' : 'التالي ←';
+  nextBtn.disabled = state.answers[state.currentQuestion] === null;
+}
+
+function selectOption(index) {
+  state.answers[state.currentQuestion] = index;
+  // Re-render to show selection
+  const btns = $$('#optionsGrid .option-btn');
+  btns.forEach((btn, i) => btn.classList.toggle('selected', i === index));
+  $('#nextBtn').disabled = false;
+}
+
+function nextQuestion() {
+  if (state.answers[state.currentQuestion] === null) return;
+  if (state.currentQuestion < 4) {
+    state.currentQuestion++;
+    renderQuestion();
+  } else {
+    // Assessment complete - move to score screen
+    switchScreen(1);
+  }
+}
+
+function prevQuestion() {
+  if (state.currentQuestion > 0) {
+    state.currentQuestion--;
+    renderQuestion();
+  }
+}
+
+function arabicNum(n) {
+  const digits = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+  return String(n).split('').map(d => digits[parseInt(d)] || d).join('');
+}
+
+// ── Score Screen ──
+function renderScoreScreen() {
+  // Animate gauge
+  const score = 68;
+  const circumference = 2 * Math.PI * 68; // ~427.26
+  const offset = circumference - (score / 100) * circumference;
+  setTimeout(() => {
+    $('#gaugeFill').style.strokeDashoffset = offset;
+  }, 100);
+
+  // Animate value
+  animateValue($('#gaugeValue'), 0, score, 1200);
+
+  // Render bars
+  const barsContainer = $('#barsContainer');
+  barsContainer.innerHTML = barData.map(b => `
+    <div class="bar-item">
+      <div class="bar-header">
+        <span class="bar-label">${b.label}</span>
+        <span class="bar-value" data-bar-val="${b.value}">٠٪</span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill ${b.color}" data-bar-fill="${b.value}" style="width: 0%"></div>
+      </div>
+    </div>
+  `).join('');
+
+  // Animate bars
+  setTimeout(() => {
+    $$('[data-bar-fill]').forEach(el => {
+      el.style.width = el.dataset.barFill + '%';
+    });
+    $$('[data-bar-val]').forEach(el => {
+      animateValue(el, 0, parseInt(el.dataset.barVal), 800, '%');
+    });
+  }, 300);
+}
+
+// ── Coaching Screen ──
+function renderCoachingScreen() {
+  // Week grid
+  const weekGrid = $('#weekGrid');
+  weekGrid.innerHTML = weekDays.map(d => {
+    let cls = 'day-cell';
+    if (d.completed) cls += ' completed';
+    if (d.today) cls += ' today';
+    return `
+      <div class="${cls}">
+        <div class="day-name">${d.name}</div>
+        <div class="day-num">${d.num}</div>
+        <div class="day-check"></div>
+      </div>`;
+  }).join('');
+
+  // Pillars
+  const pillarsGrid = $('#pillarsGrid');
+  pillarsGrid.innerHTML = pillars.map(p => `
+    <div class="pillar-card">
+      <div class="pillar-icon" style="background: ${p.bg}">${p.icon}</div>
+      <h4>${p.title}</h4>
+      <p class="pillar-subtitle">${p.subtitle}</p>
+      <div class="pillar-progress-header">
+        <span>نسبة الإنجاز</span>
+        <span class="pillar-pct" data-pillar-pct="${p.pct}">٠٪</span>
+      </div>
+      <div class="pillar-progress-bg">
+        <div class="pillar-progress-fill" data-pillar-fill="${p.pct}" style="width: 0%; background: ${p.color}"></div>
+      </div>
+    </div>
+  `).join('');
+
+  // Animate pillar bars
+  setTimeout(() => {
+    $$('[data-pillar-fill]').forEach(el => {
+      el.style.width = el.dataset.pillarFill + '%';
+    });
+    $$('[data-pillar-pct]').forEach(el => {
+      animateValue(el, 0, parseInt(el.dataset.pillarPct), 800, '%');
+    });
+  }, 200);
+}
+
+// ── Dashboard Screen ──
+function renderDashboardScreen() {
+  // KPIs
+  const kpiRow = $('#kpiRow');
+  kpiRow.innerHTML = kpis.map(k => `
+    <div class="kpi-card">
+      <div class="kpi-icon ${k.iconBg}">${k.icon}</div>
+      <div class="kpi-info">
+        <div class="kpi-value" data-kpi-val="${k.value}">${k.value}</div>
+        <div class="kpi-label">${k.label}</div>
+        <div class="kpi-change">${k.change}</div>
+      </div>
+    </div>
+  `).join('');
+
+  // Donut chart
+  drawDonut();
+
+  // Legend
+  const legendList = $('#legendList');
+  legendList.innerHTML = donutData.map(d => `
+    <li class="legend-item">
+      <span class="legend-dot" style="background: ${d.color}"></span>
+      <span class="legend-label">${d.label}</span>
+      <span class="legend-pct">${d.pct}٪</span>
+    </li>
+  `).join('');
+
+  // Program summary
+  $('#programSummary').innerHTML = `
+    <div style="display:flex;flex-direction:column;gap:18px;margin-top:4px">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:#E6F0EB;border-radius:10px">
+        <div>
+          <div style="font-weight:600;font-size:15px;color:#111111">معدل الالتزام</div>
+          <div style="font-size:13px;color:#6B7280">متوسط إكمال المهام اليومية</div>
+        </div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:700;color:#1B3D2F">٨٤٪</div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:#E6F0EB;border-radius:10px">
+        <div>
+          <div style="font-weight:600;font-size:15px;color:#111111">تحسن النتائج</div>
+          <div style="font-size:13px;color:#6B7280">متوسط تحسن المؤشرات بعد ٩٠ يوم</div>
+        </div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:700;color:#1B3D2F">+٣٢٪</div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:#E6F0EB;border-radius:10px">
+        <div>
+          <div style="font-weight:600;font-size:15px;color:#111111">معدل إكمال البرنامج</div>
+          <div style="font-size:13px;color:#6B7280">موظفون أكملوا ٩٠ يوم</div>
+        </div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:700;color:#1B3D2F">٧٦٪</div>
+      </div>
+    </div>
+  `;
+}
+
+function drawDonut() {
+  const canvas = $('#donutCanvas');
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width;
+  const h = canvas.height;
+  const cx = w / 2;
+  const cy = h / 2;
+  const outerR = 68;
+  const innerR = 42;
+  ctx.clearRect(0, 0, w, h);
+
+  let startAngle = -Math.PI / 2;
+  donutData.forEach(seg => {
+    const sliceAngle = (seg.pct / 100) * (2 * Math.PI);
+    ctx.beginPath();
+    ctx.arc(cx, cy, outerR, startAngle, startAngle + sliceAngle);
+    ctx.arc(cx, cy, innerR, startAngle + sliceAngle, startAngle, true);
+    ctx.closePath();
+    ctx.fillStyle = seg.color;
+    ctx.fill();
+    startAngle += sliceAngle;
+  });
+
+  // Center text
+  ctx.fillStyle = '#111111';
+  ctx.font = '700 22px "IBM Plex Sans Arabic"';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('١٬٨٤٧', cx, cy - 8);
+  ctx.font = '400 12px "IBM Plex Sans Arabic"';
+  ctx.fillStyle = '#6B7280';
+  ctx.fillText('موظف', cx, cy + 12);
+}
+
+// ── Utilities ──
+function animateValue(el, start, end, duration, suffix = '') {
+  const range = end - start;
+  const startTime = performance.now();
+  function step(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+    const current = Math.round(start + range * eased);
+    el.textContent = arabicNum(current) + suffix;
+    if (progress < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+// ── Event Bindings ──
+$$('.sidebar-step').forEach(step => {
+  step.addEventListener('click', () => {
+    const screenIndex = parseInt(step.dataset.screen);
+    if (screenIndex !== state.currentScreen) {
+      switchScreen(screenIndex);
+    }
+  });
+});
+
+$('#nextBtn').addEventListener('click', nextQuestion);
+$('#prevBtn').addEventListener('click', prevQuestion);
+
+// ── Init ──
+renderQuestion();
+</script>
+</body>
+</html>
