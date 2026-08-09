@@ -10,3 +10,5 @@
 
 # PDFs (large source docs — store locally)
 *.pdf
+.vercel
+.env*.local
