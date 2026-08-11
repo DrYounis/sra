@@ -598,6 +598,146 @@
     max-width: 380px;
   }
 }
+
+/* Trust Section — backed by HPC
+   ============================================ */
+.trust-section {
+  padding: 3rem 4rem;
+  background: var(--navy-deep);
+  border-top: 1px solid rgba(0,194,168,0.06);
+  border-bottom: 1px solid rgba(0,194,168,0.06);
+}
+
+.trust-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Eyebrow */
+.trust-eyebrow {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.trust-eyebrow .ar {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.trust-eyebrow .en {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--teal);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: block;
+  direction: ltr;
+}
+
+/* License badge */
+.trust-badge-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(0,194,168,0.05);
+  border: 1px solid rgba(0,194,168,0.18);
+  border-radius: 50px;
+  padding: 0.45rem 1.4rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--teal);
+  letter-spacing: 0.04em;
+  direction: ltr;
+}
+
+.trust-badge .ar {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0;
+}
+
+/* Partner logo strip */
+.trust-logo-strip {
+  background: rgba(255,255,255,0.015);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 14px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.trust-logo-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  row-gap: 1.2rem;
+}
+
+.trust-logo-row img {
+  height: 28px;
+  width: auto;
+  opacity: 0.35;
+  filter: grayscale(100%) brightness(2);
+  transition: all var(--transition-medium);
+}
+
+.trust-logo-row img:hover {
+  opacity: 0.7;
+  filter: grayscale(0%) brightness(1);
+}
+
+/* Track record stat */
+.trust-stat {
+  text-align: center;
+}
+
+.trust-stat p {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  margin: 0;
+}
+
+.trust-stat .num {
+  color: var(--white);
+  font-weight: 700;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .trust-section {
+    padding: 2.5rem 2rem;
+  }
+  .trust-logo-strip {
+    padding: 1.2rem 1.5rem;
+  }
+  .trust-logo-row {
+    gap: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .trust-section {
+    padding: 2rem 1.2rem;
+  }
+  .trust-logo-row {
+    gap: 1.5rem;
+  }
+  .trust-logo-row img {
+    height: 22px;
+  }
+}
 </style>
 </head>
 
@@ -748,6 +888,64 @@
     
     <div class="float-badge float-badge-1" aria-hidden="true">44 حالة صحية</div>
     <div class="float-badge float-badge-2" aria-hidden="true">15 دقيقة فقط</div>
+  </div>
+</section>
+
+<!-- HPC TRUST SECTION -->
+<section class="trust-section" aria-labelledby="trust-title" dir="rtl">
+  <div class="trust-inner">
+
+    <!-- Eyebrow -->
+    <div class="trust-eyebrow" id="trust-title">
+      <span class="ar">مؤسَّس من قِبل <strong style="color:var(--white)">مركز تعزيز الصحة</strong> — جهة مرخّصة من الهيئة السعودية للتخصصات الصحية</span>
+      <span class="en">Built by the Health Promotion Center — an SCFHS-licensed entity</span>
+    </div>
+
+    <!-- License badge -->
+    <div class="trust-badge-row">
+      <div class="trust-badge" role="note" aria-label="ترخيص الهيئة السعودية للتخصصات الصحية">
+        <span>SCFHS-LICENSED ENTITY</span>
+        <span class="ar" style="margin:0 0.3rem">|</span>
+        <span class="ar">مؤسَّس من قِبل جهة مرخّصة</span>
+      </div>
+    </div>
+
+    <!-- Partner logo strip -->
+    <!--
+      ⚠️ BLOCKED FOR LAUNCH: These logos require sign-off from WHO, UNICEF,
+      Ministry of Interior, Ministry of Education, SCFHS, and Ma'aden before
+      they can appear on a commercial product marketing page. UN agencies and
+      government ministries typically restrict logo use that implies product
+      endorsement.
+
+      If sign-off isn't obtained, replace this logo strip with text-only
+      credibility language (see fallback in trust-logo-fallback below).
+
+      Logo files are placeholders — source actual assets from HPC before shipping.
+    -->
+    <div class="trust-logo-strip" aria-label="شركاء النجاح">
+      <div class="trust-logo-row">
+        <img src="/assets/partners/who.svg" alt="World Health Organization" loading="lazy" width="100" height="28">
+        <img src="/assets/partners/unicef.svg" alt="UNICEF" loading="lazy" width="70" height="28">
+        <img src="/assets/partners/moi-saudi.svg" alt="Ministry of Interior — Saudi Arabia" loading="lazy" width="100" height="28">
+        <img src="/assets/partners/moe-saudi.svg" alt="Ministry of Education — Saudi Arabia" loading="lazy" width="100" height="28">
+        <img src="/assets/partners/scfhs.svg" alt="Saudi Commission for Health Specialties" loading="lazy" width="90" height="28">
+        <img src="/assets/partners/maaden.svg" alt="Ma'aden" loading="lazy" width="80" height="28">
+      </div>
+    </div>
+
+    <!-- Fallback text-only credibility (swap in if logo sign-off fails) -->
+    <div class="trust-logo-fallback" style="display:none" aria-label="الجهات المتعاونة">
+      <p style="font-family:'Noto Naskh Arabic',serif;font-size:0.85rem;color:var(--text-dim);text-align:center;margin:0 0 1.5rem">
+        تعاون مركز تعزيز الصحة مع منظمة الصحة العالمية، اليونيسف، ووزارات الداخلية والتعليم والصحة السعودية في مبادرات صحية وطنية
+      </p>
+    </div>
+
+    <!-- Track record stat -->
+    <div class="trust-stat">
+      <p><span class="num">14+</span> مبادرة وبرنامجاً صحياً وطنياً</p>
+    </div>
+
   </div>
 </section>
 
