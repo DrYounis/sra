@@ -378,6 +378,7 @@
             <div class="package-price">50 ريال / موظف / شهر</div>
             <ul class="package-features">
               <li>✓ التقييم الصحي</li>
+              <li>✓ برنامج ٩٠ يوماً (ذاتي التوجيه عبر التطبيق)</li>
               <li>✓ لوحة البيانات الأساسية</li>
             </ul>
           </div>
@@ -387,7 +388,7 @@
             <div class="package-price">100 ريال / موظف / شهر</div>
             <ul class="package-features">
               <li>✓ كل مميزات Essentials</li>
-              <li>✓ برنامج 90 يوماً</li>
+              <li>✓ برنامج 90 يوماً (بمرافقة مختص)</li>
               <li>✓ تقارير أسبوعية</li>
             </ul>
           </div>
@@ -499,17 +500,25 @@ function selectPackage(name, price) {
 function calculate() {
   const employees = parseInt(document.getElementById('employeeSlider').value);
   const riskPercent = parseInt(document.getElementById('riskSlider').value);
-  
+
   // Update displays
   document.getElementById('employeeDisplay').textContent = employees.toLocaleString('en-US');
   document.getElementById('riskDisplay').textContent = riskPercent + '%';
-  
+
+  // Per-tier effectiveness multiplier (self-guided < coached)
+  const effectivenessMap = {
+    essentials: 0.5,   // self-guided app — lower adherence
+    pro: 1.0,          // coached — baseline
+    enterprise: 1.0    // same health impact as Pro (extras are API/account mgmt)
+  };
+  const effectiveness = effectivenessMap[currentPackage] || 1.0;
+
   // Calculations
   const monthlyPEPM = currentPrice;
   const annualCost = employees * monthlyPEPM * 12;
-  
+
   const highRiskEmployees = employees * (riskPercent / 100);
-  const savingsPerEmployee = 8500; // SAR per high-risk employee per year
+  const savingsPerEmployee = 8500 * effectiveness; // SAR per high-risk employee per year · tier-adjusted
   const totalSavings = highRiskEmployees * savingsPerEmployee;
   
   const netGain = totalSavings - annualCost;
