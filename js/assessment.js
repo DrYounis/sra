@@ -114,7 +114,15 @@ async function submitAssessment() {
   
   // Store in localStorage
   localStorage.setItem('sara_assessment_data', JSON.stringify(data));
-  
+
+  // Persist score server-side for wearable cross-reference (Phase 0.5).
+  // Fire-and-forget: never blocks the user-facing result.
+  fetch('/api/assessment', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  }).catch((err) => console.warn('Assessment persistence skipped:', err));
+
   // Send to Formspree (update with your Form ID)
   try {
     const response = await fetch('https://formspree.io/f/YOUR_FORMSPREE_ID', {
